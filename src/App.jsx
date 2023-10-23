@@ -2,11 +2,13 @@
 import { useEffect, useState } from "react";
 
 import blc from "../src/utils/connection";
-// import getChar from "../src/utils/characteristics"
+import getChar from "../src/utils/characteristics"
 
 export default function Home() {
     const [server, setServer] = useState()
-    const [char, setChar] = useState()
+    const [sendChar, setSendChar] = useState();
+    const [recienveChar, setRecienveChar] = useState();
+
 
     async function connect () {
         const server = await blc()
@@ -14,45 +16,12 @@ export default function Home() {
     }
 
     async function doSomething () {
-      const cmds = {
-        TARE_SCALE: 0x64,
-        START_WEIGHT_MEAS: 0x65,
-        STOP_WEIGHT_MEAS: 0x66,
-        START_PEAK_RFD_MEAS: 0x67,
-        START_PEAK_RFD_MEAS_SERIES: 0x68,
-        ADD_CALIB_POINT: 0x69,
-        SAVE_CALIB: 0x6a,
-        GET_APP_VERSION: '0x6b',
-        GET_ERR_INFO: 0x6c,
-        CLR_ERR_INFO: 0x6d,
-        SLEEP: 0x6e,
-        GET_BATT_VLTG: 0x6f,
-      };
-      try {
-        const primary_service = "7e4e1701-1ea6-40c9-9dcc-13d34ffead57";
-        const notifyUuid = "7e4e1702-1ea6-40c9-9dcc-13d34ffead57";
-        const writeUuid = "7e4e1703-1ea6-40c9-9dcc-13d34ffead57";
-    
-        const service = await server.getPrimaryService(primary_service);
-        const recieve = await service?.getCharacteristic(notifyUuid)
-
-        // console.log("recieve:", recieve)
-        recieve.addEventListener("characteristicvaluechanged", notify)
-        await recieve.startNotifications()
-        const sendChar = await service?.getCharacteristic(writeUuid)
-        const start = new Uint8Array([cmds.START_WEIGHT_MEAS])
-        const stop = new Uint8Array([cmds.STOP_WEIGHT_MEAS])
-        await sendChar.writeValueWithResponse(start)
-        setTimeout(async () => {
-          await sendChar.writeValueWithResponse(stop)
-        },5000)
-        
-
-      } catch (error) {
-        return new Error(`some error: ${error}`);
-      }
+      const {send, recieve} = await getChar(server)
+      setSendChar(send)
+      setRecienveChar(recieve)
     }
-
+    // TODO: customize notify event to handle personal uses 
+    // TODO: move notify funcionality to its own folder
     function notify (event) {
       try {
         var value = event.target.value;
