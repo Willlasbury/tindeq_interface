@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import blc from "../src/utils/connection";
 import getChar from "../src/utils/characteristics";
 import notify from "./utils/notify";
+import CFT from "./components/CFT";
 
 export default function Home() {
   const [server, setServer] = useState();
@@ -18,8 +19,9 @@ export default function Home() {
     const { send, recieve } = await getChar(server);
     setSendChar(send);
     setrecieveChar(recieve);
+    
     // start the notifications
-    recieveChar && notify(recieveChar)
+    notify(recieve)
   }
 
   // start notifications once you have obtained the recieve characterisitic
@@ -64,6 +66,8 @@ export default function Home() {
       >
         do something
       </button>
+
+      <CFT sendChar={sendChar}/>
     </main>
   );
 }
