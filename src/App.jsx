@@ -7,8 +7,8 @@ import notify from "./utils/notify";
 
 export default function Home() {
   const [server, setServer] = useState();
-  const [sendChar, setSendChar] = useState();
-  const [recieveChar, setrecieveChar] = useState();
+  const [sendChar, setSendChar] = useState(undefined);
+  const [recieveChar, setrecieveChar] = useState(undefined);
 
   // initiate the connection and obtain the server
   async function connect() {
@@ -19,7 +19,7 @@ export default function Home() {
     setSendChar(send);
     setrecieveChar(recieve);
     // start the notifications
-    notify(recieveChar)
+    recieveChar && notify(recieveChar)
   }
 
   // start notifications once you have obtained the recieve characterisitic
@@ -56,15 +56,13 @@ export default function Home() {
         className="border-2 border-white rounded-md p-3 mb-3"
         onClick={connect}
       >
-        {" "}
-        connect{" "}
+        connect
       </button>
       <button
         className="border-2 border-white rounded-md p-3"
         onClick={doSomething}
       >
-        {" "}
-        do something{" "}
+        do something
       </button>
     </main>
   );
