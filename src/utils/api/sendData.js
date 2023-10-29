@@ -28,6 +28,27 @@ const api = {
       throw new Error(`Error fetching items: ${error.message}`);
     }
   },
-};
+
+  post: async (packet) => {
+  try{
+    const res = await fetch(
+      `${URL_PREFIX}`,
+      {
+        method: "POST",
+        body: packet,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    )
+      
+    return res.json()
+  
+  } catch (err){
+    console.log(err);
+    return res.status(500).json({msg:'some error', err:err})
+  }
+}
+}
 
 export default api

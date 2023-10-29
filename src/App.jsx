@@ -5,7 +5,7 @@ import blc from "../src/utils/connection";
 import getChar from "../src/utils/characteristics";
 import notify from "./utils/notify";
 import CFT from "./components/CFT";
-import get from "./utils/api/get"
+import get from "./utils/api/sendData"
 
 export default function Home() {
   const [server, setServer] = useState();
