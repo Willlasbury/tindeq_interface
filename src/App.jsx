@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import blc from "../src/utils/connection";
 import getChar from "../src/utils/characteristics";
@@ -11,6 +11,8 @@ export default function Home() {
   const [server, setServer] = useState();
   const [sendChar, setSendChar] = useState(undefined);
   const [recieveChar, setrecieveChar] = useState(undefined);
+  const [data, setData] = useState([]);
+
 
   // initiate the connection and obtain the server
   async function connect() {
@@ -22,7 +24,7 @@ export default function Home() {
     setrecieveChar(recieve);
     
     // start the notifications
-    notify(recieve)
+    notify(recieve, setData)
   }
 
 
@@ -34,7 +36,7 @@ export default function Home() {
     );
   };
   
-
+  
 
   return (
     <main className="h-screen flex flex-col justify-center items-center">
