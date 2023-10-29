@@ -5,6 +5,7 @@ import blc from "../src/utils/connection";
 import getChar from "../src/utils/characteristics";
 import notify from "./utils/notify";
 import CFT from "./components/CFT";
+import get from "./utils/api/get"
 
 export default function Home() {
   const [server, setServer] = useState();
@@ -24,33 +25,16 @@ export default function Home() {
     notify(recieve)
   }
 
-  // start notifications once you have obtained the recieve characterisitic
-  // useEffect(() => {
-  //   console.log("receive start");
-  //   async function startNotify() {
-  //     await notify(recieveChar);
-  //   }
-  //   recieveChar && startNotify();
-  // }, recieveChar);
 
-  const doSomething = () => {
+// test server connection
+  const doSomething = async () => {
+    let data = await get.get()
     console.log(
-      "server, sendChar, recieveChar:",
-      server,
-      sendChar,
-      recieveChar
+     data
     );
   };
+  
 
-  // get characteristics once you have the server
-  // useEffect(() => {
-  //   async function getCharacteristics() {
-  //     const { send, recieve } = await getChar(server);
-  //     setSendChar(send);
-  //     setrecieveChar(recieve);
-  //   }
-  //   getCharacteristics();
-  // }, server);
 
   return (
     <main className="h-screen flex flex-col justify-center items-center">
