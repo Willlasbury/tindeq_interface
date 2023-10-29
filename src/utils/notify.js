@@ -7,11 +7,13 @@ export default async function (recieveChar) {
         var bytes = [];
         for (var k = 0; k < len; k++)
         {
-            var b = value.getUint8(k);
+            var b = value.getInt8(k);
+
             bytes.push(b);
         }
-        console.log("Data: ", bytes);
-
+        console.log("Data: ", value);
+        const string = bytes.join(' ')
+        console.log("string:", string)
     } catch (ex) {
         alert("ERROR: " + ex.message);
     }
