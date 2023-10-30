@@ -4,9 +4,9 @@ import sendCommand from "../utils/send_command";
 
 // run critical force test
 export default function CFT ({sendChar}) {
-
+// TODO: add check for connection
     // set the time of the test run in milliseconds
-    const duration = 3000
+    const duration = 500
 
     async function runCFT () {
         try {

@@ -1,6 +1,7 @@
 // const URL_PREFIX = process.env.REACT_APP_SERVER_URL;
 
-const URL_PREFIX = "http://127.0.0.1:8000/test";
+// TODO: create environment variable for url
+const URL_PREFIX = "http://127.0.0.1:8000";
 
 const api = {
   get: async () => {
@@ -26,12 +27,17 @@ const api = {
     }
   },
 
-  post: async (packet) => {
+  post: async (bytes) => {
+    console.log("bytes:", bytes)
     try {
-      console.log("packet:", packet);
+      const packet = {
+        'bytes': bytes
+      }
+
+      console.log("packet:", packet)
       const res = await fetch(`${URL_PREFIX}`, {
         method: "POST",
-        body: packet,
+        body: JSON.stringify(packet),
         headers: {
           "Content-Type": "application/json",
         },
