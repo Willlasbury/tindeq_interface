@@ -5,13 +5,13 @@ import blc from "../src/utils/connection";
 import getChar from "../src/utils/characteristics";
 import notify from "./utils/notify";
 import CFT from "./components/CFT";
-import get from "./utils/api/sendData"
+import api from "./utils/api"
 
 export default function Home() {
   const [server, setServer] = useState();
   const [sendChar, setSendChar] = useState(undefined);
   const [recieveChar, setrecieveChar] = useState(undefined);
-  const [data, setData] = useState([]);
+  const [tindeqData, setTindeqData] = useState([]);
 
 
   // initiate the connection and obtain the server
@@ -24,19 +24,17 @@ export default function Home() {
     setrecieveChar(recieve);
     
     // start the notifications
-    notify(recieve, setData)
+    notify(recieve, tindeqData, setTindeqData)
   }
 
 
 // test server connection
   const doSomething = async () => {
-    let data = await get.get()
+    let res = await api.get()
     console.log(
-     data
+     res
     );
   };
-  
-  
 
   return (
     <main className="h-screen flex flex-col justify-center items-center">
