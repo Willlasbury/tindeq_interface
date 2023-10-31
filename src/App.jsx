@@ -27,6 +27,7 @@ export default function Home() {
     notify(recieve, tindeqData, setTindeqData)
   }
 
+// TODO: add a disconnect button
 
 // test server connection
   const doSomething = async () => {
