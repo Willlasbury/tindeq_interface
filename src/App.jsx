@@ -5,7 +5,6 @@ import blc from "../src/utils/connection";
 import getChar from "../src/utils/characteristics";
 import notify from "./utils/notify";
 import CFT from "./components/CFT";
-import get from "./utils/api/get"
 
 export default function Home() {
   const [server, setServer] = useState();
@@ -28,9 +27,9 @@ export default function Home() {
 
 // test server connection
   const doSomething = async () => {
-    let data = await get.get()
+    const URL_PREFIX = import.meta.env.VITE_SERVER_URL;
     console.log(
-     data
+      URL_PREFIX
     );
   };
   
