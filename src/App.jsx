@@ -5,6 +5,7 @@ import blc from "../src/utils/connection";
 import getChar from "../src/utils/characteristics";
 import notify from "./utils/notify";
 import CFT from "./components/CFT";
+import DisconnectBtn from "./components/DisconnnectBtn";
 import api from "./utils/api"
 
 export default function Home() {
@@ -22,18 +23,17 @@ export default function Home() {
     const { send, recieve } = await getChar(server);
     setSendChar(send);
     setrecieveChar(recieve);
-    
+
     // start the notifications
     notify(recieve, tindeqData, setTindeqData)
   }
 
-// TODO: add a disconnect button
 
 // test server connection
   const doSomething = async () => {
-    let res = await api.get()
+    let data = await get.get()
     console.log(
-     res
+     data
     );
   };
 
@@ -52,7 +52,8 @@ export default function Home() {
         do something
       </button>
 
-      <CFT sendChar={sendChar}/>
+      <CFT sendChar={sendChar} />
+      <DisconnectBtn sendChar={sendChar} />
     </main>
   );
 }
