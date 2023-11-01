@@ -20,6 +20,8 @@ export default function CFT ({sendChar}) {
         }
     }
 
+    
+
     return (
         <>
             <button onClick={runCFT}> start CFT</button>
