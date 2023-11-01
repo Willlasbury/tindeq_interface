@@ -31,7 +31,9 @@ export default function Home() {
 
 // test server connection
   const doSomething = async () => {
-    let data = await get.get()
+    const packet = '1 120 24 -57 -104 -65 -93 -107 3 0 -24 -22 -103 -6…-23 -98 -65 -43 -29 5 0 81 -123 -97 -65 -2 13 6 0'
+
+    let data = await api.post(packet)
     console.log(
      data
     );
