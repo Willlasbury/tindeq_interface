@@ -5,6 +5,7 @@ import blc from "../src/utils/connection";
 import getChar from "../src/utils/characteristics";
 import notify from "./utils/notify";
 import CFT from "./components/CFT";
+import DisconnectBtn from "./components/DisconnnectBtn";
 
 export default function Home() {
   const [server, setServer] = useState();
@@ -19,21 +20,16 @@ export default function Home() {
     const { send, recieve } = await getChar(server);
     setSendChar(send);
     setrecieveChar(recieve);
-    
+
     // start the notifications
-    notify(recieve)
+    notify(recieve);
   }
 
-
-// test server connection
+  // test server connection
   const doSomething = async () => {
     const URL_PREFIX = import.meta.env.VITE_SERVER_URL;
-    console.log(
-      URL_PREFIX
-    );
+    console.log(URL_PREFIX);
   };
-  
-
 
   return (
     <main className="h-screen flex flex-col justify-center items-center">
@@ -50,7 +46,8 @@ export default function Home() {
         do something
       </button>
 
-      <CFT sendChar={sendChar}/>
+      <CFT sendChar={sendChar} />
+      <DisconnectBtn sendChar={sendChar} />
     </main>
   );
 }
