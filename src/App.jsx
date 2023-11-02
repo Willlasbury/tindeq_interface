@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 import blc from "../src/utils/connection";
-import getChar from "../src/utils/characteristics";
+import getChar from "./utils/tindeqApi/characteristics";
 import notify from "./utils/notify";
 import CFT from "./components/CFT";
 import DisconnectBtn from "./components/DisconnnectBtn";
