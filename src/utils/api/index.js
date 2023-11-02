@@ -1,12 +1,8 @@
-const URL_PREFIX = process.env.REACT_APP_SERVER_URL;
-
-// TODO: create environment variable for url
-// const URL_PREFIX = "http://127.0.0.1:8000";
+const URL_PREFIX = import.meta.env.VITE_SERVER_URL;
 
 const api = {
   get: async () => {
     try {
-      console.log("URL_PREFIX:", URL_PREFIX)
       const response = await fetch(`${URL_PREFIX}`, {
         method: "GET",
         headers: {
@@ -29,13 +25,11 @@ const api = {
   },
 
   post: async (bytes) => {
-    console.log("bytes:", bytes)
     try {
       const packet = {
         'bytes': bytes
       }
 
-      console.log("packet:", packet)
       const res = await fetch(`${URL_PREFIX}`, {
         method: "POST",
         body: JSON.stringify(packet),
