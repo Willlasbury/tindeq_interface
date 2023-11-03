@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
 
-import blc from "../src/utils/connection";
+import blc from "../src/utils/tindeqApi/connection";
 import getChar from "./utils/tindeqApi/characteristics";
-import notify from "./utils/notify";
+import notify from "./utils/tindeqApi/notify";
 import CFT from "./components/CFT";
 import DisconnectBtn from "./components/DisconnnectBtn";
 import api from "./utils/api";
