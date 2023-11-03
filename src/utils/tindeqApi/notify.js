@@ -1,4 +1,4 @@
-import api from "../api"
+import api from "../fastApi"
 
 export default async function (recieveChar) {
     async function notify (event, data) {
@@ -12,7 +12,7 @@ export default async function (recieveChar) {
         const string = value.join(' ')
 
         const res = await api.post(string)
-        
+
         console.log("res:", res)
     } catch (ex) {
         alert("ERROR: " + ex.message);

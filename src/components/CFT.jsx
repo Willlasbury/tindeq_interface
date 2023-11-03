@@ -6,7 +6,7 @@ import sendCommand from "../utils/tindeqApi/send_command";
 export default function CFT ({sendChar}) {
 // TODO: add check for connection
     // set the time of the test run in milliseconds
-    const duration = 500
+    const duration = 3000
 
     async function runCFT () {
         try {
