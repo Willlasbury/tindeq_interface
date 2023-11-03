@@ -6,7 +6,7 @@ import getChar from "./utils/tindeqApi/characteristics";
 import notify from "./utils/tindeqApi/notify";
 import CFT from "./components/CFT";
 import DisconnectBtn from "./components/DisconnnectBtn";
-import api from "./utils/api";
+import api from "./utils/fastApi";
 
 export default function Home() {
   const [server, setServer] = useState();
@@ -27,13 +27,9 @@ export default function Home() {
     notify(recieve, tindeqData, setTindeqData);
   }
 
-  // test server connection
+  // used for easy test of functions
   const doSomething = async () => {
-    const packet =
-      "1 120 24 -57 -104 -65 -93 -107 3 0 -24 -22 -103 -6…-23 -98 -65 -43 -29 5 0 81 -123 -97 -65 -2 13 6 0";
-
-    let res = await api.post(packet);
-    console.log("response: ", res);
+    // your func here
   };
 
   return (
