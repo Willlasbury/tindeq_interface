@@ -1,21 +1,16 @@
-import api from "../fastApi"
+import handleTindeqRes from "../handleData/handleTindeqRes"
+import handleWeightRes from "../handleData/handleWeightRes"
 
-export default async function (recieveChar) {
+export default async function (recieveChar, setWeight) {
     async function notify (event, data) {
       try {
-        // TODO: add check on first byte from tindeq to validate what the response is
-
         // create array of ints from tindeq response
         const value = new Uint8Array(event.target.value.buffer)
-    
-        // turn array into string so it can be used as the body of the post
-        const string = value.join(' ')
 
-        const res = await api.post(string)
-
-        console.log("res:", res)
+        handleTindeqRes(value, setWeight)
+        
     } catch (ex) {
-        alert("ERROR: " + ex.message);
+        console.log("ERROR: " + ex.message);
     }
     }
 

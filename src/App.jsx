@@ -6,13 +6,16 @@ import getChar from "./utils/tindeqApi/characteristics";
 import notify from "./utils/tindeqApi/notify";
 import CFT from "./components/CFT";
 import DisconnectBtn from "./components/DisconnnectBtn";
-import api from "./utils/fastApi";
+import ContinuousWBtn from "./components/StartLoggingBtn";
+import StopLoggingBtn from "./components/StopLoggingBtn"
+import DisplayWeight from "./components/displayWeight";
+
 
 export default function Home() {
   const [server, setServer] = useState();
   const [sendChar, setSendChar] = useState(undefined);
   const [recieveChar, setrecieveChar] = useState(undefined);
-  const [tindeqData, setTindeqData] = useState([]);
+  const [weight, setWeight] = useState();
 
   // initiate the connection and obtain the server
   async function connect() {
@@ -24,7 +27,7 @@ export default function Home() {
     setrecieveChar(recieve);
 
     // start the notifications
-    notify(recieve, tindeqData, setTindeqData);
+    notify(recieve, setWeight);
   }
 
   // used for easy test of functions
@@ -49,6 +52,9 @@ export default function Home() {
 
       <CFT sendChar={sendChar} />
       <DisconnectBtn sendChar={sendChar} />
+      <ContinuousWBtn sendChar={sendChar} />
+      <StopLoggingBtn sendChar={sendChar} />
+      <DisplayWeight weight={weight} />
     </main>
   );
 }
