@@ -1,18 +1,21 @@
 "use client";
 import { useState } from "react";
 
-import blc from "../src/utils/connection";
-import getChar from "../src/utils/characteristics";
-import notify from "./utils/notify";
+import blc from "../src/utils/tindeqApi/connection";
+import getChar from "./utils/tindeqApi/characteristics";
+import notify from "./utils/tindeqApi/notify";
 import CFT from "./components/CFT";
 import DisconnectBtn from "./components/DisconnnectBtn";
-import api from "./utils/api";
+import ContinuousWBtn from "./components/StartLoggingBtn";
+import StopLoggingBtn from "./components/StopLoggingBtn"
+import DisplayWeight from "./components/displayWeight";
+
 
 export default function Home() {
   const [server, setServer] = useState();
   const [sendChar, setSendChar] = useState(undefined);
   const [recieveChar, setrecieveChar] = useState(undefined);
-  const [tindeqData, setTindeqData] = useState([]);
+  const [weight, setWeight] = useState();
 
   // initiate the connection and obtain the server
   async function connect() {
@@ -24,16 +27,12 @@ export default function Home() {
     setrecieveChar(recieve);
 
     // start the notifications
-    notify(recieve, tindeqData, setTindeqData);
+    notify(recieve, setWeight);
   }
 
-  // test server connection
+  // used for easy test of functions
   const doSomething = async () => {
-    const packet =
-      "1 120 24 -57 -104 -65 -93 -107 3 0 -24 -22 -103 -6…-23 -98 -65 -43 -29 5 0 81 -123 -97 -65 -2 13 6 0";
-
-    let res = await api.post(packet);
-    console.log("response: ", res);
+    // your func here
   };
 
   return (
@@ -53,6 +52,9 @@ export default function Home() {
 
       <CFT sendChar={sendChar} />
       <DisconnectBtn sendChar={sendChar} />
+      <ContinuousWBtn sendChar={sendChar} />
+      <StopLoggingBtn sendChar={sendChar} />
+      <DisplayWeight weight={weight} />
     </main>
   );
 }
