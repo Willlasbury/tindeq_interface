@@ -1,6 +1,9 @@
 "use client";
 import { useState } from "react";
 
+// used for testing 
+import sendCommand from "./utils/tindeqApi/send_command";
+
 import blc from "../src/utils/tindeqApi/connection";
 import getChar from "./utils/tindeqApi/characteristics";
 import notify from "./utils/tindeqApi/notify";
@@ -9,6 +12,7 @@ import DisconnectBtn from "./components/DisconnnectBtn";
 import ContinuousWBtn from "./components/StartLoggingBtn";
 import StopLoggingBtn from "./components/StopLoggingBtn"
 import DisplayWeight from "./components/displayWeight";
+import TareBtn from "./components/TareBtn";
 
 
 export default function Home() {
@@ -32,7 +36,12 @@ export default function Home() {
 
   // used for easy test of functions
   const doSomething = async () => {
-    // your func here
+    // test out tare func
+    sendCommand(
+      sendChar, 
+      'TARE_SCALE'
+    )
+
   };
 
   return (
@@ -55,6 +64,7 @@ export default function Home() {
       <ContinuousWBtn sendChar={sendChar} />
       <StopLoggingBtn sendChar={sendChar} />
       <DisplayWeight weight={weight} />
+      <TareBtn sendChar={sendChar} />
     </main>
   );
 }
