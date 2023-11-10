@@ -21,15 +21,20 @@ export default function Home() {
 
   // initiate the connection and obtain the server
   async function connect() {
-    const server = await blc();
-    setServer(server);
-    // recieve and save the chatacteristics
-    const { send, recieve } = await getChar(server);
-    setSendChar(send);
-    setrecieveChar(recieve);
+    try {
 
-    // start the notifications
-    notify(recieve, setWeight);
+      const server = await blc();
+      setServer(server);
+      // recieve and save the chatacteristics
+      const { send, recieve } = await getChar(server);
+      setSendChar(send);
+      setrecieveChar(recieve);
+      
+      // start the notifications
+      notify(recieve, setWeight);
+    } catch (error) {
+      throw new Error('could not connect to tindeq: ', error)
+    }
   }
 
   // used for easy test of functions
