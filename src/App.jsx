@@ -7,10 +7,9 @@ import notify from "./utils/tindeqApi/notify";
 import CFT from "./components/tindeqBtns/CFT";
 import DisconnectBtn from "./components/tindeqBtns/DisconnnectBtn";
 import ContinuousWBtn from "./components/tindeqBtns/StartLoggingBtn";
-import StopLoggingBtn from "./components/tindeqBtns/StopLoggingBtn"
+import StopLoggingBtn from "./components/tindeqBtns/StopLoggingBtn";
 import DisplayWeight from "./components/displayWeight";
 import TareBtn from "./components/tindeqBtns/TareBtn";
-
 
 export default function Home() {
   const [server, setServer] = useState();
@@ -22,25 +21,23 @@ export default function Home() {
   // initiate the connection and obtain the server
   async function connect() {
     try {
-
       const server = await blc();
       setServer(server);
       // recieve and save the chatacteristics
       const { send, recieve } = await getChar(server);
       setSendChar(send);
       setrecieveChar(recieve);
-      
+      setConnected(true)
       // start the notifications
       notify(recieve, setWeight);
     } catch (error) {
-      throw new Error('could not connect to tindeq: ', error)
+      throw new Error("could not connect to tindeq: ", error);
     }
   }
 
   // used for easy test of functions
   const doSomething = async () => {
     // test out tare func
-
   };
 
   return (
@@ -63,7 +60,7 @@ export default function Home() {
       <ContinuousWBtn sendChar={sendChar} />
       <StopLoggingBtn sendChar={sendChar} />
       <TareBtn sendChar={sendChar} />
-      <DisplayWeight weight={weight} connected={connected}/>
+      <DisplayWeight weight={weight} connected={connected} />
     </main>
   );
 }
