@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import sendCommand from "../utils/tindeqApi/send_command";
+import sendCommand from "../../utils/tindeqApi/send_command";
 
 // run critical force test
 export default function CFT ({sendChar}) {
