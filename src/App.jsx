@@ -7,12 +7,12 @@ import sendCommand from "./utils/tindeqApi/send_command";
 import blc from "../src/utils/tindeqApi/connection";
 import getChar from "./utils/tindeqApi/characteristics";
 import notify from "./utils/tindeqApi/notify";
-import CFT from "./components/CFT";
-import DisconnectBtn from "./components/DisconnnectBtn";
-import ContinuousWBtn from "./components/StartLoggingBtn";
-import StopLoggingBtn from "./components/StopLoggingBtn"
+import CFT from "./components/tindeqBtns/CFT";
+import DisconnectBtn from "./components/tindeqBtns/DisconnnectBtn";
+import ContinuousWBtn from "./components/tindeqBtns/StartLoggingBtn";
+import StopLoggingBtn from "./components/tindeqBtns/StopLoggingBtn"
 import DisplayWeight from "./components/displayWeight";
-import TareBtn from "./components/TareBtn";
+import TareBtn from "./components/tindeqBtns/TareBtn";
 
 
 export default function Home() {
