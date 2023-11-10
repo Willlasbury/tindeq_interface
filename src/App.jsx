@@ -1,9 +1,6 @@
 "use client";
 import { useState } from "react";
 
-// used for testing 
-import sendCommand from "./utils/tindeqApi/send_command";
-
 import blc from "../src/utils/tindeqApi/connection";
 import getChar from "./utils/tindeqApi/characteristics";
 import notify from "./utils/tindeqApi/notify";
@@ -37,10 +34,6 @@ export default function Home() {
   // used for easy test of functions
   const doSomething = async () => {
     // test out tare func
-    sendCommand(
-      sendChar, 
-      'TARE_SCALE'
-    )
 
   };
 
