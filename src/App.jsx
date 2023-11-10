@@ -17,6 +17,7 @@ export default function Home() {
   const [sendChar, setSendChar] = useState(undefined);
   const [recieveChar, setrecieveChar] = useState(undefined);
   const [weight, setWeight] = useState();
+  const [connected, setConnected] = useState(false);
 
   // initiate the connection and obtain the server
   async function connect() {
@@ -56,8 +57,8 @@ export default function Home() {
       <DisconnectBtn sendChar={sendChar} />
       <ContinuousWBtn sendChar={sendChar} />
       <StopLoggingBtn sendChar={sendChar} />
-      <DisplayWeight weight={weight} />
       <TareBtn sendChar={sendChar} />
+      <DisplayWeight weight={weight} connected={connected}/>
     </main>
   );
 }
