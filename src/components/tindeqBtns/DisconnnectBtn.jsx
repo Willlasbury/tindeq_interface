@@ -1,12 +1,12 @@
 import sendCommand from "../../utils/tindeqApi/send_command";
 
-export default function DisconnectBtn ({sendChar}) {
+export default function DisconnectBtn ({sendChar, setConnected}) {
 
     async function handleDisconnect () {
         try {
             const res = sendCommand(sendChar, 'SLEEP')
+            setConnected(false)
             // TODO: validate response
-            console.log("res:", res)
             return res  
         } catch (error) {
             return new Error('issue with disconnect: ', error)

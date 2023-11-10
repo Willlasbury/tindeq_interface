@@ -56,7 +56,7 @@ export default function Home() {
       </button>
 
       <CFT sendChar={sendChar} />
-      <DisconnectBtn sendChar={sendChar} />
+      <DisconnectBtn sendChar={sendChar} setConnected={setConnected} />
       <ContinuousWBtn sendChar={sendChar} />
       <StopLoggingBtn sendChar={sendChar} />
       <TareBtn sendChar={sendChar} />
