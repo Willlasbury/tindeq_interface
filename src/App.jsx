@@ -11,6 +11,8 @@ import StopLoggingBtn from "./components/tindeqBtns/StopLoggingBtn";
 import DisplayWeight from "./components/displayWeight";
 import TareBtn from "./components/tindeqBtns/TareBtn";
 
+import api from "./utils/fastApi/crud"
+
 export default function Home() {
   const [server, setServer] = useState();
   const [sendChar, setSendChar] = useState(undefined);
@@ -37,7 +39,7 @@ export default function Home() {
 
   // used for easy test of functions
   const doSomething = async () => {
-    // test out tare func
+   
   };
 
   return (
