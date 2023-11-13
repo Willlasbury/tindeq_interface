@@ -45,6 +45,30 @@ const api = {
       return res.status(500).json({ msg: "some error", err: err });
     }
   },
+  // test func to check importing data to supabase
+  // THIS ONLY WORKS WITH RLS DISABLED IN SUPABASE!!! 
+  // otherwise you will recieve cors error from server
+  insertTest: async () => {
+    try {
+      const packet = {
+        'weight': '1.001'
+      }
+
+      
+      const res = await fetch(`${URL_PREFIX}/insert`, {
+        method: "POST",
+        body: JSON.stringify(packet),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      return res.json();
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json({ msg: "some error", err: err });
+    }
+  },
 };
 
 export default api;
