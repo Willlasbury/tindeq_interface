@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import styles from './App.css?inline'
+import './App.css'
 
 import blc from "../src/utils/tindeqApi/connection";
 import getChar from "./utils/tindeqApi/characteristics";
@@ -42,7 +42,7 @@ export default function Home() {
   };
 
   return (
-    <main>
+    <main className="app">
       <button
         className="border-2 border-white rounded-md p-3 mb-3"
         onClick={connect}
