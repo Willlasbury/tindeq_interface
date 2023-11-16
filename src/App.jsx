@@ -15,7 +15,7 @@ export default function Home() {
   const [connected, setConnected] = useState(false);
 
   return (
-    <main className="app">
+    <main>
       <CreateConnection
         setServer={setServer}
         setSendChar={setSendChar}

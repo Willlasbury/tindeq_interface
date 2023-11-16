@@ -1,7 +1,7 @@
-ul {
+#tindeq-controls {
     margin: 5px;
 }
 
-li {
+.tindeq-li {
     list-style: none;
 }
