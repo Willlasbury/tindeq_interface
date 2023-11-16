@@ -1,9 +1,15 @@
 import './styles.css'
 
-export default function ControlBoard({buttons}) {
+import ContinuousWBtn from "../../components/tindeqBtns/StartLoggingBtn";
+import StopLoggingBtn from "../../components/tindeqBtns/StopLoggingBtn";
+import TareBtn from "../../components/tindeqBtns/TareBtn";
+
+export default function ControlBoard(props) {
     return (
-        <>
-        <div>fdsafdsafdsa</div>
-        </>
+        <ul>
+        <ContinuousWBtn sendChar={props.sendChar} />
+        <StopLoggingBtn sendChar={props.sendChar} />
+        <TareBtn sendChar={props.sendChar} />
+        </ul>
     )
 }
