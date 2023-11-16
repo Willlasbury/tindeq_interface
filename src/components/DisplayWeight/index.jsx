@@ -7,17 +7,17 @@ export default function DisplayWeight ({weight, connected}) {
     }
     if (!connected) {
         return (
-            <div>Not connected</div>
+            <p>Not connected</p>
         )
     }
     else if (weight) {
         return (
-            <div>{formatWeight(weight)}</div>
+            <p>{formatWeight(weight)}</p>
         )
     }
     else {
         return (
-            <div>No current weight</div>
+            <p>No current weight</p>
         )
     }
 }
