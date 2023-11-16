@@ -2,7 +2,6 @@
 import { useState } from "react";
 import "./App.css";
 
-import ContinuousWBtn from "./components/tindeqBtns/StartLoggingBtn";
 import DisconnectBtn from "./components/tindeqBtns/DisconnnectBtn";
 import DisplayWeight from "./components/DisplayWeight";
 import CreateConnection from "./components/CreateConnectionBtn";
