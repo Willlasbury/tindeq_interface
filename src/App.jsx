@@ -24,7 +24,7 @@ export default function Home() {
         setWeight={setWeight}
       />
       <DisconnectBtn sendChar={sendChar} setConnected={setConnected} />
-      <ControlBoard sendChar />
+      <ControlBoard sendChar={sendChar} />
       <DisplayWeight weight={weight} connected={connected} />
     </main>
   );
