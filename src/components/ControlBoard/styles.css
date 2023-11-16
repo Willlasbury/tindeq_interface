@@ -1,3 +1,7 @@
-div {
-    background-color: salmon;
+ul {
+    margin: 5px;
+}
+
+li {
+    list-style: none;
 }
