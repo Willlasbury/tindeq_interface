@@ -4,17 +4,17 @@ import ContinuousWBtn from "../../components/tindeqBtns/StartLoggingBtn";
 import StopLoggingBtn from "../../components/tindeqBtns/StopLoggingBtn";
 import TareBtn from "../../components/tindeqBtns/TareBtn";
 
-export default function ControlBoard(props) {
+export default function ControlBoard({sendChar}) {
   return (
     <ul>
       <li>
-        <ContinuousWBtn sendChar={props.sendChar} />
+        <ContinuousWBtn sendChar={sendChar} />
       </li>
       <li>
-        <StopLoggingBtn sendChar={props.sendChar} />
+        <StopLoggingBtn sendChar={sendChar} />
       </li>
       <li>
-        <TareBtn sendChar={props.sendChar} />
+        <TareBtn sendChar={sendChar} />
       </li>
     </ul>
   );
