@@ -2,9 +2,6 @@
 import { useState } from "react";
 import "./App.css";
 
-// import blc from "../src/utils/tindeqApi/connection";
-// import getChar from "./utils/tindeqApi/characteristics";
-// import notify from "./utils/tindeqApi/notify";
 import CFT from "./components/tindeqBtns/CFT";
 import DisconnectBtn from "./components/tindeqBtns/DisconnnectBtn";
 import ContinuousWBtn from "./components/tindeqBtns/StartLoggingBtn";
@@ -20,40 +17,8 @@ export default function Home() {
   const [weight, setWeight] = useState();
   const [connected, setConnected] = useState(false);
 
-  // initiate the connection and obtain the server
-  // async function connect() {
-  //   try {
-  //     const server = await blc();
-  //     setServer(server);
-  //     // recieve and save the chatacteristics
-  //     const { send, recieve } = await getChar(server);
-  //     setSendChar(send);
-  //     setRecieveChar(recieve);
-  //     setConnected(true)
-  //     // start the notifications
-  //     notify(recieve, setWeight);
-  //   } catch (error) {
-  //     throw new Error("could not connect to tindeq: ", error);
-  //   }
-  // }
-
-  // used for easy test of functions
-  const doSomething = async () => {};
-
   return (
     <main className="app">
-      {/* <button
-        className="border-2 border-white rounded-md p-3 mb-3"
-        onClick={connect}
-      >
-        connect
-      </button> */}
-      {/* <button
-        className="border-2 border-white rounded-md p-3"
-        onClick={doSomething}
-      >
-        do something
-      </button> */}
       <CreateConnection
         setServer={setServer}
         setSendChar={setSendChar}

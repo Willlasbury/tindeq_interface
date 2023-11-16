@@ -3,7 +3,8 @@ import getChar from "../../../src/utils/tindeqApi/characteristics";
 import notify from "../../../src/utils/tindeqApi/notify";
 
 export default function CreateConnection({ setServer, setSendChar, setConnected, setRecieveChar, setWeight}) {
-  
+   
+    // initiate the connection and obtain the server
     async function connect() {
     try {
       const server = await blc();
@@ -25,7 +26,6 @@ export default function CreateConnection({ setServer, setSendChar, setConnected,
       className="border-2 border-white rounded-md p-3 mb-3"
       onClick={connect}
     >
-      {" "}
       Connect
     </button>
   );
