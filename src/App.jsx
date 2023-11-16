@@ -39,7 +39,8 @@ export default function Home() {
 
   // used for easy test of functions
   const doSomething = async () => {
-   
+   const x =await api.get()
+   console.log("x:", x)
   };
 
   return (
