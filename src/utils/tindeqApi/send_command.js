@@ -17,9 +17,7 @@ export default async function sendCommand (sendChar, task) {
 
   
   try {
-    console.log("task:", task)
       const command = cmds[task]
-      console.log("command:", command)
       const pack = new Uint8Array([command])
       await sendChar.writeValueWithoutResponse(pack)
   } catch (error) {

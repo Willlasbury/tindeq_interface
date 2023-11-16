@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import './App.css'
 
 import blc from "../src/utils/tindeqApi/connection";
 import getChar from "./utils/tindeqApi/characteristics";
@@ -8,10 +9,8 @@ import CFT from "./components/tindeqBtns/CFT";
 import DisconnectBtn from "./components/tindeqBtns/DisconnnectBtn";
 import ContinuousWBtn from "./components/tindeqBtns/StartLoggingBtn";
 import StopLoggingBtn from "./components/tindeqBtns/StopLoggingBtn";
-import DisplayWeight from "./components/displayWeight";
+import DisplayWeight from "./components/DisplayWeight";
 import TareBtn from "./components/tindeqBtns/TareBtn";
-
-import api from "./utils/fastApi/crud"
 
 export default function Home() {
   const [server, setServer] = useState();
@@ -43,7 +42,7 @@ export default function Home() {
   };
 
   return (
-    <main className="h-screen flex flex-col justify-center items-center">
+    <main className="app">
       <button
         className="border-2 border-white rounded-md p-3 mb-3"
         onClick={connect}
