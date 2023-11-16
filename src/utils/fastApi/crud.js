@@ -3,7 +3,7 @@ const URL_PREFIX = import.meta.env.VITE_SERVER_URL;
 const api = {
   get: async () => {
     try {
-      const response = await fetch(`${URL_PREFIX}`, {
+      const response = await fetch(`${URL_PREFIX}/tindeq`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -31,7 +31,7 @@ const api = {
       }
 
       
-      const res = await fetch(`${URL_PREFIX}`, {
+      const res = await fetch(`${URL_PREFIX}/tindeq`, {
         method: "POST",
         body: JSON.stringify(packet),
         headers: {
@@ -55,7 +55,7 @@ const api = {
       }
 
       
-      const res = await fetch(`${URL_PREFIX}/insert`, {
+      const res = await fetch(`${URL_PREFIX}/measurement`, {
         method: "POST",
         body: JSON.stringify(packet),
         headers: {
