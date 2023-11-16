@@ -6,14 +6,14 @@ import TareBtn from "../../components/tindeqBtns/TareBtn";
 
 export default function ControlBoard({sendChar}) {
   return (
-    <ul>
-      <li>
+    <ul id="tindeq-controls">
+      <li className="tindeq-btn">
         <ContinuousWBtn sendChar={sendChar} />
       </li>
-      <li>
+      <li className="tindeq-btn">
         <StopLoggingBtn sendChar={sendChar} />
       </li>
-      <li>
+      <li className="tindeq-btn">
         <TareBtn sendChar={sendChar} />
       </li>
     </ul>
