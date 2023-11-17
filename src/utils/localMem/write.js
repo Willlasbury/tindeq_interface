@@ -1,9 +1,8 @@
-export default function writeToLM (data) {
+export default function writeToLM (key, data) {
     try {
-        key = 'weight'
         // convert data to string
-        data = JSON.stringify(data)
-        localStorage.setItem(key, data)
+        const dataStr = JSON.stringify(data)
+        localStorage.setItem(key, dataStr)
     } catch (error) {
         return new Error('error occured while saving to local memory: ', error)
     }

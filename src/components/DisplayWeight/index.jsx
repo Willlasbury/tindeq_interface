@@ -1,23 +1,23 @@
-import './styles.css' 
+import "./styles.css";
+import checkMaxWeight from "../../utils/handleData/checkMaxWeight";
+import { useState } from "react";
 
-export default function DisplayWeight ({weight, connected}) {
-    function formatWeight (weight) {
-        const num = parseFloat(weight) << 1
-        return num
-    }
-    if (!connected) {
-        return (
-            <p className='weight-display'>Not connected</p>
-        )
-    }
-    else if (weight) {
-        return (
-            <p className='weight-display'>{formatWeight(weight)}</p>
-        )
-    }
-    else {
-        return (
-            <p className='weight-display'>No current weight</p>
-        )
-    }
+export default function DisplayWeight({
+  weight,
+  connected
+}) {
+  const [maxWeight, setMaxWeight] = useState(0);
+
+  checkMaxWeight(weight, maxWeight, setMaxWeight);
+
+  if (!connected) {
+    return <p className="weight-display">Not connected</p>;
+  } else {
+    return (
+      <section id="weight-display">
+        <p className="weight-display">Weight: {weight}</p>
+        <p className="max-weight-display">Max Weight: {maxWeight}</p>
+      </section>
+    );
+  }
 }
