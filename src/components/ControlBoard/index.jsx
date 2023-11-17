@@ -4,18 +4,9 @@ import StartLoggingBtn from "../../components/tindeqBtns/StartLoggingBtn";
 import StopLoggingBtn from "../../components/tindeqBtns/StopLoggingBtn";
 import TareBtn from "../../components/tindeqBtns/TareBtn";
 import DisconnectBtn from "../tindeqBtns/DisconnnectBtn";
-
-import fastApi from '../../utils/fastApi/crud'
-import getMaxWeight from "../../utils/localMem/getMaxWeight";
+import SaveMaxWeight from "../tindeqBtns/SaveMaxWeight";
 
 export default function ControlBoard({ sendChar, setConnected }) {
-
-  function handleMaxWeight () {
-    // retrieve max weight from local storage
-    const maxWeight = getMaxWeight()
-    console.log("maxWeight:", maxWeight)
-    fastApi.sendMaxWeight(maxWeight)
-  }
 
   return (
     <ul id="tindeq-controls">
@@ -32,9 +23,7 @@ export default function ControlBoard({ sendChar, setConnected }) {
         <DisconnectBtn sendChar={sendChar} setConnected={setConnected} />
       </li>
       <li>
-        <button onClick={handleMaxWeight}>
-          send Max weight
-        </button>
+        <SaveMaxWeight />
       </li>
     </ul>
   );
