@@ -16,15 +16,17 @@ export default function Home() {
 
   return (
     <main>
-      <CreateConnection
-        setServer={setServer}
-        setSendChar={setSendChar}
-        setConnected={setConnected}
-        setRecieveChar={setRecieveChar}
-        setWeight={setWeight}
-      />
-      <DisconnectBtn sendChar={sendChar} setConnected={setConnected} />
-      <ControlBoard sendChar={sendChar} />
+      {connected ? (
+        <ControlBoard sendChar={sendChar} setConnected={setConnected} />
+      ) : (
+        <CreateConnection
+          setServer={setServer}
+          setSendChar={setSendChar}
+          setConnected={setConnected}
+          setRecieveChar={setRecieveChar}
+          setWeight={setWeight}
+        />
+      )}
       <DisplayWeight weight={weight} connected={connected} />
     </main>
   );
