@@ -12,6 +12,7 @@ export default function Home() {
   const [sendChar, setSendChar] = useState(undefined);
   const [recieveChar, setRecieveChar] = useState(undefined);
   const [weight, setWeight] = useState();
+  const [maxWeight, setMaxWeight] = useState(undefined);
   const [connected, setConnected] = useState(false);
 
   return (
@@ -27,7 +28,7 @@ export default function Home() {
           setWeight={setWeight}
         />
       )}
-      <DisplayWeight weight={weight} connected={connected} />
+      <DisplayWeight weight={weight} setMaxWeight={setMaxWeight} maxWeight={maxWeight} connected={connected} />
     </main>
   );
 }
