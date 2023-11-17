@@ -72,7 +72,7 @@ const api = {
       const packet = {
         weight: maxWeight,
       };
-      const res = await fetch(`${URL_PREFIX}/max_weight`, {
+      const res = await fetch(`${URL_PREFIX}/weights`, {
         method: "POST",
         body: JSON.stringify(packet),
         headers: {
