@@ -8,14 +8,19 @@ export default function CreateConnection({ setServer, setSendChar, setConnected,
     async function connect() {
     try {
       const server = await blc();
-      setServer(server);
-      // recieve and save the chatacteristics
-      const { send, recieve } = await getChar(server);
-      setSendChar(send);
-      setRecieveChar(recieve);
-      setConnected(true);
-      // start the notifications
-      notify(recieve, setWeight);
+      
+      if (!(server instanceof Error)){
+        setServer(server);
+        
+        // recieve and save the chatacteristics
+        const { send, recieve } = await getChar(server);
+        setSendChar(send);
+        setRecieveChar(recieve);
+        
+        setConnected(true);
+        // start the notifications
+        notify(recieve, setWeight);
+      } 
     } catch (error) {
       throw new Error("could not connect to tindeq: ", error);
     }
