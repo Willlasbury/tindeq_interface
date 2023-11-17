@@ -4,7 +4,7 @@ import StartLoggingBtn from "../../components/tindeqBtns/StartLoggingBtn";
 import StopLoggingBtn from "../../components/tindeqBtns/StopLoggingBtn";
 import TareBtn from "../../components/tindeqBtns/TareBtn";
 import DisconnectBtn from "../tindeqBtns/DisconnnectBtn";
-import SaveMaxWeight from "../tindeqBtns/SaveMaxWeight";
+import SaveMaxWeight from "../fastApiBtns/SaveMaxWeight";
 
 export default function ControlBoard({ sendChar, setConnected }) {
 

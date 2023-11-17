@@ -79,8 +79,8 @@ const api = {
           "Content-Type": "application/json",
         },
       });
-
-      return res.json();
+      const data = await res.json()
+      return data;
     } catch (err) {
       console.log(err);
       return res.status(500).json({ msg: "some error", err: err });
