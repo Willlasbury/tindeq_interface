@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import "./styles.css";
 import checkMaxWeight from "../../utils/handleData/checkMaxWeight";
 import { useState } from "react";
@@ -7,7 +6,7 @@ export default function DisplayWeight({
   weight,
   connected
 }) {
-  const [maxWeight, setMaxWeight] = useState(undefined);
+  const [maxWeight, setMaxWeight] = useState(0);
 
   checkMaxWeight(weight, maxWeight, setMaxWeight);
 
@@ -16,8 +15,8 @@ export default function DisplayWeight({
   } else {
     return (
       <section id="weight-display">
-        <p className="weight-display">{weight}</p>
-        <p className="max-weight-display">{maxWeight}</p>
+        <p className="weight-display">Weight: {weight}</p>
+        <p className="max-weight-display">Max Weight: {maxWeight}</p>
       </section>
     );
   }

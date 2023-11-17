@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <main>
       {connected ? (
-        <ControlBoard sendChar={sendChar} setConnected={setConnected} />
+        <ControlBoard sendChar={sendChar} setConnected={setConnected} setWeight={setWeight}/>
       ) : (
         <CreateConnection
           setServer={setServer}
