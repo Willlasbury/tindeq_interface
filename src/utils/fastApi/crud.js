@@ -67,6 +67,7 @@ const api = {
       return res.status(500).json({ msg: "some error", err: err });
     }
   },
+
   sendMaxWeight: async (maxWeight) => {
     try {
       const packet = {
@@ -86,6 +87,7 @@ const api = {
       return res.status(500).json({ msg: "some error", err: err });
     }
   },
+  
   getAllMaxWeight: async () => {
     try {
       const res = await fetch(`${URL_PREFIX}/weights`, {
@@ -99,7 +101,7 @@ const api = {
         return data;
       } else {
         throw new Error(
-          `Error fetching items: ${res.status} ${res.statusText}`
+          `Error fetching weights: ${res.status} ${res.statusText}`
         );
       }
     } catch (err) {
