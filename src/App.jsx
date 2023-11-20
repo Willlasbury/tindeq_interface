@@ -7,8 +7,6 @@ import CreateConnection from "./components/CreateConnectionBtn";
 import ControlBoard from "./components/ControlBoard";
 import DisplayMaxWeight from "./components/DisplayWeights";
 
-import api from "./utils/fastApi/crud";
-
 export default function Home() {
   const [server, setServer] = useState();
   const [sendChar, setSendChar] = useState(undefined);
