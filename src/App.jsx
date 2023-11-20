@@ -5,6 +5,7 @@ import "./App.css";
 import DisplayWeight from "./components/DisplayWeight";
 import CreateConnection from "./components/CreateConnectionBtn";
 import ControlBoard from "./components/ControlBoard";
+import DisplayMaxWeight from "./components/DisplayWeights";
 
 export default function Home() {
   const [server, setServer] = useState();
@@ -12,6 +13,7 @@ export default function Home() {
   const [recieveChar, setRecieveChar] = useState(undefined);
   const [weight, setWeight] = useState(0);
   const [connected, setConnected] = useState(false);
+
 
   return (
     <main>
@@ -27,6 +29,7 @@ export default function Home() {
         />
       )}
       <DisplayWeight weight={weight} connected={connected} />
+      <DisplayMaxWeight />
     </main>
   );
 }

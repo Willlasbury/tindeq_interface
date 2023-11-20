@@ -3,19 +3,19 @@ const URL_PREFIX = import.meta.env.VITE_SERVER_URL;
 const api = {
   get: async () => {
     try {
-      const response = await fetch(`${URL_PREFIX}/tindeq`, {
+      const res = await fetch(`${URL_PREFIX}/tindeq`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
       });
 
-      if (response.ok) {
-        const data = await response.json();
+      if (res.ok) {
+        const data = await res.json();
         return data;
       } else {
         throw new Error(
-          `Error fetching items: ${response.status} ${response.statusText}`
+          `Error fetching items: ${res.status} ${res.statusText}`
         );
       }
     } catch (error) {
@@ -67,6 +67,7 @@ const api = {
       return res.status(500).json({ msg: "some error", err: err });
     }
   },
+
   sendMaxWeight: async (maxWeight) => {
     try {
       const packet = {
@@ -79,8 +80,30 @@ const api = {
           "Content-Type": "application/json",
         },
       });
-      const data = await res.json()
+      const data = await res.json();
       return data;
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json({ msg: "some error", err: err });
+    }
+  },
+  
+  getAllMaxWeight: async () => {
+    try {
+      const res = await fetch(`${URL_PREFIX}/weights`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (res.ok) {
+        const data = await res.json();
+        return data;
+      } else {
+        throw new Error(
+          `Error fetching weights: ${res.status} ${res.statusText}`
+        );
+      }
     } catch (err) {
       console.log(err);
       return res.status(500).json({ msg: "some error", err: err });
