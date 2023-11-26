@@ -8,6 +8,7 @@ export default function DisplayMaxWeights() {
   const [maxWeights, setMaxWeights] = useState();
   const [displayMaxWeight, setDisplayMaxWeight] = useState(false);
 
+
   useEffect(() => {
     const func = async () => {
       const data = await api.getAllMaxWeight();
