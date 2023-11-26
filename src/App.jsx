@@ -2,10 +2,10 @@
 import { useState } from "react";
 import "./App.css";
 
-import DisplayWeight from "./components/DisplayWeight";
+import DisplayWeight from "./components/DisplayCurrnetWeight";
 import CreateConnection from "./components/CreateConnectionBtn";
 import ControlBoard from "./components/ControlBoard";
-import DisplayMaxWeight from "./components/DisplayWeights";
+import DisplayMaxWeight from "./components/DisplayWeightHistory"
 
 export default function Home() {
   const [server, setServer] = useState();
