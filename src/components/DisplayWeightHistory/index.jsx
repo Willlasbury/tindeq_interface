@@ -1,6 +1,6 @@
 import "./styles.css";
 import { useEffect, useState } from "react";
-import Graph from "../Graph";
+import Graph from "../GraphHistory";
 
 import api from "../../utils/fastApi/crud";
 
