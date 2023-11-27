@@ -1,6 +1,7 @@
 import "./styles.css";
 import checkMaxWeight from "../../utils/handleData/checkMaxWeight";
 import { useState } from "react";
+import BarGraph from "../GraphCurrent";
 
 export default function DisplayWeight({
   weight,
@@ -17,6 +18,8 @@ export default function DisplayWeight({
       <section id="weight-display">
         <p className="weight-display">Weight: {weight}</p>
         <p className="max-weight-display">Max Weight: {maxWeight}</p>
+        <BarGraph weight={weight} maxWeight={maxWeight} />
+        <button onClick={()=>setMaxWeight(0)}>reset max</button>
       </section>
     );
   }
