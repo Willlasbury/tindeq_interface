@@ -10,7 +10,10 @@ export default async function handleTindeqRes(value, setWeight) {
     const res = await api.post(string);
     const weight = handleWeightRes(res[1]);
     // format weight
-    const num = Math.round(weight * 10) / 10;
+    let num = Math.round(weight * 10) / 10;
+    if (num < 0) {
+      num = 0
+    }
     setWeight(num);
   }
   return new Error("response type not recognized");

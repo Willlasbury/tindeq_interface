@@ -5,8 +5,7 @@ import "./App.css";
 import DisplayWeight from "./components/DisplayCurrnetWeight";
 import CreateConnection from "./components/CreateConnectionBtn";
 import ControlBoard from "./components/ControlBoard";
-import DisplayMaxWeight from "./components/DisplayWeightHistory"
-import BarGraph from "./components/GraphCurrent";
+import DisplayMaxWeight from "./components/DisplayWeightHistory";
 
 export default function Home() {
   const [server, setServer] = useState();
@@ -15,11 +14,14 @@ export default function Home() {
   const [weight, setWeight] = useState(0);
   const [connected, setConnected] = useState(false);
 
-
   return (
     <main>
       {connected ? (
-        <ControlBoard sendChar={sendChar} setConnected={setConnected} setWeight={setWeight}/>
+        <ControlBoard
+          sendChar={sendChar}
+          setConnected={setConnected}
+          setWeight={setWeight}
+        />
       ) : (
         <CreateConnection
           setServer={setServer}
@@ -31,7 +33,6 @@ export default function Home() {
       )}
       <DisplayWeight weight={weight} connected={connected} />
       <DisplayMaxWeight />
-      <BarGraph weight={weight}/>
     </main>
   );
 }
