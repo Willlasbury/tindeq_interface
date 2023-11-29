@@ -13,6 +13,7 @@ export default function Home() {
   const [recieveChar, setRecieveChar] = useState(undefined);
   const [weight, setWeight] = useState(0);
   const [connected, setConnected] = useState(false);
+  const [measuring, setMeasuring] = useState(false);
 
   return (
     <main>
@@ -20,7 +21,8 @@ export default function Home() {
         <ControlBoard
           sendChar={sendChar}
           setConnected={setConnected}
-          setWeight={setWeight}
+          setMeasuring={setMeasuring}
+          measuring={measuring}
         />
       ) : (
         <CreateConnection
