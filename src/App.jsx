@@ -31,7 +31,6 @@ export default function Home() {
           setWeight={setWeight}
         />
       )}
-      <DisplayWeight weight={weight} connected={connected} />
       <DisplayMaxWeight />
     </main>
   );
