@@ -5,6 +5,8 @@
   --secondary-col: blue;
   --tertiary-col: purple;
   --fourth-col: green;
+  --shadow: grey;
+  --border-col: rgba(35, 33, 33, 0.739);
 }
 
 main {
