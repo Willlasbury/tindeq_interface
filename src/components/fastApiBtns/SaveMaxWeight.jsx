@@ -8,7 +8,7 @@ export default function SaveMaxWeight () {
         fastApi.sendMaxWeight(maxWeight)
       }
       return (
-        <button onClick={handleMaxWeight}>
+        <button className='control-board-btn' onClick={handleMaxWeight}>
           send Max weight
         </button>
       )

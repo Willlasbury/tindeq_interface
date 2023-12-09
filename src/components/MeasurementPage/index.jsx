@@ -12,7 +12,7 @@ export default function MeasurementPage({
   setMeasuring,
 }) {
   return (
-    <section>
+    <section id="measurementSct">
       <ControlBoard
         sendChar={sendChar}
         setConnected={setConnected}

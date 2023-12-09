@@ -7,11 +7,14 @@ export default function ContinuousWBtn({ sendChar, measuring, setMeasuring }) {
         ? await sendCommand(sendChar, "STOP_WEIGHT_MEAS")
         : await sendCommand(sendChar, "START_WEIGHT_MEAS");
 
-      setMeasuring(!measuring)
-
+      setMeasuring(!measuring);
     } catch (error) {
       new Error("could not start weight measurements: ", error);
     }
   }
-  return <button onClick={startMeasurements}>{measuring? 'Stop':'Start'} Measurement</button>;
+  return (
+    <button className="control-board-btn" onClick={startMeasurements}>
+      {measuring ? "Stop" : "Start"} Measurement
+    </button>
+  );
 }

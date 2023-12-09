@@ -1,7 +1,17 @@
 #tindeq-controls {
     margin: 5px;
+    display: flex;
+    flex-flow: column;
+    align-items: left;
 }
 
 .tindeq-li {
     list-style: none;
+    margin: 3px 0px;
+}
+
+.control-board-btn {
+    background-color: salmon;
+    border: solid;
+    border-color: black;
 }
