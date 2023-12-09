@@ -2,10 +2,10 @@ import "./styles.css";
 
 import ControlBoard from "../ControlBoard";
 import BarGraph from "../GraphCurrent";
+import DisplayWeight from "../DisplayCurrnetWeight";
 
 export default function MeasurementPage({
   weight,
-  maxWeight,
   sendChar,
   measuring,
   setConnected,
@@ -19,7 +19,7 @@ export default function MeasurementPage({
         setMeasuring={setMeasuring}
         measuring={measuring}
       />
-      <BarGraph weight={weight} maxWeight={maxWeight} />
+      <DisplayWeight weight={weight} connected={true} />
     </section>
   );
 }
