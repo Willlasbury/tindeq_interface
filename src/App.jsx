@@ -33,7 +33,6 @@ export default function Home() {
           setWeight={setWeight}
         />
       )}
-      <DisplayMaxWeight />
     </main>
   );
 }
