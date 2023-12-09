@@ -1,31 +1,42 @@
 #tindeq-controls {
-    margin: 5px;
+    padding: 5px;
     display: flex;
     flex-flow: column;
-    align-items: left;
+    justify-content: space-evenly;
+    width: 35%;
+    height: 100%;
 }
 
 .tindeq-li {
     width: 100%;
     list-style: none;
-    margin: 3px 0px;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    height: 4rem;
 }
 
 .control-board-btn {
     border: solid;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px var(--shadow);
     border-color: black;
-    width:90%;
+    font-size: larger;
+    height: 100%;
+    width: 100%;
 }
 
 @media screen and (max-width: 450px){
+    #tindeq-controls {
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 30%;
+    }
     .tindeq-li {
         align-items: center;
+        margin-bottom: 10px;
     }
     .control-board-btn {
         width: 90%;        
-    }
-    #tindeq-controls {
-        align-items: center;
     }
 }
