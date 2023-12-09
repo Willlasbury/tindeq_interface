@@ -14,7 +14,7 @@ export default function DisconnectBtn({ sendChar, setConnected }) {
 
   return (
     <button className="control-board-btn" onClick={handleDisconnect}>
-      disconnect
+      Disconnect
     </button>
   );
 }

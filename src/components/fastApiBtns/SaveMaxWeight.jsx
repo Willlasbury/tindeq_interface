@@ -11,7 +11,7 @@ export default function SaveMaxWeight () {
       }
       return (
         <button className='control-board-btn' onClick={handleMaxWeight}>
-          send Max weight
+          Send Max Weight
         </button>
       )
 }

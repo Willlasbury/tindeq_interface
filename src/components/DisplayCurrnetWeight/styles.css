@@ -9,6 +9,15 @@
     height: 90%;
 }
 
+#reset-max-weight {
+    border: solid;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px var(--shadow);
+    border-color: black;
+    font-size: larger;
+    width: 50%;
+}
+
 @media screen and (max-width: 450px) {
     #weight-display {
         height: 50%;
