@@ -1,3 +1,5 @@
+import './styles.css'
+
 import fastApi from '../../utils/fastApi/crud'
 import getMaxWeight from "../../utils/localMem/getMaxWeight";
 

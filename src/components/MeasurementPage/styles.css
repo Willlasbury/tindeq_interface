@@ -1,14 +1,12 @@
 #measurementSct {
-    width:inherit;
+    width: inherit;
     display: flex;
     justify-content: space-evenly;
 }
 
-@media screen and (max-width: 375px) {
+@media screen and (max-width: 450px) {
     #measurementSct {
-        display: flex;
         flex-flow: column-reverse;
-        justify-content: space-evenly;
     }
     
 }

@@ -6,12 +6,26 @@
 }
 
 .tindeq-li {
+    width: 100%;
     list-style: none;
     margin: 3px 0px;
+    text-align: center;
 }
 
 .control-board-btn {
-    background-color: salmon;
     border: solid;
     border-color: black;
+    width:90%;
+}
+
+@media screen and (max-width: 450px){
+    .tindeq-li {
+        align-items: center;
+    }
+    .control-board-btn {
+        width: 90%;        
+    }
+    #tindeq-controls {
+        align-items: center;
+    }
 }

@@ -21,7 +21,7 @@ export default function ControlBoard({ sendChar, measuring, setConnected, setMea
       <li className="tindeq-li">
         <DisconnectBtn sendChar={sendChar} setConnected={setConnected} />
       </li>
-      <li>
+      <li className="tindeq-li">
         <SaveMaxWeight />
       </li>
     </ul>
