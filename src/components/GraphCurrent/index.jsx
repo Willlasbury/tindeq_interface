@@ -20,9 +20,9 @@ export default function BarGraph({ weight, maxWeight }) {
       }}
     >
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" />
+      <XAxis dataKey="name" label={weight}/>
       <YAxis type="number" domain={[0,(Math.ceil((maxWeight)/10)*10)||10]}/>
-      <ReferenceLine y={maxWeight} stroke="red"/>
+      <ReferenceLine y={maxWeight} stroke="red" label={{position:'right', value:`${maxWeight}`}}/>
       <Bar
         dataKey="weight"
         fill="maroon"
