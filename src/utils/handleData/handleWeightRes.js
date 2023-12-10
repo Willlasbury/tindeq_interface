@@ -7,5 +7,5 @@ export default function handleWeightRes(res) {
       return acc + parseFloat(val);
     }, 0) / weights.length;
 
-  return avg;
+  return avg*2.2;
 }
