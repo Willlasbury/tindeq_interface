@@ -29,20 +29,35 @@ export default function BarGraph({ weight, maxWeight }) {
           top: 5,
           right: 50,
           left: 0,
-          bottom: 5,
+          bottom: 20,
         }}
       >
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" label={weight} />
+        <XAxis
+          orientation="top"
+          dataKey="name"
+          label={{
+            value: `${weight}`,
+            fill: "#fb8500",
+            fontFamily: "sans-serif",
+            fontSize: "1.5em",
+          }}
+        />
         <YAxis
           type="number"
           domain={[0, Math.ceil(maxWeight / 10) * 10 || 10]}
-          tick={{fill:'#8ecae6'}}
+          tick={{ fill: "#8ecae6", fontFamily: "sans-serif", }}
         />
         <ReferenceLine
           y={maxWeight}
           stroke="#ff8500"
-          label={{ position: "right", value: `${maxWeight}`, fill: '#fb8500'}}
+          label={{
+            position: "right",
+            fontFamily: "sans-serif",
+            value: `${maxWeight}`,
+            fill: "#fb8500",
+            fontSize: "1.2em",
+          }}
         />
         <Bar dataKey="weight" fill="#fb8500" animationEasing="linear" />
       </BarChart>
