@@ -26,6 +26,9 @@
     background-color: var(--tertiary-col);
 }
 
+.control-board-btn:active {
+    background-color: var(--secondary-col);
+}
 @media screen and (max-width: 450px){
     #tindeq-controls {
         align-items: center;

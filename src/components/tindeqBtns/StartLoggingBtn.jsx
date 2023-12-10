@@ -13,7 +13,7 @@ export default function ContinuousWBtn({ sendChar, measuring, setMeasuring }) {
     }
   }
   return (
-    <button className="control-board-btn" onClick={startMeasurements}>
+    <button className="control-board-btn" onClick={startMeasurements} >
       {measuring ? "Stop" : "Start"} Measurement
     </button>
   );
