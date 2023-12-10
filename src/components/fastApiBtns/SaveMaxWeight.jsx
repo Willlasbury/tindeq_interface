@@ -1,3 +1,5 @@
+import './styles.css'
+
 import fastApi from '../../utils/fastApi/crud'
 import getMaxWeight from "../../utils/localMem/getMaxWeight";
 
@@ -8,8 +10,8 @@ export default function SaveMaxWeight () {
         fastApi.sendMaxWeight(maxWeight)
       }
       return (
-        <button onClick={handleMaxWeight}>
-          send Max weight
+        <button className='control-board-btn' onClick={handleMaxWeight}>
+          Send Max Weight
         </button>
       )
 }

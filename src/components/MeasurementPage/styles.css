@@ -1,0 +1,16 @@
+#measurementSct {
+    width: inherit;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 2rem;
+}
+
+@media screen and (max-width: 450px) {
+    #measurementSct {
+        flex-flow: column-reverse;
+        margin: 5px;
+        justify-content: space-evenly;
+    }
+    
+}

@@ -1,9 +1,9 @@
 const URL_PREFIX = import.meta.env.VITE_SERVER_URL;
 
 const api = {
-  get: async () => {
+  testGet: async () => {
     try {
-      const res = await fetch(`${URL_PREFIX}/tindeq`, {
+      const res = await fetch(`${URL_PREFIX}/tindeq/test`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -40,7 +40,7 @@ const api = {
 
       return res.json();
     } catch (err) {
-      console.log(err);
+      console.log('crud.js Error: ', err);
       return res.status(500).json({ msg: "some error", err: err });
     }
   },

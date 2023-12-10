@@ -1,8 +1,10 @@
+import './styles.css'
+
 import blc from "../../../src/utils/tindeqApi/connection";
 import getChar from "../../../src/utils/tindeqApi/characteristics";
 import notify from "../../../src/utils/tindeqApi/notify";
 
-export default function CreateConnection({ setServer, setSendChar, setConnected, setRecieveChar, setWeight, setMaxWeight}) {
+export default function CreateConnection({ setServer, setSendChar, setConnected, setRecieveChar, setWeight}) {
    
     // initiate the connection and obtain the server
     async function connect() {
@@ -27,8 +29,8 @@ export default function CreateConnection({ setServer, setSendChar, setConnected,
   }
 
   return (
-    <button
-      className="border-2 border-white rounded-md p-3 mb-3"
+    <button 
+      id="tin-connect"
       onClick={connect}
     >
       Connect

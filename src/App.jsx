@@ -6,6 +6,8 @@ import DisplayWeight from "./components/DisplayCurrnetWeight";
 import CreateConnection from "./components/CreateConnectionBtn";
 import ControlBoard from "./components/ControlBoard";
 import DisplayMaxWeight from "./components/DisplayWeightHistory";
+import MeasurementPage from "./components/MeasurementPage";
+import Landing from "./components/Landing";
 
 export default function Home() {
   const [server, setServer] = useState();
@@ -13,26 +15,26 @@ export default function Home() {
   const [recieveChar, setRecieveChar] = useState(undefined);
   const [weight, setWeight] = useState(0);
   const [connected, setConnected] = useState(false);
-
+  const [measuring, setMeasuring] = useState(false);
   return (
     <main>
       {connected ? (
-        <ControlBoard
+        <MeasurementPage
+          weight={weight}
           sendChar={sendChar}
           setConnected={setConnected}
-          setWeight={setWeight}
+          setMeasuring={setMeasuring}
+          measuring={measuring}
         />
       ) : (
-        <CreateConnection
-          setServer={setServer}
-          setSendChar={setSendChar}
-          setConnected={setConnected}
-          setRecieveChar={setRecieveChar}
-          setWeight={setWeight}
+        <Landing 
+        setServer={setServer}
+        setSendChar={setSendChar}
+        setConnected={setConnected}
+        setRecieveChar={setRecieveChar}
+        setWeight={setWeight}
         />
       )}
-      <DisplayWeight weight={weight} connected={connected} />
-      <DisplayMaxWeight />
     </main>
   );
 }

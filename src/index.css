@@ -106,6 +106,7 @@ section {
 
 body {
   line-height: 1;
+  position: fixed;
 }
 
 ol,
@@ -129,4 +130,10 @@ q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+button {
+  border: none;
+  border-radius: 0;
+  border-color: black;
 }

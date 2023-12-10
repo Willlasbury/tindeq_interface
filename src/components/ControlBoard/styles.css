@@ -1,7 +1,47 @@
 #tindeq-controls {
-    margin: 5px;
+    padding-left: 10px;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    width: 35%;
+    height: 100%;
 }
 
 .tindeq-li {
+    width: 100%;
     list-style: none;
+    display: flex;
+    justify-content: center;
+    height: 4rem;
+}
+
+.control-board-btn {
+    border: solid;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px var(--shadow);
+    border-color: black;
+    font-size: larger;
+    height: 100%;
+    width: 100%;
+    background-color: var(--tertiary-col);
+}
+
+.control-board-btn:active {
+    background-color: var(--secondary-col);
+}
+@media screen and (max-width: 450px){
+    #tindeq-controls {
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 30%;
+        padding-left: 0px;
+    }
+    .tindeq-li {
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    .control-board-btn {
+        width: 90%;        
+    }
 }

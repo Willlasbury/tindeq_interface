@@ -1,14 +1,13 @@
-import sendCommand from "../../utils/tindeqApi/send_command"
+import sendCommand from "../../utils/tindeqApi/send_command";
 
-export default function TareBtn ({sendChar}) {
-    function handleClick () {
-        sendCommand(
-            sendChar, 
-            'TARE_SCALE'
-          )
-    }
+export default function TareBtn({ sendChar }) {
+  function handleClick() {
+    sendCommand(sendChar, "TARE_SCALE");
+  }
 
-    return (
-        <button onClick={handleClick}>Tare Scale</button>
-    )
+  return (
+    <button className="control-board-btn" onClick={handleClick}>
+      Tare Scale
+    </button>
+  );
 }
