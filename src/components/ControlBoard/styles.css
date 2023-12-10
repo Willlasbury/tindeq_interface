@@ -23,6 +23,7 @@
     font-size: larger;
     height: 100%;
     width: 100%;
+    background-color: var(--tertiary-col);
 }
 
 @media screen and (max-width: 450px){

@@ -1,10 +1,11 @@
 #root {
   height: 100vh;
   width: 100vw;
-  --primary-col: #c9061d;
-  --secondary-col: blue;
-  --tertiary-col: purple;
-  --fourth-col: green;
+  --primary-col: #023047;
+  --secondary-col: #219ebc;
+  --tertiary-col: #8ecae6;
+  --fourth-col: #ffb703;
+  --fifth-col: #fb8500;
   --shadow: grey;
   --border-col: rgba(35, 33, 33, 0.739);
 }
@@ -16,5 +17,5 @@ main {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: var(--primary-col);
 }
-

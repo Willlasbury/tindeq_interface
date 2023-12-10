@@ -1,0 +1,15 @@
+#landing {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#title {
+    font-size: xx-large;
+    font-weight: 600;
+    color: var(--fourth-col);
+    text-shadow: 1px 1px 1px var(--fifth-col);
+}

@@ -37,13 +37,14 @@ export default function BarGraph({ weight, maxWeight }) {
         <YAxis
           type="number"
           domain={[0, Math.ceil(maxWeight / 10) * 10 || 10]}
+          tick={{fill:'#8ecae6'}}
         />
         <ReferenceLine
           y={maxWeight}
-          stroke="red"
-          label={{ position: "right", value: `${maxWeight}` }}
+          stroke="#ff8500"
+          label={{ position: "right", value: `${maxWeight}`, fill: '#fb8500'}}
         />
-        <Bar dataKey="weight" fill="maroon" animationEasing="linear" />
+        <Bar dataKey="weight" fill="#fb8500" animationEasing="linear" />
       </BarChart>
     </ResponsiveContainer>
   );
