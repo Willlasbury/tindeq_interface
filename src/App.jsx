@@ -2,12 +2,18 @@
 import { useState } from "react";
 import "./App.css";
 
-import DisplayWeight from "./components/DisplayCurrnetWeight";
-import CreateConnection from "./components/CreateConnectionBtn";
-import ControlBoard from "./components/ControlBoard";
-import DisplayMaxWeight from "./components/DisplayWeightHistory";
 import MeasurementPage from "./components/MeasurementPage";
 import Landing from "./components/Landing";
+
+import userApi  from "./utils/fastApi/users"
+import checkMaxWeight from "./utils/handleData/checkMaxWeight";
+
+const func = async () => {
+  const res = await userApi.createUser()
+  console.log("res:", res)
+}
+
+
 
 export default function Home() {
   const [server, setServer] = useState();
@@ -35,6 +41,8 @@ export default function Home() {
         setWeight={setWeight}
         />
       )}
+
+      <button onClick={() => func()}>test fdsa</button>
     </main>
   );
 }
