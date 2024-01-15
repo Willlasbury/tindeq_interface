@@ -14,11 +14,11 @@ const func = async () => {
 };
 
 export default function Home() {
-  const [setServer, setsetServer] = useState(undefined);
+  const [server, setServer] = useState(undefined);
   const [sendChar, setSendChar] = useState(undefined);
-  const [setRecieveChar, setSetRecieveChar] = useState(undefined);
+  const [recieveChar, setRecieveChar] = useState(undefined);
   const [weight, setWeight] = useState(0);
-  const [connected, setConnected] = useState(true);
+  const [connected, setConnected] = useState(false);
   const [measuring, setMeasuring] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
 

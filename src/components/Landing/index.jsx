@@ -15,3 +15,4 @@ export default function Landing({ setServer, setSendChar, setConnected, setRecie
     </section>
   );
 }
+
