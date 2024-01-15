@@ -22,13 +22,13 @@ export default function Home() {
   const [measuring, setMeasuring] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
 
-  // if (!loggedIn) {
-  //   return (
-  //     <main>
-  //       <LoginForm />
-  //     </main>
-  //   );
-  // } else {
+  if (!loggedIn) {
+    return (
+      <main>
+        <LoginForm />
+      </main>
+    );
+  } else {
     return (
       <main>
         {connected ? (
@@ -53,4 +53,4 @@ export default function Home() {
       </main>
     );
   }
-// }
+}

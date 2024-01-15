@@ -44,13 +44,14 @@ const usersApi = {
       throw new Error(`Error fetching items: ${error.message}`);
     }
   },
-  createUser: async (user) => {
+  createUser: async (display_name, email, password) => {
     try {
       const body = {
-        display_name: "fdfdsasa",
-        email: "fdsa@wilfdsal.wll",
-        password: "fdsaFDSA",
+        display_name: display_name,
+        email: email,
+        password: password,
       };
+      console.log("body:", body)
       const res = await fetch(`${URL_PREFIX}/users`, {
         method: "POST",
         body: JSON.stringify(body),
@@ -64,14 +65,14 @@ const usersApi = {
       console.log("crud.js Error: ", err);
     }
   },
-  loginUser: async (email, password) => {
+  login: async (email, password) => {
     try {
       const body = {
         email: email,
         password: password,
       };
       const res = await fetch(`${URL_PREFIX}/users/login`, {
-        method: "GET",
+        method: "POST",
         body: JSON.stringify(body),
         headers: {
           "Content-Type": "application/json",

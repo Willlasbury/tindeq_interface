@@ -1,8 +1,6 @@
-import usersApi from "../../../utils/fastApi/users";
 import "./styles.css";
-import { useState } from "react";
 
-export default function LoginForm() {
+export default function SignUp() {
   const [inputs, setInputs] = useState({});
 
   const handleChange = (event) => {
@@ -13,15 +11,23 @@ export default function LoginForm() {
 
   async function login(event) {
     event.preventDefault();
-    const res = await usersApi.login(inputs.email, inputs.password)
-    // console.log('===\n\n\ntest\n\n\n===')
-    // const res = await usersApi.getUserTest()
+    const res = await usersApi.createUser(inputs.displayName, inputs.email, inputs.password);
     console.log("res:", res)
-  }
+}
 
   return (
     <div id="login-modal">
       <form id="login-form" onSubmit={login}>
+        <label className="login-label" htmlFor="login-label">
+          Username:{" "}
+          <input
+            className="login-input"
+            type="text"
+            name="displayName"
+            value={inputs.displayName || ""}
+            onChange={handleChange}
+          ></input>
+        </label>
         <label className="login-label" htmlFor="login-label">
           Email:{" "}
           <input
