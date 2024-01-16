@@ -4,7 +4,7 @@ import "./App.css";
 
 import MeasurementPage from "./components/MeasurementPage";
 import Landing from "./components/Landing";
-import LoginForm from "./components/login/Form";
+import LoginForm from "./components/login";
 
 import userApi from "./utils/fastApi/users";
 
@@ -25,7 +25,7 @@ export default function Home() {
   if (!loggedIn) {
     return (
       <main>
-        <LoginForm />
+        <LoginForm setLoggedIn={setLoggedIn}/>
       </main>
     );
   } else {
