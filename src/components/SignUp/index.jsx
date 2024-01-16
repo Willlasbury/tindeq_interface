@@ -1,6 +1,8 @@
 import "./styles.css";
 import { useState } from "react";
-export default function SignUp() {
+import usersApi from "../../utils/fastApi/users";
+
+export default function SignUp({setLoggedIn}) {
   const [inputs, setInputs] = useState({});
 
   const handleChange = (event) => {
@@ -12,7 +14,9 @@ export default function SignUp() {
   async function login(event) {
     event.preventDefault();
     const res = await usersApi.createUser(inputs.displayName, inputs.email, inputs.password);
-    console.log("res:", res)
+    if (res.user.id) {
+        setLoggedIn(true)
+    }
 }
 
   return (

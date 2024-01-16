@@ -23,7 +23,7 @@ export default function LoginForm({setLoggedIn}) {
   }
 
   if (signUp) {
-    return <SignUp />;
+    return <SignUp setLoggedIn={setLoggedIn}/>;
   } else {
     return (
       <div id="login-modal">
