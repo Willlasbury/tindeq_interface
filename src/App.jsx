@@ -5,13 +5,7 @@ import "./App.css";
 import MeasurementPage from "./components/MeasurementPage";
 import Landing from "./components/Landing";
 import LoginForm from "./components/login";
-
-import userApi from "./utils/fastApi/users";
-
-const func = async () => {
-  const res = await userApi.createUser();
-  console.log("res:", res);
-};
+import RPEWorkout from "./components/RPE";
 
 export default function Home() {
   const [server, setServer] = useState(undefined);
@@ -20,7 +14,7 @@ export default function Home() {
   const [weight, setWeight] = useState(0);
   const [connected, setConnected] = useState(false);
   const [measuring, setMeasuring] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
 
   if (!loggedIn) {
     return (
@@ -31,7 +25,7 @@ export default function Home() {
   } else {
     return (
       <main>
-        {connected ? (
+        {/* {connected ? (
           <MeasurementPage
             weight={weight}
             sendChar={sendChar}
@@ -47,9 +41,8 @@ export default function Home() {
             setRecieveChar={setRecieveChar}
             setWeight={setWeight}
           />
-        )}
-
-        <button onClick={() => func()}>test fdsa</button>
+        )} */}
+        <RPEWorkout />
       </main>
     );
   }
