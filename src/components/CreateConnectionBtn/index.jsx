@@ -23,7 +23,6 @@ export default function CreateConnection({
         const { send, recieve } = await getChar(server);
         setSendChar(send);
         setRecieveChar(recieve);
-        console.log("===\n\n\ntest\n\n\n===");
         
         setConnected(true);
         // start the notifications

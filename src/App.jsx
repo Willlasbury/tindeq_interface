@@ -25,14 +25,18 @@ export default function Home() {
   } else {
     return (
       <main>
-        {/* {connected ? (
-          <MeasurementPage
-            weight={weight}
-            sendChar={sendChar}
-            setConnected={setConnected}
-            setMeasuring={setMeasuring}
-            measuring={measuring}
-          />
+        {connected ? (
+          // <MeasurementPage
+          //   weight={weight}
+          //   sendChar={sendChar}
+          //   setConnected={setConnected}
+          //   setMeasuring={setMeasuring}
+          //   measuring={measuring}
+          // />
+          <RPEWorkout weight={weight} sendChar={sendChar}
+          setConnected={setConnected}
+          setMeasuring={setMeasuring}
+          measuring={measuring}/>
         ) : (
           <Landing
             setServer={setServer}
@@ -41,8 +45,7 @@ export default function Home() {
             setRecieveChar={setRecieveChar}
             setWeight={setWeight}
           />
-        )} */}
-        <RPEWorkout />
+        )}
       </main>
     );
   }
