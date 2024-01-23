@@ -1,6 +1,6 @@
 import sendCommand from "../../utils/tindeqApi/send_command";
 
-export default function RPELoggingBtn({ sendChar, measuring, setMeasuring, isRunning, setIsRunning }) {
+export default function RPELoggingBtn({ sendChar, measuring, setMeasuring }) {
   async function startMeasurements() {
     try {
       measuring
@@ -8,14 +8,14 @@ export default function RPELoggingBtn({ sendChar, measuring, setMeasuring, isRun
         : await sendCommand(sendChar, "START_WEIGHT_MEAS");
 
       setMeasuring(!measuring);
-      setIsRunning(!isRunning)
+      // setIsRunning(!isRunning)
     } catch (error) {
       new Error("could not start weight measurements: ", error);
     }
   }
   return (
     <button className="rpe-btn" onClick={startMeasurements} >
-      {measuring ? "Stop" : "Start"} Measurement
+      {measuring ? "Stop" : "Start"} Tindeq
     </button>
   );
 }
