@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import RPELoggingBtn from "../tindeqBtns/RPELoggingBtn";
 import TareBtn from "../../components/tindeqBtns/TareBtn";
 import BarGraph from "../GraphCurrent";
+import DisconnectBtn from "../tindeqBtns/DisconnnectBtn";
+import useRpeTimer from "../../utils/workout/rpeTimer";
 
 export default function RPEWorkout({
   weight,
@@ -12,48 +14,32 @@ export default function RPEWorkout({
   setConnected,
   setMeasuring,
 }) {
-  let length = 7
-  let timeInterval = useRef(null)
-  const [time, setTime] = useState(length);
-  const [isRunning, setIsRunning] = useState(false);
   const [RPE, setRPE] = useState(7);
   // place holder weight while I build out db
-  const [maxWeight, setMaxWeight] = useState(3);
- 
-  
+  const [maxWeight, setMaxWeight] = useState(2);
+  const [length, setLength] = useState(3);
+
+  const {time, isRunning, setTime, start, stop} = useRpeTimer(length)
+
   const data = { weight: weight };
   useEffect(() => {
-    if (!isRunning && weight > range.minRange){
-      handleStart(true)
-    } 
+    if (!isRunning && weight > range.minRange) {
+      start()
+    }
+
     if (time < 1) {
-      setIsRunning(false)
-      clearInterval(timeInterval.current)
-      setTimeout(() => {
-        setMeasuring(false)
-        setTime(length)
-      },1000)
+      stop()
     }
-    
-  }, [time, weight]);
-
-  const handleStart = () => {
-    setIsRunning(true);
-    timeInterval.current = setInterval(() => {
-      setTime((time) => time - 1);
-    }, 1000);
-    }
-
- 
-
+  }, [time, measuring, weight]);
 
   function reset() {
     setIsRunning(false);
-    setTime(0);
+    setTime(length);
+    clearInterval(timeInterval.current);
   }
 
   // TODO: get max weight from db
-  const workingWeight = ((RPE / 10) * maxWeight) >> 0
+  const workingWeight = ((RPE / 10) * maxWeight) >> 0;
   const range = {
     maxRange: workingWeight * 0.05 + workingWeight,
     minRange: workingWeight - workingWeight * 0.05,
@@ -77,12 +63,19 @@ export default function RPEWorkout({
             />
           </li>
           <li className="rpe-li">
-            <TareBtn sendChar={sendChar} />
+            <TareBtn sendChar={sendChar} setMeasuring={setMeasuring} />
+          </li>
+          <li className="rpe-li">
+            <DisconnectBtn sendChar={sendChar} setConnected={setConnected}/>
           </li>
         </ul>
       </section>
       <section id="rpe-graph">
-      <BarGraph weight={weight} reference={{maxWeight, range}} referenceType={'area'} />
+        <BarGraph
+          weight={weight}
+          reference={{ maxWeight, range }}
+          referenceType={"area"}
+        />
       </section>
     </div>
   );

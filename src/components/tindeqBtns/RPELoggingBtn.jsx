@@ -8,7 +8,6 @@ export default function RPELoggingBtn({ sendChar, measuring, setMeasuring }) {
         : await sendCommand(sendChar, "START_WEIGHT_MEAS");
 
       setMeasuring(!measuring);
-      // setIsRunning(!isRunning)
     } catch (error) {
       new Error("could not start weight measurements: ", error);
     }
