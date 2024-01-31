@@ -15,7 +15,7 @@ export default function DisplayWeight({
   } else {
     return (
       <section id="weight-display">
-        <BarGraph weight={weight} maxWeight={maxWeight} />
+        <BarGraph weight={weight} reference={maxWeight} referenceType={'line'}/>
         <button id='reset-max-weight' onClick={()=>setMaxWeight(0)}>Reset Max Weight</button>
       </section>
     );

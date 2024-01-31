@@ -8,14 +8,57 @@ import {
   YAxis,
   ReferenceLine,
   ResponsiveContainer,
+  ReferenceArea,
 } from "recharts";
 
-export default function BarGraph({ weight, maxWeight }) {
+export default function BarGraph({ weight, reference, referenceType }) {
   const data = [
     {
       weight: weight,
     },
   ];
+
+  function giveReference(referenceType) {
+    switch (referenceType) {
+      case "line":
+        return (
+          <>
+            <ReferenceLine
+              y={reference}
+              stroke="#ff8500"
+              label={{
+                position: "right",
+                fontFamily: "sans-serif",
+                value: `${reference}`,
+                fill: "#fb8500",
+                fontSize: "1.2em",
+              }}
+            />
+            <YAxis
+              type="number"
+              domain={[0, Math.ceil(reference / 10) * 10 || 10]}
+              tick={{ fill: "#8ecae6", fontFamily: "sans-serif" }}
+            />
+          </>
+        );
+      case "area":
+        return (
+          <>
+            <ReferenceArea
+              y1={reference.range.minRange}
+              y2={reference.range.maxRange}
+            />
+            ;
+            <YAxis
+              type="number"
+              domain={[0, reference.maxWeight]}
+              tick={{ fill: "#8ecae6", fontFamily: "sans-serif" }}
+            />
+          </>
+        );
+    }
+  }
+
   return (
     <ResponsiveContainer
       width="100%"
@@ -32,7 +75,7 @@ export default function BarGraph({ weight, maxWeight }) {
           bottom: 20,
         }}
       >
-        <CartesianGrid strokeDasharray="3 3" />
+        <CartesianGrid strokeDasharray="3 " />
         <XAxis
           orientation="top"
           dataKey="name"
@@ -43,22 +86,8 @@ export default function BarGraph({ weight, maxWeight }) {
             fontSize: "1.5em",
           }}
         />
-        <YAxis
-          type="number"
-          domain={[0, Math.ceil(maxWeight / 10) * 10 || 10]}
-          tick={{ fill: "#8ecae6", fontFamily: "sans-serif", }}
-        />
-        <ReferenceLine
-          y={maxWeight}
-          stroke="#ff8500"
-          label={{
-            position: "right",
-            fontFamily: "sans-serif",
-            value: `${maxWeight}`,
-            fill: "#fb8500",
-            fontSize: "1.2em",
-          }}
-        />
+
+        {giveReference(referenceType)}
         <Bar dataKey="weight" fill="#fb8500" animationEasing="linear" />
       </BarChart>
     </ResponsiveContainer>
