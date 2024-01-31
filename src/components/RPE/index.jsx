@@ -1,11 +1,11 @@
 import "./styles.css";
-import { ReferenceArea } from "recharts";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import RPELoggingBtn from "../tindeqBtns/RPELoggingBtn";
 import TareBtn from "../../components/tindeqBtns/TareBtn";
 import BarGraph from "../GraphCurrent";
 import DisconnectBtn from "../tindeqBtns/DisconnnectBtn";
-import useRpeTimer from "../../utils/workout/rpeTimer";
+import useTimer from "../../utils/workout/useTimer";
+// import useRestTimer from "../../utils/workout/restTimer";
 
 export default function RPEWorkout({
   weight,
@@ -15,27 +15,46 @@ export default function RPEWorkout({
   setMeasuring,
 }) {
   const [RPE, setRPE] = useState(7);
+  const [pullTime, setPullTime] = useState(3);
+  const [restTime, setRestTime] = useState(180);
+
+  const [resting, setResting] = useState(false);
   // place holder weight while I build out db
-  const [maxWeight, setMaxWeight] = useState(2);
-  const [length, setLength] = useState(3);
+  const [maxWeight, setMaxWeight] = useState(1);
 
-  const {time, isRunning, setTime, start, stop} = useRpeTimer(length)
+  const { time, setTime, isRunning, start, stop } = useTimer(pullTime);
 
-  const data = { weight: weight };
   useEffect(() => {
     if (!isRunning && weight > range.minRange) {
-      start()
+      setResting(false);
+      start();
     }
 
     if (time < 1) {
-      stop()
+      setResting(!resting);
+      stop();
+      if (resting) {
+        setTime(pullTime);
+      } else {
+        setTime(restTime);
+        start();
+      }
     }
   }, [time, measuring, weight]);
 
+  const formatTime = (seconds) => {
+    let minutes = Math.floor(seconds / 60);
+    seconds -= minutes * 60;
+    if (seconds < 10) {
+      seconds = `0${seconds}`;
+    }
+    return `${minutes} : ${seconds}`;
+  };
+
   function reset() {
-    setIsRunning(false);
-    setTime(length);
-    clearInterval(timeInterval.current);
+    setResting(false);
+    setTime(pullTime);
+    stop();
   }
 
   // TODO: get max weight from db
@@ -47,7 +66,7 @@ export default function RPEWorkout({
   return (
     <div id="rpe-board">
       <section id="rpe-controls">
-        <h4 id="timer">{time}</h4>
+        <h4 id="timer">{resting ? formatTime(time) : time}</h4>
         <ul id="rpe-controls">
           <li className="rpe-li">
             <button className="rpe-btn" onClick={() => reset()}>
@@ -66,7 +85,7 @@ export default function RPEWorkout({
             <TareBtn sendChar={sendChar} setMeasuring={setMeasuring} />
           </li>
           <li className="rpe-li">
-            <DisconnectBtn sendChar={sendChar} setConnected={setConnected}/>
+            <DisconnectBtn sendChar={sendChar} setConnected={setConnected} />
           </li>
         </ul>
       </section>
