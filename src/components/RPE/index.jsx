@@ -63,6 +63,7 @@ export default function RPEWorkout({
     maxRange: workingWeight * 0.05 + workingWeight,
     minRange: workingWeight - workingWeight * 0.05,
   };
+  
   return (
     <div id="rpe-board">
       <section id="rpe-controls">
