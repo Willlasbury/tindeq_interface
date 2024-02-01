@@ -1,7 +1,7 @@
 import "./styles.css";
 
 import ControlBoard from "../ControlBoard";
-import BarGraph from "../GraphCurrent";
+import BarGraph from "../graphs/GraphCurrent";
 import DisplayWeight from "../DisplayCurrnetWeight";
 
 export default function MeasurementPage({

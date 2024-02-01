@@ -1,7 +1,7 @@
 import "./styles.css";
 import checkMaxWeight from "../../utils/handleData/checkMaxWeight";
 import { useState } from "react";
-import BarGraph from "../GraphCurrent";
+import BarGraph from "../graphs/GraphCurrent";
 
 export default function DisplayWeight({
   weight,

@@ -5,6 +5,7 @@ import "./App.css";
 import MeasurementPage from "./components/MeasurementPage";
 import Landing from "./components/Landing";
 import LoginForm from "./components/login";
+import RPEWorkout from "./components/RPE";
 
 export default function Home() {
   const [sendChar, setSendChar] = useState(undefined);
@@ -16,20 +17,25 @@ export default function Home() {
   if (!loggedIn) {
     return (
       <main>
-        <LoginForm setLoggedIn={setLoggedIn} />
+        <LoginForm setLoggedIn={setLoggedIn}/>
       </main>
     );
   } else {
     return (
       <main>
         {connected ? (
-          <MeasurementPage
-            weight={weight}
-            sendChar={sendChar}
-            setConnected={setConnected}
-            setMeasuring={setMeasuring}
-            measuring={measuring}
-          />
+          // <MeasurementPage
+          //   weight={weight}
+          //   sendChar={sendChar}
+          //   setConnected={setConnected}
+          //   setMeasuring={setMeasuring}
+          //   measuring={measuring}
+          // />
+          <RPEWorkout weight={weight}
+          sendChar={sendChar}
+          measuring={measuring}
+          setConnected={setConnected}
+          setMeasuring={setMeasuring} />
         ) : (
           <Landing
             setSendChar={setSendChar}

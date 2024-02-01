@@ -1,6 +1,6 @@
-import sendCommand from "../../utils/tindeqApi/send_command";
+import sendCommand from "../../../utils/tindeqApi/send_command";
 
-export default function RPELoggingBtn({ sendChar, measuring, setMeasuring }) {
+export default function ContinuousWBtn({ sendChar, measuring, setMeasuring }) {
   async function startMeasurements() {
     try {
       measuring
@@ -13,8 +13,8 @@ export default function RPELoggingBtn({ sendChar, measuring, setMeasuring }) {
     }
   }
   return (
-    <button className="rpe-btn" onClick={startMeasurements} >
-      {measuring ? "Stop" : "Start"} Tindeq
+    <button className="control-board-btn" onClick={startMeasurements} >
+      {measuring ? "Stop" : "Start"} Measurement
     </button>
   );
 }
