@@ -7,18 +7,16 @@ import Landing from "./components/Landing";
 import LoginForm from "./components/login";
 
 export default function Home() {
-  const [server, setServer] = useState(undefined);
   const [sendChar, setSendChar] = useState(undefined);
-  const [recieveChar, setRecieveChar] = useState(undefined);
   const [weight, setWeight] = useState(0);
   const [connected, setConnected] = useState(false);
   const [measuring, setMeasuring] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
 
   if (!loggedIn) {
     return (
       <main>
-        <LoginForm setLoggedIn={setLoggedIn}/>
+        <LoginForm setLoggedIn={setLoggedIn} />
       </main>
     );
   } else {
@@ -34,10 +32,8 @@ export default function Home() {
           />
         ) : (
           <Landing
-            setServer={setServer}
             setSendChar={setSendChar}
             setConnected={setConnected}
-            setRecieveChar={setRecieveChar}
             setWeight={setWeight}
           />
         )}
