@@ -5,7 +5,6 @@ import "./App.css";
 import MeasurementPage from "./components/MeasurementPage";
 import Landing from "./components/Landing";
 import LoginForm from "./components/login";
-import RPEWorkout from "./components/RPE";
 
 export default function Home() {
   const [server, setServer] = useState(undefined);
@@ -14,7 +13,7 @@ export default function Home() {
   const [weight, setWeight] = useState(0);
   const [connected, setConnected] = useState(false);
   const [measuring, setMeasuring] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   if (!loggedIn) {
     return (
@@ -26,17 +25,13 @@ export default function Home() {
     return (
       <main>
         {connected ? (
-          // <MeasurementPage
-          //   weight={weight}
-          //   sendChar={sendChar}
-          //   setConnected={setConnected}
-          //   setMeasuring={setMeasuring}
-          //   measuring={measuring}
-          // />
-          <RPEWorkout weight={weight} sendChar={sendChar}
-          setConnected={setConnected}
-          setMeasuring={setMeasuring}
-          measuring={measuring}/>
+          <MeasurementPage
+            weight={weight}
+            sendChar={sendChar}
+            setConnected={setConnected}
+            setMeasuring={setMeasuring}
+            measuring={measuring}
+          />
         ) : (
           <Landing
             setServer={setServer}
@@ -46,6 +41,8 @@ export default function Home() {
             setWeight={setWeight}
           />
         )}
+
+        <button onClick={() => func()}>test fdsa</button>
       </main>
     );
   }
