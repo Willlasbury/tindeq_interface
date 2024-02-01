@@ -1,10 +1,10 @@
 import "./styles.css";
 
-import ControlBoard from "../ControlBoard";
-import BarGraph from "../graphs/GraphCurrent";
-import DisplayWeight from "../DisplayCurrnetWeight";
+import ControlBoard from "../../ControlBoard";
+import BarGraph from "../../graphs/GraphCurrent";
+import DisplayWeight from "../../DisplayCurrnetWeight";
 
-export default function MeasurementPage({
+export default function MaxPull({
   weight,
   sendChar,
   measuring,

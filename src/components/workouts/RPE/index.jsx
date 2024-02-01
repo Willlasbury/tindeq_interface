@@ -1,10 +1,10 @@
 import "./styles.css";
 import { useEffect, useState } from "react";
-import RPELoggingBtn from "../buttons/tindeqBtns/RPELoggingBtn";
-import TareBtn from "../buttons/tindeqBtns/TareBtn";
-import BarGraph from "../graphs/GraphCurrent";
-import DisconnectBtn from "../buttons/tindeqBtns/DisconnnectBtn";
-import useTimer from "../../utils/workout/useTimer";
+import RPELoggingBtn from "../../buttons/tindeqBtns/RPELoggingBtn";
+import TareBtn from "../../buttons/tindeqBtns/TareBtn";
+import BarGraph from "../../graphs/GraphCurrent";
+import DisconnectBtn from "../../buttons/tindeqBtns/DisconnnectBtn";
+import useTimer from "../../../utils/workout/useTimer";
 // import useRestTimer from "../../utils/workout/restTimer";
 
 export default function RPEWorkout({
