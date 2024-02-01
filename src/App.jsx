@@ -43,8 +43,6 @@ export default function Home() {
             setWeight={setWeight}
           />
         )}
-
-        <button onClick={() => func()}>test fdsa</button>
       </main>
     );
   }
