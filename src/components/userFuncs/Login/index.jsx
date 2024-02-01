@@ -1,7 +1,7 @@
-import usersApi from "../../utils/fastApi/users";
+import usersApi from "../../../utils/fastApi/users";
 import "./styles.css";
 import { useState } from "react";
-import SignUp from "../signUp";
+import SignUp from "../SignUp";
 
 export default function LoginForm({setLoggedIn}) {
   const [inputs, setInputs] = useState({});

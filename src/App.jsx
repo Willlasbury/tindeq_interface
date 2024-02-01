@@ -2,15 +2,13 @@
 import { useState } from "react";
 import "./App.css";
 
-import MeasurementPage from "./components/MeasurementPage";
+import MaxPull from "./components/workouts/MaxPull";
 import Landing from "./components/Landing";
-import LoginForm from "./components/login";
-import RPEWorkout from "./components/RPE";
+import LoginForm from "./components/userFuncs/Login";
+import RPEWorkout from "./components/workouts/RPE";
 
 export default function Home() {
-  const [server, setServer] = useState(undefined);
   const [sendChar, setSendChar] = useState(undefined);
-  const [recieveChar, setRecieveChar] = useState(undefined);
   const [weight, setWeight] = useState(0);
   const [connected, setConnected] = useState(false);
   const [measuring, setMeasuring] = useState(false);
@@ -26,26 +24,27 @@ export default function Home() {
     return (
       <main>
         {connected ? (
-          // <MeasurementPage
-          //   weight={weight}
-          //   sendChar={sendChar}
-          //   setConnected={setConnected}
-          //   setMeasuring={setMeasuring}
-          //   measuring={measuring}
-          // />
-          <RPEWorkout weight={weight} sendChar={sendChar}
-          setConnected={setConnected}
-          setMeasuring={setMeasuring}
-          measuring={measuring}/>
+          <MaxPull
+            weight={weight}
+            sendChar={sendChar}
+            setConnected={setConnected}
+            setMeasuring={setMeasuring}
+            measuring={measuring}
+          />
+          // <RPEWorkout weight={weight}
+          // sendChar={sendChar}
+          // measuring={measuring}
+          // setConnected={setConnected}
+          // setMeasuring={setMeasuring} />
         ) : (
           <Landing
-            setServer={setServer}
             setSendChar={setSendChar}
             setConnected={setConnected}
-            setRecieveChar={setRecieveChar}
             setWeight={setWeight}
           />
         )}
+
+        <button onClick={() => func()}>test fdsa</button>
       </main>
     );
   }

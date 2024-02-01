@@ -1,10 +1,10 @@
 import "./styles.css";
 import { useEffect, useState } from "react";
-import RPELoggingBtn from "../tindeqBtns/RPELoggingBtn";
-import TareBtn from "../../components/tindeqBtns/TareBtn";
-import BarGraph from "../GraphCurrent";
-import DisconnectBtn from "../tindeqBtns/DisconnnectBtn";
-import useTimer from "../../utils/workout/useTimer";
+import RPELoggingBtn from "../../buttons/tindeqBtns/RPELoggingBtn";
+import TareBtn from "../../buttons/tindeqBtns/TareBtn";
+import BarGraph from "../../graphs/GraphCurrent";
+import DisconnectBtn from "../../buttons/tindeqBtns/DisconnnectBtn";
+import useTimer from "../../../utils/workout/useTimer";
 // import useRestTimer from "../../utils/workout/restTimer";
 
 export default function RPEWorkout({
@@ -63,7 +63,7 @@ export default function RPEWorkout({
     maxRange: workingWeight * 0.05 + workingWeight,
     minRange: workingWeight - workingWeight * 0.05,
   };
-  
+
   return (
     <div id="rpe-board">
       <section id="rpe-controls">
@@ -86,7 +86,11 @@ export default function RPEWorkout({
             <TareBtn sendChar={sendChar} setMeasuring={setMeasuring} />
           </li>
           <li className="rpe-li">
-            <DisconnectBtn sendChar={sendChar} setConnected={setConnected} />
+            <DisconnectBtn
+              sendChar={sendChar}
+              setConnected={setConnected}
+              setMeasuring={setMeasuring}
+            />
           </li>
         </ul>
       </section>

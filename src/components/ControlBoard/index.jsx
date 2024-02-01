@@ -1,11 +1,16 @@
 import "./styles.css";
 
-import StartLoggingBtn from "../../components/tindeqBtns/StartLoggingBtn";
-import TareBtn from "../../components/tindeqBtns/TareBtn";
-import DisconnectBtn from "../tindeqBtns/DisconnnectBtn";
-import SaveMaxWeight from "../fastApiBtns/SaveMaxWeight";
+import StartLoggingBtn from "../../components/buttons/tindeqBtns/StartLoggingBtn";
+import TareBtn from "../../components/buttons/tindeqBtns/TareBtn";
+import DisconnectBtn from "../buttons/tindeqBtns/DisconnnectBtn";
+import SaveMaxWeight from "../buttons/fastApiBtns/SaveMaxWeight";
 
-export default function ControlBoard({ sendChar, measuring, setConnected, setMeasuring }) {
+export default function ControlBoard({
+  sendChar,
+  measuring,
+  setConnected,
+  setMeasuring,
+}) {
   return (
     <ul id="tindeq-controls">
       <li className="tindeq-li">
@@ -16,10 +21,14 @@ export default function ControlBoard({ sendChar, measuring, setConnected, setMea
         />
       </li>
       <li className="tindeq-li">
-        <TareBtn sendChar={sendChar} />
+        <TareBtn sendChar={sendChar} setMeasuring={setMeasuring} />
       </li>
       <li className="tindeq-li">
-        <DisconnectBtn sendChar={sendChar} setConnected={setConnected} />
+        <DisconnectBtn
+          sendChar={sendChar}
+          setConnected={setConnected}
+          setMeasuring={setMeasuring}
+        />
       </li>
       <li className="tindeq-li">
         <SaveMaxWeight />

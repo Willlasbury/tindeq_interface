@@ -1,4 +1,4 @@
-import sendCommand from "../../utils/tindeqApi/send_command";
+import sendCommand from "../../../utils/tindeqApi/send_command";
 
 export default function RPELoggingBtn({ sendChar, measuring, setMeasuring }) {
   async function startMeasurements() {
