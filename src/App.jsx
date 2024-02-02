@@ -1,49 +1,76 @@
 "use client";
 import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 
 import MaxPull from "./components/workouts/MaxPull";
 import Landing from "./components/Landing";
 import LoginForm from "./components/userFuncs/Login";
 import RPEWorkout from "./components/workouts/RPE";
+import Layout from "./components/Layout";
 
-export default function Home() {
+export default function () {
   const [sendChar, setSendChar] = useState(undefined);
   const [weight, setWeight] = useState(0);
   const [connected, setConnected] = useState(false);
   const [measuring, setMeasuring] = useState(false);
   const [loggedIn, setLoggedIn] = useState(true);
 
-  if (!loggedIn) {
-    return (
-      <main>
-        <LoginForm setLoggedIn={setLoggedIn}/>
-      </main>
-    );
-  } else {
-    return (
-      <main>
-        {connected ? (
-          <MaxPull
+
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+
+        <Route
+          index
+          element={
+            <Landing
+            connected={connected}
+            setConnected={setConnected}
+            setSendChar={setSendChar}
+            setWeight={setWeight}
+            />
+          }
+          />
+        <Route path="login" element={<LoginForm setLoggedIn={setLoggedIn} />} />
+        <Route
+          path="workout"
+          element={
+            <RPEWorkout
             weight={weight}
             sendChar={sendChar}
+            measuring={measuring}
             setConnected={setConnected}
             setMeasuring={setMeasuring}
-            measuring={measuring}
+            />
+          }
           />
-          // <RPEWorkout weight={weight}
-          // sendChar={sendChar}
-          // measuring={measuring}
-          // setConnected={setConnected}
-          // setMeasuring={setMeasuring} />
-        ) : (
-          <Landing
-            setSendChar={setSendChar}
-            setConnected={setConnected}
-            setWeight={setWeight}
-          />
-        )}
-      </main>
-    );
-  }
+          </Route>
+      </Routes>
+    </Router>
+  );
 }
+// if (!loggedIn) {
+//   return (
+//     <main>
+//       <LoginForm setLoggedIn={setLoggedIn}/>
+//     </main>
+//   );
+// } else {
+//   return (
+//     <main>
+//       {connected ? (
+//         setSendChar={setSendChar}
+//           setConnected={setConnected}
+//           setWeight={setWeight}
+//       ) : (
+//         <Landing
+//           setSendChar={setSendChar}
+//           setConnected={setConnected}
+//           setWeight={setWeight}
+//         />
+//       )}
+//     </main>
+//   );
+// }
