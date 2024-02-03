@@ -10,7 +10,7 @@ export default function useTimer(startTime) {
     setIsRunning(true);
     timeInterval.current = setInterval(() => {
       setTime((time) => time - 1);
-    }, 10);
+    }, 1000);
   };
 
   const stop = () => {
