@@ -4,16 +4,7 @@ import { useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 
-export default function Landing({ connected, setConnected, setSendChar, setWeight }) {
-
-  const navigate = useNavigate()
-
-  useEffect(()=>{
-    if (connected) {
-      navigate("/workout")
-    }
-  },[connected])
-
+export default function Landing({ setConnected, setSendChar, setWeight }) {
 
   return (
     <section id="landing">

@@ -20,13 +20,12 @@ export default function () {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Layout connected={connected}/>}>
 
         <Route
           index
           element={
             <Landing
-            connected={connected}
             setConnected={setConnected}
             setSendChar={setSendChar}
             setWeight={setWeight}
@@ -51,26 +50,3 @@ export default function () {
     </Router>
   );
 }
-// if (!loggedIn) {
-//   return (
-//     <main>
-//       <LoginForm setLoggedIn={setLoggedIn}/>
-//     </main>
-//   );
-// } else {
-//   return (
-//     <main>
-//       {connected ? (
-//         setSendChar={setSendChar}
-//           setConnected={setConnected}
-//           setWeight={setWeight}
-//       ) : (
-//         <Landing
-//           setSendChar={setSendChar}
-//           setConnected={setConnected}
-//           setWeight={setWeight}
-//         />
-//       )}
-//     </main>
-//   );
-// }
