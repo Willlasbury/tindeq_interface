@@ -14,13 +14,13 @@ export default function RPEWorkout({
   setConnected,
   setMeasuring,
 }) {
-  const [RPE, setRPE] = useState(7);
+  const [RPE, setRPE] = useState(8);
   const [pullTime, setPullTime] = useState(7);
   const [restTime, setRestTime] = useState(120);
 
   const [resting, setResting] = useState(false);
   // place holder weight while I build out db
-  const [maxWeight, setMaxWeight] = useState(70);
+  const [maxWeight, setMaxWeight] = useState(120);
 
   const { time, setTime, isRunning, start, stop } = useTimer(pullTime);
 

@@ -8,6 +8,7 @@ import Landing from "./components/Landing";
 import LoginForm from "./components/userFuncs/Login";
 import RPEWorkout from "./components/workouts/RPE";
 import Layout from "./components/Layout";
+import Form from "./components/FingerForm"
 
 export default function () {
   const [sendChar, setSendChar] = useState(undefined);
@@ -36,7 +37,7 @@ export default function () {
         <Route
           path="workout"
           element={
-            <RPEWorkout
+            <MaxPull
             weight={weight}
             sendChar={sendChar}
             measuring={measuring}
@@ -45,6 +46,7 @@ export default function () {
             />
           }
           />
+          <Route path="form" element={<Form />} />
           </Route>
       </Routes>
     </Router>
