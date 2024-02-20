@@ -1,9 +1,8 @@
 import usersApi from "../../../utils/fastApi/users";
 import "./styles.css";
 import { useState } from "react";
-import SignUp from "../SignUp";
 
-export default function LoginForm({setLoggedIn}) {
+export default function LoginForm({ setLoggedIn }) {
   const [inputs, setInputs] = useState({});
   const [signUp, setSignUp] = useState(false);
 
@@ -15,45 +14,65 @@ export default function LoginForm({setLoggedIn}) {
 
   async function login(event) {
     event.preventDefault();
-    const res = await usersApi.login(inputs.email, inputs.password);
-    // TODO: check response from supabase
-    if (res) {
-      setLoggedIn(true)
+    if (signUp) {
+      const res = await usersApi.createUser(
+        inputs.displayName,
+        inputs.email,
+        inputs.password
+      );
+      if (res.user.id) {
+        setLoggedIn(true);
+      }
+    } else {
+      console.log('===\n\n\ntest\n\n\n===')
+      const res = await usersApi.login(inputs.email, inputs.password);
+      // TODO: check response from supabase
+      if (res) {
+        setLoggedIn(true);
+      }
     }
   }
-
-  if (signUp) {
-    return <SignUp setLoggedIn={setLoggedIn}/>;
-  } else {
-    return (
-      <div id="login-modal">
-        <form id="login-form" onSubmit={login}>
+  return (
+    <div id="login-modal">
+      <form id="login-form" onSubmit={login}>
+        {signUp && (
           <label className="login-label" htmlFor="login-label">
-            Email:{" "}
+            Username:{" "}
             <input
               className="login-input"
               type="text"
-              name="email"
-              value={inputs.email || ""}
+              name="displayName"
+              value={inputs.displayName || ""}
               onChange={handleChange}
             ></input>
           </label>
-          <label htmlFor="login-label">
-            Password:{" "}
-            <input
-              className="login-input"
-              type="password"
-              name="password"
-              value={inputs.password || ""}
-              onChange={handleChange}
-            ></input>
-          </label>
-          <button type="submit">Submit</button>
-          <label onClick={() => setSignUp(!signUp)}>
-            Sign Up
-          </label>
-        </form>
-      </div>
-    );
-  }
+        )}
+        <label className="login-label" htmlFor="login-label">
+          Email:{" "}
+          <input
+            className="login-input"
+            type="text"
+            name="email"
+            value={inputs.email || ""}
+            onChange={handleChange}
+          ></input>
+        </label>
+        <label htmlFor="login-label">
+          Password:{" "}
+          <input
+            className="login-input"
+            type="password"
+            name="password"
+            value={inputs.password || ""}
+            onChange={handleChange}
+          ></input>
+        </label>
+        <button type="submit">Submit</button>
+      </form>
+      <button onClick={() => setSignUp(!signUp)}>
+        {" "}
+        {signUp ? "Login" : "Sign Up"}
+      </button>
+    </div>
+  );
 }
