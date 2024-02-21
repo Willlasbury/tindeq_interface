@@ -1,4 +1,4 @@
-import usersApi from "../../../utils/fastApi/users";
+import usersApi from "../../../utils/server/users";
 import "./styles.css";
 import { useState } from "react";
 

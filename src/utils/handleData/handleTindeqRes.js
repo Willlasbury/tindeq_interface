@@ -1,5 +1,5 @@
 import handleWeightRes from "../handleData/handleWeightRes";
-import api from "../fastApi/crud";
+import api from "../server/crud";
 
 export default async function handleTindeqRes(value, setWeight) {
   // check response type
