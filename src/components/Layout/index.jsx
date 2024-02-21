@@ -9,7 +9,7 @@ export default function Layout({ connected }) {
   useEffect(() => {
     if (!connected) {
       navigate("/");
-    }
+    } 
   }, [connected]);
 
   return (

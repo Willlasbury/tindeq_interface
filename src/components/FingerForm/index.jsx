@@ -10,7 +10,7 @@ export default function FingerForm() {
     ring: true,
     pinky: true,
   });
-
+  console.log("formData:", formData)
   const handleChange = (event) => {
     const {name, value} = event.target
     setFormData((prev)=> ({...prev, [name]:value}))
@@ -21,7 +21,7 @@ export default function FingerForm() {
       <input
         type="text"
         id="hand"
-        hand="hand"
+        name="hand"
         value={formData.hand}
         onChange={handleChange}
       />
@@ -34,15 +34,8 @@ export default function FingerForm() {
         value={formData.edge}
         onChange={handleChange}
       />
-
-      <label htmlFor="message">Message:</label>
-      <textarea
-        id="message"
-        name="message"
-        value={formData.message}
-        onChange={handleChange}
-      />
-
+      <label htmlFor="fingers">Fingers</label>
+      <input type="checkbox" />
       <button type="submit">Submit</button>
     </form>
   );
