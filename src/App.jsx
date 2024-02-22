@@ -35,8 +35,6 @@ export default function () {
             path="login"
             element={<LoginForm setLoggedIn={setLoggedIn} />}
           />
-
-          <Route path="finger" element={<FingerForm />} />
           <Route
             path="workout"
             element={
