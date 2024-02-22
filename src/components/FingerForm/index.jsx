@@ -19,8 +19,6 @@ export default function FingerForm() {
       if (["index", "middle", "ring", "pinky"].includes(name)) {
         return { ...prev, [name]: checked };
       } else {
-        // console.log('===\n\n\ntest\n\n\n===')
-        // console.log("name, value:", name, value)
         return { ...prev, [name]: value };
       }
     });
