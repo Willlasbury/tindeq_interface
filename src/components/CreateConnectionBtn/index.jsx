@@ -1,4 +1,5 @@
 import "./styles.css";
+import { useNavigate } from "react-router-dom";
 
 import blc from "../../../src/utils/tindeqApi/connection";
 import getChar from "../../../src/utils/tindeqApi/characteristics";
@@ -9,6 +10,7 @@ export default function CreateConnection({
   setConnected,
   setWeight,
 }) {
+  const nav = useNavigate()
   // initiate the connection and obtain the server
   async function connect() {
     try {
@@ -23,6 +25,7 @@ export default function CreateConnection({
 
         // start the notifications
         notify(recieve, setWeight);
+        nav("/workout")
       }
     } catch (error) {
       throw new Error("could not connect to tindeq: ", error);

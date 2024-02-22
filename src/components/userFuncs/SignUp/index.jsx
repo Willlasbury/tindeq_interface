@@ -1,6 +1,6 @@
 import "./styles.css";
 import { useState } from "react";
-import usersApi from "../../../utils/fastApi/users";
+import usersApi from "../../../utils/server/users";
 
 export default function SignUp({setLoggedIn}) {
   const [inputs, setInputs] = useState({});
