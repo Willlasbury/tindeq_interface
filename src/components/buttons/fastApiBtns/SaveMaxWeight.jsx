@@ -1,4 +1,4 @@
-import fastApi from '../../../utils/fastApi/crud'
+import fastApi from '../../../utils/server/crud'
 import getMaxWeight from "../../../utils/localMem/getMaxWeight";
 
 export default function SaveMaxWeight () {
