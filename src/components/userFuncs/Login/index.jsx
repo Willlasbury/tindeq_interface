@@ -27,9 +27,8 @@ export default function LoginForm({ setLoggedIn }) {
       }
     } else {
       const res = await usersApi.login(inputs.email, inputs.password);
-      console.log("res:", res)
-      if (res.session.accesss_token) {
-        writeToLM('token', res.session.accesss_token)
+      if (res.session.access_token) {
+        writeToLM('token', res.session.access_token)
         setLoggedIn(true);
       }
     }

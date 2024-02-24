@@ -70,7 +70,7 @@ const usersApi = {
       const body = {
         email: email,
         password: password,
-      };
+      };  
       const res = await fetch(`${URL_PREFIX}/users/login`, {
         method: "POST",
         body: JSON.stringify(body),
@@ -78,7 +78,6 @@ const usersApi = {
           "Content-Type": "application/json",
         },
       });
-      
       return res.json();
     } catch (err) {
       console.log("crud.js Error: ", err);
