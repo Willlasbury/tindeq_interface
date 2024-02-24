@@ -1,6 +1,8 @@
-import usersApi from "../../../utils/server/users";
 import "./styles.css";
 import { useState } from "react";
+
+import usersApi from "../../../utils/server/users";
+import writeToLM from "../../../utils/localMem/write";
 
 export default function LoginForm({ setLoggedIn }) {
   const [inputs, setInputs] = useState({});
@@ -24,10 +26,10 @@ export default function LoginForm({ setLoggedIn }) {
         setLoggedIn(true);
       }
     } else {
-      console.log('===\n\n\ntest\n\n\n===')
       const res = await usersApi.login(inputs.email, inputs.password);
-      // TODO: check response from supabase
-      if (res) {
+      console.log("res:", res)
+      if (res.session.accesss_token) {
+        writeToLM('token', res.session.accesss_token)
         setLoggedIn(true);
       }
     }

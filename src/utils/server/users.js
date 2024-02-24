@@ -78,7 +78,7 @@ const usersApi = {
           "Content-Type": "application/json",
         },
       });
-
+      
       return res.json();
     } catch (err) {
       console.log("crud.js Error: ", err);

@@ -14,12 +14,12 @@ export default function () {
   const [weight, setWeight] = useState(0);
   const [connected, setConnected] = useState(true);
   const [measuring, setMeasuring] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Layout connected={connected} />}>
+        <Route path="/" element={<Layout connected={connected} loggedIn={loggedIn}/>}>
           <Route
             index
             element={
