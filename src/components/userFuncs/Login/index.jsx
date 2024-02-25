@@ -2,7 +2,6 @@ import "./styles.css";
 import { useState } from "react";
 
 import usersApi from "../../../utils/server/users";
-import writeToLM from "../../../utils/localMem/write";
 
 export default function LoginForm({ setLoggedIn }) {
   const [inputs, setInputs] = useState({});
@@ -28,7 +27,7 @@ export default function LoginForm({ setLoggedIn }) {
     } else {
       const res = await usersApi.login(inputs.email, inputs.password);
       if (res.session.access_token) {
-        writeToLM('token', res.session.access_token)
+        localStorage.setItem('token', res.session.access_token)
         setLoggedIn(true);
       }
     }
