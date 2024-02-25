@@ -3,7 +3,7 @@ import "./styles.css";
 import StartLoggingBtn from "../../components/buttons/tindeqBtns/StartLoggingBtn";
 import TareBtn from "../../components/buttons/tindeqBtns/TareBtn";
 import DisconnectBtn from "../buttons/tindeqBtns/DisconnnectBtn";
-import SaveMaxWeight from "../buttons/fastApiBtns/SaveMaxWeight";
+import SaveMaxWeight from "../buttons/server/SaveMaxWeight";
 
 export default function ControlBoard({
   sendChar,

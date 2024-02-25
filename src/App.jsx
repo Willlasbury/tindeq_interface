@@ -12,7 +12,7 @@ import Layout from "./components/Layout";
 export default function () {
   const [sendChar, setSendChar] = useState(undefined);
   const [weight, setWeight] = useState(0);
-  const [connected, setConnected] = useState(true);
+  const [connected, setConnected] = useState(false);
   const [measuring, setMeasuring] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
 

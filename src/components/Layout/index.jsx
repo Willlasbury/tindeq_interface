@@ -7,14 +7,17 @@ export default function Layout({ connected, loggedIn }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!loggedIn) {
-        navigate("/login")
+    if (loggedIn) {
+      if (connected) {
+        navigate('/workout')
+      } else {
+        navigate('/')
+      }
+    } else {
+      navigate('/login')
     }
-    if (!connected) {
-      navigate("/");
-    } 
-  }, [connected]);
-
+  }, [connected, loggedIn]);
+  console.log("connected, loggedIn:", connected, loggedIn)
   return (
     <main>
       <Outlet />

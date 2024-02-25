@@ -25,6 +25,7 @@ export default function LoginForm({ setLoggedIn }) {
         setLoggedIn(true);
       }
     } else {
+      console.log('===\n\n\ntest\n\n\n===')
       const res = await usersApi.login(inputs.email, inputs.password);
       if (res.session.access_token) {
         localStorage.setItem('token', res.session.access_token)
