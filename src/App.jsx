@@ -19,7 +19,7 @@ export default function () {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Layout connected={connected} loggedIn={loggedIn}/>}>
+        <Route path="/" element={<Layout connected={connected} setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>}>
           <Route
             index
             element={
