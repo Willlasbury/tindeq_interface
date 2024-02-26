@@ -1,6 +1,7 @@
-import usersApi from "../../../utils/server/users";
 import "./styles.css";
 import { useState } from "react";
+
+import usersApi from "../../utils/server/users";
 
 export default function LoginForm({ setLoggedIn }) {
   const [inputs, setInputs] = useState({});
@@ -24,10 +25,10 @@ export default function LoginForm({ setLoggedIn }) {
         setLoggedIn(true);
       }
     } else {
-      console.log('===\n\n\ntest\n\n\n===')
       const res = await usersApi.login(inputs.email, inputs.password);
-      // TODO: check response from supabase
-      if (res) {
+      if (res.session.access_token) {
+        localStorage.setItem('access_token', res.session.access_token)
+        localStorage.setItem('refresh_token', res.session.refresh_token)
         setLoggedIn(true);
       }
     }

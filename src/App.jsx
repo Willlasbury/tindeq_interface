@@ -5,21 +5,21 @@ import "./App.css";
 
 import MaxPull from "./components/workouts/MaxPull";
 import Landing from "./components/Landing";
-import LoginForm from "./components/userFuncs/Login";
+import LoginForm from "./components/Login";
 import RPEWorkout from "./components/workouts/RPE";
 import Layout from "./components/Layout";
 
 export default function () {
   const [sendChar, setSendChar] = useState(undefined);
   const [weight, setWeight] = useState(0);
-  const [connected, setConnected] = useState(true);
+  const [connected, setConnected] = useState(false);
   const [measuring, setMeasuring] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Layout connected={connected} />}>
+        <Route path="/" element={<Layout connected={connected} setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>}>
           <Route
             index
             element={
