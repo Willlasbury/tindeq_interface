@@ -1,8 +1,9 @@
-import { useEffect } from "react";
 import "./styles.css";
-
+import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
+
 import LogOut from "../buttons/server/logout";
+import validateToken from "../../utils/server/valToken";
 
 export default function Layout({ connected, setLoggedIn, loggedIn }) {
   const navigate = useNavigate();
@@ -18,7 +19,9 @@ export default function Layout({ connected, setLoggedIn, loggedIn }) {
       navigate('/login')
     }
   }, [connected, loggedIn]);
-  console.log("connected, loggedIn:", connected, loggedIn)
+
+  
+
   return (
     <main>
       <nav>
@@ -29,6 +32,7 @@ export default function Layout({ connected, setLoggedIn, loggedIn }) {
         </ul>
       </nav>
       <Outlet />
+      <button onClick={validateToken}>token</button>
     </main>
   );
 }

@@ -5,7 +5,7 @@ import "./App.css";
 
 import MaxPull from "./components/workouts/MaxPull";
 import Landing from "./components/Landing";
-import LoginForm from "./components/userFuncs/Login";
+import LoginForm from "./components/Login";
 import RPEWorkout from "./components/workouts/RPE";
 import Layout from "./components/Layout";
 
