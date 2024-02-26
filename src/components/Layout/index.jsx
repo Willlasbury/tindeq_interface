@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
 import LogOut from "../buttons/server/logout";
-import validateToken from "../../utils/server/valToken";
+import validateToken from "../../utils/server/validateToken";
 
 export default function Layout({ connected, setLoggedIn, loggedIn }) {
   const navigate = useNavigate();
@@ -32,7 +32,6 @@ export default function Layout({ connected, setLoggedIn, loggedIn }) {
         </ul>
       </nav>
       <Outlet />
-      <button onClick={validateToken}>token</button>
     </main>
   );
 }
