@@ -5,11 +5,13 @@ import BarGraph from "../graphs/GraphCurrent";
 
 export default function DisplayWeight({
   weight,
-  connected
+  connected,
+  maxWeight,
+  setMaxWeight
 }) {
-  const [maxWeight, setMaxWeight] = useState(0);
 
   checkMaxWeight(weight, maxWeight, setMaxWeight);
+
   if (!connected) {
     return <p className="weight-display">Not connected</p>;
   } else {
