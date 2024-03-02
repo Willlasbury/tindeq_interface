@@ -3,7 +3,6 @@ import sendCommand from "../../../utils/tindeqApi/send_command";
 export default function ContinuousWBtn({ sendChar, measuring, setMeasuring }) {
   async function startMeasurements() {
     try {
-      console.log("measuring:", measuring)
       measuring
       ? await sendCommand(sendChar, "STOP_WEIGHT_MEAS")
       : await sendCommand(sendChar, "START_WEIGHT_MEAS");

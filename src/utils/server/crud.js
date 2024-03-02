@@ -68,19 +68,22 @@ const api = {
     }
   },
 
-  sendMaxWeight: async (maxWeight) => {
+  sendMaxWeight: async ({maxWeight}, style) => {
     try {
       const packet = {
-        weight: maxWeight,
+        'weight': maxWeight,
+        'style': style
       };
-      const res = await fetch(`${URL_PREFIX}/weights`, {
+      const res = await fetch(`${URL_PREFIX}/max_pull`, {
         method: "POST",
         body: JSON.stringify(packet),
         headers: {
           "Content-Type": "application/json",
+          "Authorization": localStorage.getItem("access_token")
         },
       });
       const data = await res.json();
+      console.log("res:", data)
       return data;
     } catch (err) {
       console.log(err);
@@ -90,7 +93,7 @@ const api = {
   
   getAllMaxWeight: async () => {
     try {
-      const res = await fetch(`${URL_PREFIX}/weights`, {
+      const res = await fetch(`${URL_PREFIX}/max_pull`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -101,7 +104,7 @@ const api = {
         return data;
       } else {
         throw new Error(
-          `Error fetching weights: ${res.status} ${res.statusText}`
+          `Error fetching max_pull: ${res.status} ${res.statusText}`
         );
       }
     } catch (err) {

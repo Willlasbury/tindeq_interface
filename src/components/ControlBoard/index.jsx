@@ -10,6 +10,7 @@ export default function ControlBoard({
   measuring,
   setConnected,
   setMeasuring,
+  maxWeight
 }) {
   return (
     <ul id="tindeq-controls">
@@ -31,7 +32,7 @@ export default function ControlBoard({
         />
       </li>
       <li className="tindeq-li">
-        <SaveMaxWeight />
+        <SaveMaxWeight maxWeight={maxWeight}/>
       </li>
     </ul>
   );
