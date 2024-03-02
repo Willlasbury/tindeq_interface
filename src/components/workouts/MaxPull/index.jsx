@@ -13,6 +13,14 @@ export default function MaxPull({
   setMeasuring,
 }) {
   const [maxWeight, setMaxWeight] = useState(0);
+  if (weight > maxWeight) {
+    setMaxWeight(weight);
+    localStorage.setItem('maxWeight', weight)
+} else if (!maxWeight && weight) {
+    setMaxWeight(weight);
+    localStorage.setItem('maxWeight', weight)
+  }
+  
   return (
     <section id="measurementSct">
       <ControlBoard

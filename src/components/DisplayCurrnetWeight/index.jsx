@@ -1,6 +1,4 @@
 import "./styles.css";
-import checkMaxWeight from "../../utils/handleData/checkMaxWeight";
-import { useState } from "react";
 import BarGraph from "../graphs/GraphCurrent";
 
 export default function DisplayWeight({
@@ -10,7 +8,6 @@ export default function DisplayWeight({
   setMaxWeight
 }) {
 
-  checkMaxWeight(weight, maxWeight, setMaxWeight);
 
   if (!connected) {
     return <p className="weight-display">Not connected</p>;
