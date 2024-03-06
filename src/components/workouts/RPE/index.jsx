@@ -5,6 +5,7 @@ import TareBtn from "../../buttons/tindeqBtns/TareBtn";
 import BarGraph from "../../graphs/GraphCurrent";
 import DisconnectBtn from "../../buttons/tindeqBtns/DisconnnectBtn";
 import useTimer from "../../../utils/workout/useTimer";
+import ControlBoard from "../../ControlBoard";
 // import useRestTimer from "../../utils/workout/restTimer";
 
 export default function RPEWorkout({
@@ -21,7 +22,7 @@ export default function RPEWorkout({
   const [resting, setResting] = useState(false);
 
   // place holder weight while I build out db
-  const [maxPull, setMaxPull] = useState(120);
+  const [maxPull, setMaxPull] = useState(3);
 
   const { time, setTime, isRunning, start, stop } = useTimer(pullTime);
 
@@ -75,23 +76,11 @@ export default function RPEWorkout({
               reset
             </button>
           </li>
-          <li className="rpe-li">
-            <RPELoggingBtn
-              sendChar={sendChar}
-              measuring={measuring}
-              setMeasuring={setMeasuring}
-            />
-          </li>
-          <li className="rpe-li">
-            <TareBtn sendChar={sendChar} setMeasuring={setMeasuring} />
-          </li>
-          <li className="rpe-li">
-            <DisconnectBtn
-              sendChar={sendChar}
-              setConnected={setConnected}
-              setMeasuring={setMeasuring}
-            />
-          </li>
+        <ControlBoard sendChar={sendChar}
+        setConnected={setConnected}
+        setMeasuring={setMeasuring}
+        measuring={measuring}        
+        />
         </ul>
       </section>
 

@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
 import LogOut from "../buttons/server/logout";
+import ChooseWorkout from "../workouts/ChooseWorkout";
 
 export default function Layout({ connected, setLoggedIn, loggedIn }) {
   const navigate = useNavigate();
@@ -10,26 +11,26 @@ export default function Layout({ connected, setLoggedIn, loggedIn }) {
   useEffect(() => {
     if (loggedIn) {
       if (connected) {
-        navigate('/workout')
+        navigate("/max_pull");
       } else {
-        navigate('/')
+        navigate("/");
       }
     } else {
-      navigate('/login')
+      navigate("/login");
     }
   }, [connected, loggedIn]);
-
-  
 
   return (
     <main>
       <nav>
         <ul>
+          {loggedIn && connected && <ChooseWorkout navigate={navigate}/>}
           <li>
             <LogOut setLoggedIn={setLoggedIn} loggedIn={loggedIn} />
           </li>
         </ul>
       </nav>
+
       <Outlet />
     </main>
   );

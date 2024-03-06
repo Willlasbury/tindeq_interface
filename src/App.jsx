@@ -46,7 +46,7 @@ export default function () {
               />
             }
           />
-          {/* <Route
+          <Route
             path="max_pull"
             element={
               <MaxPull
@@ -57,7 +57,7 @@ export default function () {
                 setMeasuring={setMeasuring}
               />
             }
-          /> */}
+          />
         </Route>
       </Routes>
     </Router>
