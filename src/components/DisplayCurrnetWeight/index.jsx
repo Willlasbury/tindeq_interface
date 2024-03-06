@@ -7,8 +7,6 @@ export default function DisplayWeight({
   maxWeight,
   setMaxWeight
 }) {
-
-
   if (!connected) {
     return <p className="weight-display">Not connected</p>;
   } else {

@@ -17,7 +17,6 @@ export default function BarGraph({ weight, reference, referenceType }) {
       weight: weight,
     },
   ];
-
   function giveReference(referenceType) {
     switch (referenceType) {
       case "line":
@@ -51,7 +50,7 @@ export default function BarGraph({ weight, reference, referenceType }) {
             ;
             <YAxis
               type="number"
-              domain={[0, reference.maxWeight]}
+              domain={[0, reference.maxPull]}
               tick={{ fill: "#8ecae6", fontFamily: "sans-serif" }}
             />
           </>
