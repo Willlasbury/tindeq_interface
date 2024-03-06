@@ -14,14 +14,14 @@ export default function RPEWorkout({
   setConnected,
   setMeasuring,
 }) {
-  const [RPE, setRPE] = useState(9);
+  const [RPE, setRPE] = useState(8);
   const [pullTime, setPullTime] = useState(7);
   const [restTime, setRestTime] = useState(180);
 
   const [resting, setResting] = useState(false);
 
   // place holder weight while I build out db
-  const [maxPull, setMaxPull] = useState(130);
+  const [maxPull, setMaxPull] = useState(120);
 
   const { time, setTime, isRunning, start, stop } = useTimer(pullTime);
 
@@ -64,7 +64,6 @@ export default function RPEWorkout({
     maxRange: workingWeight * 0.05 + workingWeight,
     minRange: workingWeight - workingWeight * 0.05,
   };
-
   return (
     <div id="rpe-board">
       <section id="rpe-controls">
@@ -95,6 +94,7 @@ export default function RPEWorkout({
           </li>
         </ul>
       </section>
+
       <section id="rpe-graph">
         <BarGraph
           weight={weight}

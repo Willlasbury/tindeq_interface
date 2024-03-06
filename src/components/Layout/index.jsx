@@ -10,7 +10,7 @@ export default function Layout({ connected, setLoggedIn, loggedIn }) {
   useEffect(() => {
     if (loggedIn) {
       if (connected) {
-        navigate('/max_pull')
+        navigate('/workout')
       } else {
         navigate('/')
       }
