@@ -1,14 +1,21 @@
 import './styles.css'
-import { NavLink } from 'react-router-dom'
+import { useState } from 'react';
 
-export default function ChooseWorkout (navigate) {
+import RPEWorkout from '../RPE';
 
-    // function pick (option) {
-    //     navigate(`/${}`)
-    // }
+export default function ChooseWorkout ({weight, sendChar, measuring, setConnected, setMeasuring}) {
+
+    const [workout, setWorkout] = useState(undefined);
+
     return (
         <>
-            <NavLink to="max_pull"></NavLink>
+          <RPEWorkout
+                weight={weight}
+                sendChar={sendChar}
+                measuring={measuring}
+                setConnected={setConnected}
+                setMeasuring={setMeasuring}
+              />
         </>
     )
 }

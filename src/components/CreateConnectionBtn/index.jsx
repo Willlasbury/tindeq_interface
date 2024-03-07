@@ -25,7 +25,7 @@ export default function CreateConnection({
 
         // start the notifications
         notify(recieve, setWeight);
-        nav("/workout")
+        nav("/")
       }
     } catch (error) {
       throw new Error("could not connect to tindeq: ", error);
@@ -37,4 +37,5 @@ export default function CreateConnection({
       Connect
     </button>
   );
+
 }

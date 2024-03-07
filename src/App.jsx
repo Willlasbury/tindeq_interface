@@ -8,6 +8,7 @@ import Landing from "./components/Landing";
 import LoginForm from "./components/Login";
 import RPEWorkout from "./components/workouts/RPE";
 import Layout from "./components/Layout";
+import ChooseWorkout from "./components/workouts/ChooseWorkout";
 
 export default function () {
   const [sendChar, setSendChar] = useState(undefined);
@@ -19,9 +20,9 @@ export default function () {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Layout connected={connected} setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>}>
+        <Route path="/" element={<Layout connected={connected} setConnected={setConnected} setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>}>
           <Route
-            index
+            path="connect"
             element={
               <Landing
                 setConnected={setConnected}
@@ -35,10 +36,17 @@ export default function () {
             element={<LoginForm setLoggedIn={setLoggedIn} />}
           />
           <Route
-            path="workout"
+            path="/"
             element={
-              <RPEWorkout
-                weight={weight}
+              // <RPEWorkout
+              //   weight={weight}
+              //   sendChar={sendChar}
+              //   measuring={measuring}
+              //   setConnected={setConnected}
+              //   setMeasuring={setMeasuring}
+              // />
+              <ChooseWorkout
+              weight={weight}
                 sendChar={sendChar}
                 measuring={measuring}
                 setConnected={setConnected}

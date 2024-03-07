@@ -5,17 +5,14 @@ import { Outlet, useNavigate } from "react-router-dom";
 import LogOut from "../buttons/server/logout";
 import ChooseWorkout from "../workouts/ChooseWorkout";
 
-export default function Layout({ connected, setLoggedIn, loggedIn }) {
+export default function Layout({ connected, setConnected, setLoggedIn, loggedIn }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (loggedIn) {
-      if (connected) {
-        navigate("/max_pull");
-      } else {
-        navigate("/");
-      }
-    } else {
+    if (!connected) {
+      navigate("/connect");
+    }
+    if (!loggedIn) {
       navigate("/login");
     }
   }, [connected, loggedIn]);
@@ -24,9 +21,8 @@ export default function Layout({ connected, setLoggedIn, loggedIn }) {
     <main>
       <nav>
         <ul>
-          {loggedIn && connected && <ChooseWorkout navigate={navigate}/>}
           <li>
-            <LogOut setLoggedIn={setLoggedIn} loggedIn={loggedIn} />
+            <LogOut setLoggedIn={setLoggedIn} loggedIn={loggedIn} setConnected={setConnected} connected={connected} />
           </li>
         </ul>
       </nav>
