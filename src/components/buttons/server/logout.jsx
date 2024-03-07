@@ -9,7 +9,7 @@ export default function LogOut ({setLoggedIn, loggedIn, setConnected, connected}
       }
       return (
         <>
-        {loggedIn && <button className='control-board-btn' onClick={disconnect}>
+        {loggedIn && <button className='logout-btn' onClick={disconnect}>
           Log out
         </button> }
         </>

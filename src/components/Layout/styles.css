@@ -1,0 +1,46 @@
+#navbar {
+    display: flex;
+    flex-flow: row;
+    width: 100vw;
+    height: 4rem;
+    justify-content: flex-end;
+    align-items: center;
+    border-bottom: 2px solid var(--tertiary-col);
+    border-radius: 10px;
+}
+
+#bulk {
+    height: 100%;
+    width: 100%;
+    margin: 1rem;
+}
+
+.logout-btn {
+    width: 8rem;
+    padding-inline: 1rem;
+    justify-self: unset;
+    margin-inline: 1rem;
+    color: var(--primary-col);
+    background-color: var(--tertiary-col);
+    font-weight: 700;
+    font-size: medium;
+}
+
+#workout-ul {
+    list-style: none;
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.nav-tab {
+    text-decoration: none;
+    font-family: sans-serif;
+    font-weight: 500;
+    color: antiquewhite;
+    margin-inline: 1rem;
+}
+
+.nav-tab.active {
+    background-color: blue;
+}

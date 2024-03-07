@@ -1,7 +1,7 @@
 #rpe-board {
     display: flex;
     flex-flow: row;
-    height: 100vh;
+    height: 90%;
     width: 100vh;
 }
 

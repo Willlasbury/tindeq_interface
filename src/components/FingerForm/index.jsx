@@ -31,7 +31,7 @@ export default function FingerForm() {
   const edgeSizes = [20, 15, 12, 10, 8, 7, 6, 4];
   const gripType = ["open", "half", "full"];
   return (
-    <>
+    <section>
       <form id="finger-form">
         <label htmlFor="hand">Hand:</label>
         <select id="hand" name="hand" onChange={handleChange}>
@@ -70,6 +70,6 @@ export default function FingerForm() {
         <button type="submit">Submit</button>
       </form>
       <button onClick={func}>check form data</button>
-    </>
+    </section>
   );
 }
