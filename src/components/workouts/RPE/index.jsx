@@ -1,9 +1,6 @@
 import "./styles.css";
 import { useEffect, useState } from "react";
-import RPELoggingBtn from "../../buttons/tindeqBtns/RPELoggingBtn";
-import TareBtn from "../../buttons/tindeqBtns/TareBtn";
 import BarGraph from "../../graphs/GraphCurrent";
-import DisconnectBtn from "../../buttons/tindeqBtns/DisconnnectBtn";
 import useTimer from "../../../utils/workout/useTimer";
 import ControlBoard from "../../ControlBoard";
 // import useRestTimer from "../../utils/workout/restTimer";
@@ -66,31 +63,28 @@ export default function RPEWorkout({
     minRange: workingWeight - workingWeight * 0.05,
   };
   return (
-    <div id="rpe-board">
-      <section id="rpe-controls">
-        <h4 id="timer">{resting ? formatTime(time) : time}</h4>
-        <ul id="rpe-controls">
-          <li className="rpe-li">
-            <button className="rpe-btn" onClick={() => reset()}>
+    <>
+      <ul className="controls">
+          <li className="control-li">
+            <button className="control-board-btn" onClick={() => reset()}>
               {" "}
               reset
             </button>
           </li>
-        <ControlBoard sendChar={sendChar}
-        setConnected={setConnected}
-        setMeasuring={setMeasuring}
-        measuring={measuring}        
-        />
-        </ul>
-      </section>
+          <ControlBoard
+            sendChar={sendChar}
+            setConnected={setConnected}
+            setMeasuring={setMeasuring}
+            measuring={measuring}
+          />
+      </ul>
+          <h4 id="timer">{resting ? formatTime(time) : time}</h4>
 
-      <section id="rpe-graph">
         <BarGraph
           weight={weight}
           reference={{ maxPull, range }}
           referenceType={"area"}
         />
-      </section>
-    </div>
+    </>
   );
 }

@@ -1,18 +1,26 @@
+#header {
+    display: flex;
+    border-bottom: 3px solid var(--shadow);
+    border-radius: 10px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+
 #navbar {
     display: flex;
     flex-flow: row;
     width: 100vw;
     height: 4rem;
-    justify-content: flex-end;
     align-items: center;
-    border-bottom: 2px solid var(--tertiary-col);
-    border-radius: 10px;
 }
 
 #bulk {
     height: 100%;
     width: 100%;
     margin: 1rem;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .logout-btn {
@@ -42,5 +50,38 @@
 }
 
 .nav-tab.active {
-    background-color: blue;
+    color: var(--fourth-col);
+}
+
+.controls {
+    padding-left: 10px;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    width: 45%;
+    height: 100%;
+}
+.control-li {
+    width: 10rem;
+}
+.control-board-btn {
+    border: solid;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px var(--shadow);
+    border-color: black;
+    font-size: larger;
+    height: 4rem;
+    width: 100%;
+    background-color: var(--tertiary-col);
+}
+
+
+.control-board-btn:active {
+    background-color: var(--secondary-col);
+} 
+
+#graph {
+    width: 45%;
+    height: 100%;
 }

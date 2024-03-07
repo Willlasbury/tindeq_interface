@@ -25,7 +25,7 @@ export default function CreateConnection({
 
         // start the notifications
         notify(recieve, setWeight);
-        nav("/")
+        nav("/rpe")
       }
     } catch (error) {
       throw new Error("could not connect to tindeq: ", error);

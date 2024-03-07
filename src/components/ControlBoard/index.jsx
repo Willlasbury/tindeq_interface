@@ -16,17 +16,17 @@ export default function ControlBoard({
 }) {
   return (
     <>
-      <li className="tindeq-li">
+      <li className="control-li">
         <RPELoggingBtn
               sendChar={sendChar}
               measuring={measuring}
               setMeasuring={setMeasuring}
               />
       </li>
-      <li className="tindeq-li">
+      <li className="control-li">
         <TareBtn sendChar={sendChar} setMeasuring={setMeasuring} />
       </li>
-      <li className="tindeq-li">
+      <li className="control-li">
         <DisconnectBtn
           sendChar={sendChar}
           setConnected={setConnected}

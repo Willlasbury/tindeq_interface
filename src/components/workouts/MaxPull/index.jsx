@@ -23,8 +23,8 @@ export default function MaxPull({
   }
 
   return (
-    <section id="rpe-board">
-      <ul id="rpe-controls">
+    <>
+      <ul className="controls">
         <ControlBoard
           sendChar={sendChar}
           setConnected={setConnected}
@@ -32,16 +32,16 @@ export default function MaxPull({
           measuring={measuring}
           maxWeight={maxWeight}
         />
-        <li className="tindeq-li">
+        <li className="control-li">
           <SaveMaxWeight maxWeight={maxWeight} />
         </li>
+        <li className="control-li">
+          <button className="control-board-btn" onClick={() => setMaxWeight(0)}>
+            Reset Max Weight
+          </button>
+        </li>
       </ul>
-      <DisplayWeight
-        weight={weight}
-        connected={true}
-        maxWeight={maxWeight}
-        setMaxWeight={setMaxWeight}
-      />
-    </section>
+      <BarGraph weight={weight} reference={maxWeight} referenceType={"line"} />
+    </>
   );
 }

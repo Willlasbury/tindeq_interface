@@ -13,7 +13,7 @@ export default function RPELoggingBtn({ sendChar, measuring, setMeasuring }) {
     }
   }
   return (
-    <button className="rpe-btn" onClick={startMeasurements} >
+    <button className="control-board-btn" onClick={startMeasurements} >
       {measuring ? "Stop" : "Start"} Tindeq
     </button>
   );

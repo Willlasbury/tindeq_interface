@@ -59,36 +59,38 @@ export default function BarGraph({ weight, reference, referenceType }) {
   }
 
   return (
-    <ResponsiveContainer
-      width="100%"
-      height="100%"
-      minHeight={300}
-      minWidth={350}
-    >
-      <BarChart
-        data={data}
-        margin={{
-          top: 5,
-          right: 50,
-          left: 0,
-          bottom: 20,
-        }}
+    <section id="graph">
+      <ResponsiveContainer
+        width="100%"
+        height="100%"
+        minHeight={300}
+        minWidth={350}
       >
-        <CartesianGrid strokeDasharray="3 " />
-        <XAxis
-          orientation="top"
-          dataKey="name"
-          label={{
-            value: `${weight}`,
-            fill: "#fb8500",
-            fontFamily: "sans-serif",
-            fontSize: "1.5em",
+        <BarChart
+          data={data}
+          margin={{
+            top: 5,
+            right: 50,
+            left: 0,
+            bottom: 20,
           }}
-        />
+        >
+          <CartesianGrid strokeDasharray="3 " />
+          <XAxis
+            orientation="top"
+            dataKey="name"
+            label={{
+              value: `${weight}`,
+              fill: "#fb8500",
+              fontFamily: "sans-serif",
+              fontSize: "1.5em",
+            }}
+          />
 
-        {giveReference(referenceType)}
-        <Bar dataKey="weight" fill="#fb8500" animationEasing="linear" />
-      </BarChart>
-    </ResponsiveContainer>
+          {giveReference(referenceType)}
+          <Bar dataKey="weight" fill="#fb8500" animationEasing="linear" />
+        </BarChart>
+      </ResponsiveContainer>
+    </section>
   );
 }

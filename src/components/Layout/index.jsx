@@ -23,23 +23,17 @@ export default function Layout({
   }, [connected, loggedIn]);
 
   return (
-    <main>
-      <nav id="navbar">
+    <>
+      <header id="header">
         {connected && (
-          <ul id="workout-ul">
-            <NavLink
-              to="/rpe"
-              className='nav-tab'
-            >
+          <nav id="navbar">
+            <NavLink to="/rpe" className="nav-tab">
               RPE
             </NavLink>
-            <NavLink
-              to="/max_pull"
-              className='nav-tab'
-            >
+            <NavLink to="/max_pull" className="nav-tab">
               Max Pull
             </NavLink>
-          </ul>
+          </nav>
         )}
         <LogOut
           setLoggedIn={setLoggedIn}
@@ -47,10 +41,10 @@ export default function Layout({
           setConnected={setConnected}
           connected={connected}
         />
-      </nav>
-      <section id="bulk">
-      <Outlet />
-      </section>    
-    </main>
+      </header>
+      <main id="bulk">
+        <Outlet />
+      </main>
+    </>
   );
 }
