@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import BarGraph from "../../graphs/GraphCurrent";
 import useTimer from "../../../utils/workout/useTimer";
 import ControlBoard from "../../ControlBoard";
+import FingerForm from "../../FingerForm";
 // import useRestTimer from "../../utils/workout/restTimer";
 
 export default function RPEWorkout({
@@ -65,6 +66,9 @@ export default function RPEWorkout({
   return (
     <>
       <ul className="controls">
+        <li id="timer-li">
+          <h4 id="timer">{resting ? formatTime(time) :`Time left: ${time}`}</h4>
+        </li>
           <li className="control-li">
             <button className="control-board-btn" onClick={() => reset()}>
               {" "}
@@ -78,13 +82,13 @@ export default function RPEWorkout({
             measuring={measuring}
           />
       </ul>
-          <h4 id="timer">{resting ? formatTime(time) : time}</h4>
 
         <BarGraph
           weight={weight}
           reference={{ maxPull, range }}
           referenceType={"area"}
         />
+        <FingerForm />
     </>
   );
 }

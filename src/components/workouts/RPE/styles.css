@@ -1,7 +1,18 @@
 
-#timer {
-    color: var(--secondary-col);
-    font-size: x-large;
+#timer-li {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15rem;
+    height: 4rem;
+    border: solid black 2px;
+    border-radius: 10px;
+    background-color: var(--tertiary-col);
+}
 
+#timer {
+    color: black;
+    font-weight: 500;
 }
 
