@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { NavLink, Outlet, useNavigate } from "react-router-dom";
 
 import LogOut from "../buttons/server/logout";
-import ChooseWorkout from "../workouts/WorkoutContainer";
 
 export default function Layout({
   connected,
@@ -27,10 +26,10 @@ export default function Layout({
       <header id="header">
         {connected && (
           <nav id="navbar">
-            <NavLink to="/rpe" className="nav-tab">
+            <NavLink to="rpe" className="nav-tab">
               RPE
             </NavLink>
-            <NavLink to="/max_pull" className="nav-tab">
+            <NavLink to="max_pull" className="nav-tab">
               Max Pull
             </NavLink>
           </nav>

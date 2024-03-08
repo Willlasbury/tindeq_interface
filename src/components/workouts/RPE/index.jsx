@@ -88,7 +88,6 @@ export default function RPEWorkout({
           reference={{ maxPull, range }}
           referenceType={"area"}
         />
-        <FingerForm />
     </>
   );
 }

@@ -3,18 +3,9 @@ import "./styles.css";
 import { useState } from "react";
 import FingerCheckBox from "./FingerCheckBox";
 
-export default function FingerForm() {
-  const [formData, setFormData] = useState({
-    hand: "left",
-    edge: 20,
-    grip: "open",
-    index: true,
-    middle: true,
-    ring: true,
-    pinky: true,
-  });
+export default function FingerForm({styleData, setStyleData}) {
   const handleChange = (event) => {
-    setFormData((prev) => {
+    setStyleData((prev) => {
       const { name, value, checked } = event.target;
       if (["index", "middle", "ring", "pinky"].includes(name)) {
         return { ...prev, [name]: checked };
@@ -24,10 +15,13 @@ export default function FingerForm() {
     });
   };
 
+  // only for loggin form data in console.
   const func = () => {
     console.log("\n");
-    Object.entries(formData).map(([key, val]) => console.log(key, ": ", val));
+    Object.entries(styleData).map(([key, val]) => console.log(key, ": ", val));
   };
+
+  // defime values for options
   const edgeSizes = [20, 15, 12, 10, 8, 7, 6, 4];
   const gripType = ["open", "half", "full"];
   return (
@@ -77,7 +71,7 @@ export default function FingerForm() {
         <FingerCheckBox finger="pinky" handleChange={handleChange} />
       </ul>
     </form>
-    //    <button onClick={func}>check form data</button>
+    //  <button onClick={func}>check form data</button>
     //  </section>
   );
 }

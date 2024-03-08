@@ -8,7 +8,7 @@ import Landing from "./components/Landing";
 import LoginForm from "./components/Login";
 import RPEWorkout from "./components/workouts/RPE";
 import Layout from "./components/Layout";
-import ChooseWorkout from "./components/workouts/WorkoutContainer";
+import ChooseWorkout from "./components/workouts/ChooseWorkout";
 
 export default function () {
   const [sendChar, setSendChar] = useState(undefined);
@@ -31,37 +31,32 @@ export default function () {
             />
           }
         >
-          <Route
-            path="/rpe"
-            element={
-              <RPEWorkout
-                weight={weight}
-                sendChar={sendChar}
-                measuring={measuring}
-                setConnected={setConnected}
-                setMeasuring={setMeasuring}
-              />
-              // <ChooseWorkout
-              //   weight={weight}
-              //   sendChar={sendChar}
-              //   measuring={measuring}
-              //   setConnected={setConnected}
-              //   setMeasuring={setMeasuring}
-              // />
-            }
-          />
-          <Route
-            path="/max_pull"
-            element={
-              <MaxPull
-                weight={weight}
-                sendChar={sendChar}
-                measuring={measuring}
-                setConnected={setConnected}
-                setMeasuring={setMeasuring}
-              />
-            }
-          />
+          <Route path="/" element={<ChooseWorkout />}>
+            <Route
+              path="rpe"
+              element={
+                <RPEWorkout
+                  weight={weight}
+                  sendChar={sendChar}
+                  measuring={measuring}
+                  setConnected={setConnected}
+                  setMeasuring={setMeasuring}
+                />
+              }
+            />
+            <Route
+              path="max_pull"
+              element={
+                <MaxPull
+                  weight={weight}
+                  sendChar={sendChar}
+                  measuring={measuring}
+                  setConnected={setConnected}
+                  setMeasuring={setMeasuring}
+                />
+              }
+            />
+          </Route>
           <Route
             path="connect"
             element={

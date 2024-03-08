@@ -1,6 +1,7 @@
 import "./styles.css";
 import { useState } from "react";
 
+
 import ControlBoard from "../../ControlBoard";
 import BarGraph from "../../graphs/GraphCurrent";
 import DisplayWeight from "../../DisplayCurrnetWeight";
@@ -14,6 +15,8 @@ export default function MaxPull({
   setConnected,
   setMeasuring,
 }) {
+
+
   const [maxWeight, setMaxWeight] = useState(0);
   if (weight > maxWeight) {
     setMaxWeight(weight);
@@ -34,7 +37,7 @@ export default function MaxPull({
           maxWeight={maxWeight}
         />
         <li className="control-li">
-          <SaveMaxWeight maxWeight={maxWeight} />
+          <SaveMaxWeight maxWeight={maxWeight}/>
         </li>
         <li className="control-li">
           <button className="control-board-btn" onClick={() => setMaxWeight(0)}>
@@ -43,7 +46,6 @@ export default function MaxPull({
         </li>
       </ul>
       <BarGraph weight={weight} reference={maxWeight} referenceType={"line"} />
-      <FingerForm />
 
     </>
   );
