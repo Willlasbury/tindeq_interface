@@ -83,10 +83,8 @@ const api = {
         },
       });
       const data = await res.json();
-      console.log("res:", data)
       return data;
     } catch (err) {
-      console.log(err);
       return res.status(500).json({ msg: "some error", err: err });
     }
   },
@@ -108,7 +106,6 @@ const api = {
         );
       }
     } catch (err) {
-      console.log(err);
       return res.status(500).json({ msg: "some error", err: err });
     }
   },

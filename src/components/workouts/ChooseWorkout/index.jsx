@@ -7,7 +7,7 @@ import MaxPull from '../MaxPull'
 import RPEWorkout from '../RPE'
 
 export default function ChooseWorkout () {
-
+    // TODO: get style data from db
     const [styleData, setStyleData] = useState({
         hand: "left",
         edge: 20,
