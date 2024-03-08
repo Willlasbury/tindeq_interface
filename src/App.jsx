@@ -8,20 +8,57 @@ import Landing from "./components/Landing";
 import LoginForm from "./components/Login";
 import RPEWorkout from "./components/workouts/RPE";
 import Layout from "./components/Layout";
+import ChooseWorkout from "./components/workouts/ChooseWorkout";
 
 export default function () {
   const [sendChar, setSendChar] = useState(undefined);
   const [weight, setWeight] = useState(0);
-  const [connected, setConnected] = useState(false);
+  const [connected, setConnected] = useState(true);
   const [measuring, setMeasuring] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
 
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Layout connected={connected} setLoggedIn={setLoggedIn} loggedIn={loggedIn}/>}>
+        <Route
+          path="/"
+          element={
+            <Layout
+              connected={connected}
+              setConnected={setConnected}
+              setLoggedIn={setLoggedIn}
+              loggedIn={loggedIn}
+            />
+          }
+        >
+          <Route path="/" element={<ChooseWorkout />}>
+            <Route
+              path="rpe"
+              element={
+                <RPEWorkout
+                  weight={weight}
+                  sendChar={sendChar}
+                  measuring={measuring}
+                  setConnected={setConnected}
+                  setMeasuring={setMeasuring}
+                />
+              }
+            />
+            <Route
+              path="max_pull"
+              element={
+                <MaxPull
+                  weight={weight}
+                  sendChar={sendChar}
+                  measuring={measuring}
+                  setConnected={setConnected}
+                  setMeasuring={setMeasuring}
+                />
+              }
+            />
+          </Route>
           <Route
-            index
+            path="connect"
             element={
               <Landing
                 setConnected={setConnected}
@@ -34,30 +71,6 @@ export default function () {
             path="login"
             element={<LoginForm setLoggedIn={setLoggedIn} />}
           />
-          <Route
-            path="workout"
-            element={
-              <RPEWorkout
-                weight={weight}
-                sendChar={sendChar}
-                measuring={measuring}
-                setConnected={setConnected}
-                setMeasuring={setMeasuring}
-              />
-            }
-          />
-          {/* <Route
-            path="max_pull"
-            element={
-              <MaxPull
-                weight={weight}
-                sendChar={sendChar}
-                measuring={measuring}
-                setConnected={setConnected}
-                setMeasuring={setMeasuring}
-              />
-            }
-          /> */}
         </Route>
       </Routes>
     </Router>

@@ -1,10 +1,9 @@
 import "./styles.css";
 import { useEffect, useState } from "react";
-import RPELoggingBtn from "../../buttons/tindeqBtns/RPELoggingBtn";
-import TareBtn from "../../buttons/tindeqBtns/TareBtn";
 import BarGraph from "../../graphs/GraphCurrent";
-import DisconnectBtn from "../../buttons/tindeqBtns/DisconnnectBtn";
 import useTimer from "../../../utils/workout/useTimer";
+import ControlBoard from "../../ControlBoard";
+import FingerForm from "../../FingerForm";
 // import useRestTimer from "../../utils/workout/restTimer";
 
 export default function RPEWorkout({
@@ -21,7 +20,7 @@ export default function RPEWorkout({
   const [resting, setResting] = useState(false);
 
   // place holder weight while I build out db
-  const [maxPull, setMaxPull] = useState(120);
+  const [maxPull, setMaxPull] = useState(3);
 
   const { time, setTime, isRunning, start, stop } = useTimer(pullTime);
 
@@ -65,43 +64,30 @@ export default function RPEWorkout({
     minRange: workingWeight - workingWeight * 0.05,
   };
   return (
-    <div id="rpe-board">
-      <section id="rpe-controls">
-        <h4 id="timer">{resting ? formatTime(time) : time}</h4>
-        <ul id="rpe-controls">
-          <li className="rpe-li">
-            <button className="rpe-btn" onClick={() => reset()}>
+    <>
+      <ul className="controls">
+        <li id="timer-li">
+          <h4 id="timer">{resting ? formatTime(time) :`Time left: ${time}`}</h4>
+        </li>
+          <li className="control-li">
+            <button className="control-board-btn" onClick={() => reset()}>
               {" "}
               reset
             </button>
           </li>
-          <li className="rpe-li">
-            <RPELoggingBtn
-              sendChar={sendChar}
-              measuring={measuring}
-              setMeasuring={setMeasuring}
-            />
-          </li>
-          <li className="rpe-li">
-            <TareBtn sendChar={sendChar} setMeasuring={setMeasuring} />
-          </li>
-          <li className="rpe-li">
-            <DisconnectBtn
-              sendChar={sendChar}
-              setConnected={setConnected}
-              setMeasuring={setMeasuring}
-            />
-          </li>
-        </ul>
-      </section>
+          <ControlBoard
+            sendChar={sendChar}
+            setConnected={setConnected}
+            setMeasuring={setMeasuring}
+            measuring={measuring}
+          />
+      </ul>
 
-      <section id="rpe-graph">
         <BarGraph
           weight={weight}
           reference={{ maxPull, range }}
           referenceType={"area"}
         />
-      </section>
-    </div>
+    </>
   );
 }

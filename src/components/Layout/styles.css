@@ -1,0 +1,91 @@
+#header {
+    display: flex;
+    border-bottom: 3px solid var(--shadow);
+    border-radius: 10px;
+    justify-content: flex-end;
+    align-items: center;
+    height: 4rem;
+}
+
+
+#navbar {
+    display: flex;
+    flex-flow: row;
+    width: 100vw;
+    height: 4rem;
+    align-items: center;
+}
+
+#bulk {
+    height: 100%;
+    width: 100%;
+    margin: 1rem;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.logout-btn {
+    width: 8rem;
+    padding-inline: 1rem;
+    justify-self: unset;
+    margin-inline: 1rem;
+    color: var(--primary-col);
+    background-color: var(--tertiary-col);
+    font-weight: 700;
+    font-size: medium;
+}
+
+#workout-ul {
+    list-style: none;
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.nav-tab {
+    text-decoration: none;
+    font-family: sans-serif;
+    font-weight: 500;
+    color: antiquewhite;
+    margin-inline: 1rem;
+}
+
+.nav-tab.active {
+    color: var(--fourth-col);
+}
+
+.controls {
+    padding-left: 10px;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 20rem;
+    height: 100%;
+}
+.control-li {
+    width: min-content;
+    display: flex;
+    justify-content: flex-end;
+
+}
+.control-board-btn {
+    border: solid;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px var(--shadow);
+    border-color: black;
+    font-size: larger;
+    height: 4rem;
+    width: 10rem;
+    background-color: var(--tertiary-col);
+}
+
+
+.control-board-btn:active {
+    background-color: var(--secondary-col);
+} 
+
+#graph {
+    width: 45%;
+    height: 100%;
+}

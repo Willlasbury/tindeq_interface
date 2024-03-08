@@ -1,9 +1,12 @@
 import "./styles.css";
-import {useState} from 'react'
+import { useState } from "react";
+
 
 import ControlBoard from "../../ControlBoard";
 import BarGraph from "../../graphs/GraphCurrent";
 import DisplayWeight from "../../DisplayCurrnetWeight";
+import SaveMaxWeight from "../../buttons/server/SaveMaxWeight";
+import FingerForm from "../../FingerForm";
 
 export default function MaxPull({
   weight,
@@ -12,25 +15,38 @@ export default function MaxPull({
   setConnected,
   setMeasuring,
 }) {
+
+
   const [maxWeight, setMaxWeight] = useState(0);
   if (weight > maxWeight) {
     setMaxWeight(weight);
-    localStorage.setItem('maxWeight', weight)
-} else if (!maxWeight && weight) {
+    localStorage.setItem("maxWeight", weight);
+  } else if (!maxWeight && weight) {
     setMaxWeight(weight);
-    localStorage.setItem('maxWeight', weight)
+    localStorage.setItem("maxWeight", weight);
   }
-  
+
   return (
-    <section id="measurementSct">
-      <ControlBoard
-        sendChar={sendChar}
-        setConnected={setConnected}
-        setMeasuring={setMeasuring}
-        measuring={measuring}
-        maxWeight={maxWeight}
-      />
-      <DisplayWeight weight={weight} connected={true} maxWeight={maxWeight} setMaxWeight={setMaxWeight}/>
-    </section>
+    <>
+      <ul className="controls">
+        <ControlBoard
+          sendChar={sendChar}
+          setConnected={setConnected}
+          setMeasuring={setMeasuring}
+          measuring={measuring}
+          maxWeight={maxWeight}
+        />
+        <li className="control-li">
+          <SaveMaxWeight maxWeight={maxWeight}/>
+        </li>
+        <li className="control-li">
+          <button className="control-board-btn" onClick={() => setMaxWeight(0)}>
+            Reset Max Weight
+          </button>
+        </li>
+      </ul>
+      <BarGraph weight={weight} reference={maxWeight} referenceType={"line"} />
+
+    </>
   );
 }
