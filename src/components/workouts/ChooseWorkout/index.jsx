@@ -3,8 +3,6 @@ import './styles.css'
 import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import FingerForm from '../../FingerForm'
-import MaxPull from '../MaxPull'
-import RPEWorkout from '../RPE'
 
 export default function ChooseWorkout () {
     // TODO: get style data from db

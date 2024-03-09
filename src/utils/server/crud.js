@@ -67,7 +67,7 @@ const api = {
       return res.status(500).json({ msg: "some error", err: err });
     }
   },
-
+// TODO: send style data 
   sendMaxWeight: async ({maxWeight}, style) => {
     try {
       const packet = {
