@@ -16,6 +16,7 @@ export default function SaveMaxWeight (maxWeight) {
           "pinky": styleData.pinky
             }
         const res = fastApi.sendMaxWeight(maxWeight, style)
+        // TODO: add some response for successful or unsuccessful call
       }
       return (
         <button className='control-board-btn' onClick={() => handleMaxWeight()}>
