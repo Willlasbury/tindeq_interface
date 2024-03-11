@@ -13,16 +13,28 @@ export default function RPEWorkout({
   setMeasuring,
 }) {
   const [RPE, setRPE] = useState(8);
+  const [maxPull, setMaxPull] = useState(undefined);
+  
   const [pullTime, setPullTime] = useState(7);
   const [restTime, setRestTime] = useState(180);
 
   const [resting, setResting] = useState(false);
 
   // place holder weight while I build out db
-  const [maxPull, setMaxPull] = useState(50);
   const { time, setTime, isRunning, start, stop } = useTimer(pullTime);
-  console.log("maxPull:", maxPull)
+
+  
+
   useEffect(() => {
+    
+    if (maxPull == undefined) {
+      const getMaxPull = async () => {
+        const data = await weightApi.getUsersMaxPull()
+        setMaxPull(data)
+      }
+      getMaxPull()
+    }
+
     if (!isRunning && weight > range.minRange) {
       setResting(false);
       start();
@@ -70,7 +82,7 @@ export default function RPEWorkout({
             Set Max:
             <input
               htmlFor="userSetMaxPull"
-              defaultValuealue={maxPull}
+              defaultValue={maxPull}
               onChange={(e) => setMaxPull(Number(e.target.value))}
             ></input>
           </label>

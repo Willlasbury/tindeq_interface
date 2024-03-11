@@ -19,7 +19,6 @@ export default function BarGraph({ weight, reference, referenceType }) {
       weight: weight,
     },
   ]
-  console.log("reference:", reference)
   function giveReference(referenceType) {
     switch (referenceType) {
       case "line":

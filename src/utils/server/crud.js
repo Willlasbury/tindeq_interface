@@ -122,7 +122,6 @@ const api = {
       });
       if (res.ok) {
         const data = await res.json();
-        console.log("data:", data)
         return data.max_weight_kg;
       } else {
         throw new Error(
