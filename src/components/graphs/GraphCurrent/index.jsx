@@ -1,4 +1,5 @@
 import "./styles.css";
+import { useEffect } from "react";
 
 import {
   BarChart,
@@ -12,11 +13,13 @@ import {
 } from "recharts";
 
 export default function BarGraph({ weight, reference, referenceType }) {
+  
   const data = [
     {
       weight: weight,
     },
-  ];
+  ]
+  console.log("reference:", reference)
   function giveReference(referenceType) {
     switch (referenceType) {
       case "line":
