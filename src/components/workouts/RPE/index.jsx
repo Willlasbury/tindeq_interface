@@ -35,7 +35,7 @@ export default function RPEWorkout({
       getMaxPull()
     }
 
-    if (!isRunning && weight > range.minRange) {
+    if (maxPull == undefined && !isRunning && weight > range.minRange) {
       setResting(false);
       start();
     }
