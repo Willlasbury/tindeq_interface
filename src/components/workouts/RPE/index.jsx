@@ -24,9 +24,7 @@ export default function RPEWorkout({
   const { time, setTime, isRunning, start, stop } = useTimer(pullTime);
 
   
-
   useEffect(() => {
-    
     if (maxPull == undefined) {
       const getMaxPull = async () => {
         const data = await weightApi.getUsersMaxPull()
@@ -35,7 +33,7 @@ export default function RPEWorkout({
       getMaxPull()
     }
 
-    if (maxPull == undefined && !isRunning && weight > range.minRange) {
+    if (maxPull != undefined && !isRunning && weight > range.minRange) {
       setResting(false);
       start();
     }
