@@ -1,12 +1,50 @@
-#login-modal {
-    
+
+.login-signup-wrapper {
     border: 1px solid green;
     border-radius: 5px;
     background-color: aqua;
-    padding: 2rem
+    padding: 2rem;
+    height: 10rem;
+    width: 15rem;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    align-items: center;
 }
+/* 
+#login-wrapper {
+    background-color: blueviolet;
+}
+
+#signup-wrapper {
+    background-color: salmon;
+} */
 
 #login-form {
     display: flex;
     flex-flow: column;
+    align-items: center;
+    height: 70%;
+}
+
+#login-fields {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    height: 100%;
+}
+
+.login-signup-btn {
+    padding-inline: 1rem;
+    border: solid grey 1px;
+    border-radius: 3px;
+    box-shadow: 1px 1px 2px var(--shadow);
+}
+
+.login-signup-btn:active {
+    background-color: lightgray;
+}
+
+.login-input {
+    
 }
