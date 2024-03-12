@@ -1,5 +1,5 @@
 
-.login-signup-wrapper {
+#login-signup-wrapper {
     border: 1px solid green;
     border-radius: 5px;
     background-color: aqua;
@@ -11,14 +11,6 @@
     justify-content: space-between;
     align-items: center;
 }
-/* 
-#login-wrapper {
-    background-color: blueviolet;
-}
-
-#signup-wrapper {
-    background-color: salmon;
-} */
 
 #login-form {
     display: flex;
@@ -43,8 +35,4 @@
 
 .login-signup-btn:active {
     background-color: lightgray;
-}
-
-.login-input {
-    
 }
