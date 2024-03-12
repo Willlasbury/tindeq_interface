@@ -23,6 +23,7 @@ export default function Layout({
 
   return (
     <>
+    {loggedIn&&
       <header id="header">
         {connected && (
           <nav id="navbar">
@@ -39,8 +40,9 @@ export default function Layout({
           loggedIn={loggedIn}
           setConnected={setConnected}
           connected={connected}
-        />
+          />
       </header>
+        }
       <main id="bulk">
         <Outlet />
       </main>
