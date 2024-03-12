@@ -4,9 +4,7 @@ import { useState } from "react";
 
 import ControlBoard from "../../ControlBoard";
 import BarGraph from "../../graphs/GraphCurrent";
-import DisplayWeight from "../../DisplayCurrnetWeight";
 import SaveMaxWeight from "../../buttons/server/SaveMaxWeight";
-import FingerForm from "../../FingerForm";
 
 export default function MaxPull({
   weight,

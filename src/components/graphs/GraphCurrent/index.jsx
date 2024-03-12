@@ -1,4 +1,5 @@
 import "./styles.css";
+import { useEffect } from "react";
 
 import {
   BarChart,
@@ -12,11 +13,12 @@ import {
 } from "recharts";
 
 export default function BarGraph({ weight, reference, referenceType }) {
+  
   const data = [
     {
       weight: weight,
     },
-  ];
+  ]
   function giveReference(referenceType) {
     switch (referenceType) {
       case "line":
@@ -50,7 +52,7 @@ export default function BarGraph({ weight, reference, referenceType }) {
             ;
             <YAxis
               type="number"
-              domain={[0, reference.maxPull]}
+              domain={[0, reference.maxPull ? reference.maxPull:100]}
               tick={{ fill: "#8ecae6", fontFamily: "sans-serif" }}
             />
           </>

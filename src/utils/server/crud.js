@@ -67,7 +67,7 @@ const api = {
       return res.status(500).json({ msg: "some error", err: err });
     }
   },
-// TODO: create error handling to match with server
+ // TODO: create error handling to match with server
   sendMaxWeight: async ({maxWeight}, style) => {
     try {
       const packet = {
@@ -95,6 +95,7 @@ const api = {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": localStorage.getItem("access_token")
         },
       });
       if (res.ok) {
@@ -108,7 +109,29 @@ const api = {
     } catch (err) {
       return res.status(500).json({ msg: "some error", err: err });
     }
-  },
+  },    
+
+  getUsersMaxPull: async () => {
+    try {
+      const res = await fetch(`${URL_PREFIX}/max_pull/highest`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": localStorage.getItem("access_token")
+        },
+      });
+      if (res.ok) {
+        const data = await res.json();
+        return data.max_weight_kg;
+      } else {
+        throw new Error(
+          `Error fetching max_pull: ${res.status} ${res.statusText}`
+        );
+      }
+    } catch (err) {
+      return res.status(500).json({ msg: "some error", err: err });
+    }
+  }
 };
 
 export default api;

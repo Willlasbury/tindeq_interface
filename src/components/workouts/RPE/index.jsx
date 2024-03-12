@@ -3,8 +3,7 @@ import { useEffect, useState } from "react";
 import BarGraph from "../../graphs/GraphCurrent";
 import useTimer from "../../../utils/workout/useTimer";
 import ControlBoard from "../../ControlBoard";
-import FingerForm from "../../FingerForm";
-// import useRestTimer from "../../utils/workout/restTimer";
+import weightApi from "../../../utils/server/crud";
 
 export default function RPEWorkout({
   weight,
@@ -14,18 +13,27 @@ export default function RPEWorkout({
   setMeasuring,
 }) {
   const [RPE, setRPE] = useState(8);
+  const [maxPull, setMaxPull] = useState(undefined);
+  
   const [pullTime, setPullTime] = useState(7);
   const [restTime, setRestTime] = useState(180);
 
   const [resting, setResting] = useState(false);
 
   // place holder weight while I build out db
-  const [maxPull, setMaxPull] = useState(3);
-
   const { time, setTime, isRunning, start, stop } = useTimer(pullTime);
 
+  
   useEffect(() => {
-    if (!isRunning && weight > range.minRange) {
+    if (maxPull == undefined) {
+      const getMaxPull = async () => {
+        const data = await weightApi.getUsersMaxPull()
+        setMaxPull(data)
+      }
+      getMaxPull()
+    }
+
+    if (maxPull != undefined && !isRunning && weight > range.minRange) {
       setResting(false);
       start();
     }
@@ -63,31 +71,44 @@ export default function RPEWorkout({
     maxRange: workingWeight * 0.05 + workingWeight,
     minRange: workingWeight - workingWeight * 0.05,
   };
+
   return (
     <>
       <ul className="controls">
-        <li id="timer-li">
-          <h4 id="timer">{resting ? formatTime(time) :`Time left: ${time}`}</h4>
+        <li id="setMax">
+          <label htmlFor="userSetMaxPull">
+            Set Max:
+            <input
+              htmlFor="userSetMaxPull"
+              defaultValue={maxPull}
+              onChange={(e) => setMaxPull(Number(e.target.value))}
+            ></input>
+          </label>
         </li>
-          <li className="control-li">
-            <button className="control-board-btn" onClick={() => reset()}>
-              {" "}
-              reset
-            </button>
-          </li>
-          <ControlBoard
-            sendChar={sendChar}
-            setConnected={setConnected}
-            setMeasuring={setMeasuring}
-            measuring={measuring}
-          />
+        <li id="timer-li">
+          <h4 id="timer">
+            {resting ? formatTime(time) : `Time left: ${time}`}
+          </h4>
+        </li>
+        <li className="control-li">
+          <button className="control-board-btn" onClick={() => reset()}>
+            {" "}
+            reset
+          </button>
+        </li>
+        <ControlBoard
+          sendChar={sendChar}
+          setConnected={setConnected}
+          setMeasuring={setMeasuring}
+          measuring={measuring}
+        />
       </ul>
 
-        <BarGraph
-          weight={weight}
-          reference={{ maxPull, range }}
-          referenceType={"area"}
-        />
+      <BarGraph
+        weight={weight}
+        reference={{ maxPull, range }}
+        referenceType={"area"}
+      />
     </>
   );
 }

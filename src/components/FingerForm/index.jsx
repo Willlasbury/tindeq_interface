@@ -28,7 +28,7 @@ export default function FingerForm({styleData, setStyleData}) {
     // <section id="finger-sec">
     <form id="finger-form">
       <section id="ff-drop-downs">
-        <label className="finger-form-lbl" htmlFor="hand">
+        <label className="finger-form-lbl" name="hand">
           Hand: 
           <select className="finger-form-sel" name="hand" onChange={handleChange}>
             <option value="left">Left</option>
