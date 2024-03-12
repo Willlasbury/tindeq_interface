@@ -27,53 +27,57 @@ export default function LoginForm({ setLoggedIn }) {
     } else {
       const res = await usersApi.login(inputs.email, inputs.password);
       if (res.session.access_token) {
-        localStorage.setItem('access_token', res.session.access_token)
-        localStorage.setItem('refresh_token', res.session.refresh_token)
+        localStorage.setItem("access_token", res.session.access_token);
+        localStorage.setItem("refresh_token", res.session.refresh_token);
         setLoggedIn(true);
       }
     }
   }
   return (
-    <div id="login-modal">
+    <section id={signUp ? "signup-wrapper" : "login-wrapper"} className="login-signup-wrapper">
       <form id="login-form" onSubmit={login}>
-        {signUp && (
+        <div id="login-fields">
+          {signUp && (
+            <label className="login-label" htmlFor="login-label">
+              Username:{" "}
+              <input
+                className="login-input"
+                type="text"
+                name="displayName"
+                value={inputs.displayName || ""}
+                onChange={handleChange}
+              ></input>
+            </label>
+          )}
           <label className="login-label" htmlFor="login-label">
-            Username:{" "}
+            Email:{" "}
             <input
               className="login-input"
               type="text"
-              name="displayName"
-              value={inputs.displayName || ""}
+              name="email"
+              value={inputs.email || ""}
               onChange={handleChange}
             ></input>
           </label>
-        )}
-        <label className="login-label" htmlFor="login-label">
-          Email:{" "}
-          <input
-            className="login-input"
-            type="text"
-            name="email"
-            value={inputs.email || ""}
-            onChange={handleChange}
-          ></input>
-        </label>
-        <label htmlFor="login-label">
-          Password:{" "}
-          <input
-            className="login-input"
-            type="password"
-            name="password"
-            value={inputs.password || ""}
-            onChange={handleChange}
-          ></input>
-        </label>
-        <button type="submit">Submit</button>
+          <label htmlFor="login-label">
+            Password:{" "}
+            <input
+              className="login-input"
+              type="password"
+              name="password"
+              value={inputs.password || ""}
+              onChange={handleChange}
+            ></input>
+          </label>
+        </div>
+        <button className="login-signup-btn" type="submit">
+          Submit
+        </button>
       </form>
-      <button onClick={() => setSignUp(!signUp)}>
+      <button className="login-signup-btn" onClick={() => setSignUp(!signUp)}>
         {" "}
         {signUp ? "Login" : "Sign Up"}
       </button>
-    </div>
+    </section>
   );
 }
