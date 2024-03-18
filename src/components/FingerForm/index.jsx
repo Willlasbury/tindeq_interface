@@ -14,10 +14,9 @@ export default function FingerForm({styleData, setStyleData}) {
       }
     });
   };
-
+  console.log("ffstyleData:", styleData)
   // only for loggin form data in console.
   const func = () => {
-    console.log("\n");
     Object.entries(styleData).map(([key, val]) => console.log(key, ": ", val));
   };
 
@@ -30,7 +29,7 @@ export default function FingerForm({styleData, setStyleData}) {
       <section id="ff-drop-downs">
         <label className="finger-form-lbl" name="hand">
           Hand: 
-          <select className="finger-form-sel" name="hand" onChange={handleChange}>
+          <select className="finger-form-sel" name="hand" onChange={handleChange} defaultValue={styleData.hand}>
             <option value="left">Left</option>
             <option value="right">Right</option>
           </select>
@@ -38,20 +37,20 @@ export default function FingerForm({styleData, setStyleData}) {
 
         <label className="finger-form-lbl" htmlFor="edge">
           Edge size: 
-          <select className="finger-form-sel" name="edge" onChange={handleChange}>
+          <select className="finger-form-sel" name="edge" onChange={handleChange} defaultValue={styleData.edge_size_mm}>
             {edgeSizes.map((val) => {
-              return (
-                <option key={val} value={val}>
+                return (
+                  <option key={val} value={val} >
                   {val}
-                </option>
-              );
+                  </option>
+                  );
             })}
           </select>
         </label>
 
         <label className="finger-form-lbl" htmlFor="grip">
           Grip: 
-          <select className="finger-form-sel" name="grip" onChange={handleChange}>
+          <select className="finger-form-sel" name="grip" onChange={handleChange} defaultValue={styleData.grip}>
             {gripType.map((val) => {
               return (
                 <option key={val} value={val}>
@@ -65,10 +64,10 @@ export default function FingerForm({styleData, setStyleData}) {
 
       <ul id="finger-options">
         <h3 id="finger-options-header">Fingers: </h3>
-        <FingerCheckBox finger="index" handleChange={handleChange} />
-        <FingerCheckBox finger="middle" handleChange={handleChange} />
-        <FingerCheckBox finger="ring" handleChange={handleChange} />
-        <FingerCheckBox finger="pinky" handleChange={handleChange} />
+        <FingerCheckBox finger="index" handleChange={handleChange} styleData={styleData}/>
+        <FingerCheckBox finger="middle" handleChange={handleChange} styleData={styleData}/>
+        <FingerCheckBox finger="ring" handleChange={handleChange} styleData={styleData}/>
+        <FingerCheckBox finger="pinky" handleChange={handleChange} styleData={styleData}/>
       </ul>
     </form>
     //  <button onClick={func}>check form data</button>

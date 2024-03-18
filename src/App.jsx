@@ -16,7 +16,16 @@ export default function () {
   const [connected, setConnected] = useState(false);
   const [measuring, setMeasuring] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
-
+  const [styleData, setStyleData] = useState({
+    hand: "left",
+    edge: 20,
+    grip: "open",
+    index: true,
+    middle: true,
+    ring: true,
+    pinky: true,
+  });
+  
   return (
     <Router>
       <Routes>
@@ -31,7 +40,7 @@ export default function () {
             />
           }
         >
-          <Route path="/" element={<ChooseWorkout />}>
+          <Route path="/" element={<ChooseWorkout styleData={styleData} setStyleData={setStyleData}/>}>
             <Route
               path="rpe"
               element={
@@ -41,6 +50,7 @@ export default function () {
                   measuring={measuring}
                   setConnected={setConnected}
                   setMeasuring={setMeasuring}
+                  setStyleData={setStyleData}
                 />
               }
             />
