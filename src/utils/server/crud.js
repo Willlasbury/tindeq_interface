@@ -122,7 +122,7 @@ const api = {
       });
       if (res.ok) {
         const data = await res.json();
-        return data.max_weight_kg;
+        return data;
       } else {
         throw new Error(
           `Error fetching max_pull: ${res.status} ${res.statusText}`

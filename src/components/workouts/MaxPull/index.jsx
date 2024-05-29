@@ -14,6 +14,7 @@ export default function MaxPull({
   setMeasuring,
 }) {
 
+  
 
   const [maxWeight, setMaxWeight] = useState(0);
   if (weight > maxWeight) {

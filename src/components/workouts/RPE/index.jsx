@@ -11,6 +11,7 @@ export default function RPEWorkout({
   measuring,
   setConnected,
   setMeasuring,
+  setStyleData
 }) {
   const [RPE, setRPE] = useState(8);
   const [maxPull, setMaxPull] = useState(undefined);
@@ -28,7 +29,8 @@ export default function RPEWorkout({
     if (maxPull == undefined) {
       const getMaxPull = async () => {
         const data = await weightApi.getUsersMaxPull()
-        setMaxPull(data)
+        setMaxPull(data.weight_kg)
+        setStyleData(data.style)
       }
       getMaxPull()
     }

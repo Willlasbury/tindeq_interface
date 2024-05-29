@@ -34,11 +34,11 @@ export default function LoginForm({ setLoggedIn }) {
     }
   }
   return (
-    <section id={signUp ? "signup-wrapper" : "login-wrapper"} className="login-signup-wrapper">
+    <section id="login-signup-wrapper">
       <form id="login-form" onSubmit={login}>
         <div id="login-fields">
           {signUp && (
-            <label className="login-label" htmlFor="login-label">
+            <label className="login-label" name="login-label">
               Username:{" "}
               <input
                 className="login-input"
@@ -49,7 +49,7 @@ export default function LoginForm({ setLoggedIn }) {
               ></input>
             </label>
           )}
-          <label className="login-label" htmlFor="login-label">
+          <label className="login-label" name="login-label">
             Email:{" "}
             <input
               className="login-input"
@@ -59,7 +59,7 @@ export default function LoginForm({ setLoggedIn }) {
               onChange={handleChange}
             ></input>
           </label>
-          <label htmlFor="login-label">
+          <label name="login-label">
             Password:{" "}
             <input
               className="login-input"
