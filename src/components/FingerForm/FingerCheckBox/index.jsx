@@ -1,6 +1,7 @@
 export default function FingerCheckBox({finger, handleChange, styleData}) {
+
   const checked = styleData[finger]
-  console.log("checked:", checked)
+
   return (
     <li className="finger-box">
       <label className="finger-lbl" htmlFor={finger}> {finger[0].toUpperCase() + finger.substring(1)}
@@ -9,7 +10,7 @@ export default function FingerCheckBox({finger, handleChange, styleData}) {
         type="checkbox"
         name={finger}
         onChange={handleChange}
-        defaultChecked={checked}
+        checked={checked}
         />
         </label>
     </li>
