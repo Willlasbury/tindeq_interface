@@ -11,11 +11,11 @@ export default function RPEWorkout({
   measuring,
   setConnected,
   setMeasuring,
-  setStyleData
+  setStyleData,
 }) {
   const [RPE, setRPE] = useState(8);
   const [maxPull, setMaxPull] = useState(undefined);
-  
+  // const [handsMax, setHandsMax] = useState({left:{},right:{}});
   const [pullTime, setPullTime] = useState(7);
   const [restTime, setRestTime] = useState(180);
 
@@ -24,15 +24,14 @@ export default function RPEWorkout({
   // place holder weight while I build out db
   const { time, setTime, isRunning, start, stop } = useTimer(pullTime);
 
-  
   useEffect(() => {
     if (maxPull == undefined) {
       const getMaxPull = async () => {
-        const data = await weightApi.getUsersMaxPull()
-        setMaxPull(data.weight_kg)
-        setStyleData(data.style)
-      }
-      getMaxPull()
+        const data = await weightApi.getUsersMaxPull();
+        setMaxPull(data.weight_kg);
+        setStyleData(data.style);
+      };
+      getMaxPull();
     }
 
     if (maxPull != undefined && !isRunning && weight > range.minRange) {
@@ -67,24 +66,35 @@ export default function RPEWorkout({
     stop();
   }
 
-  // TODO: get max weight from db
   const workingWeight = ((RPE / 10) * maxPull) >> 0;
   const range = {
     maxRange: workingWeight * 0.05 + workingWeight,
     minRange: workingWeight - workingWeight * 0.05,
   };
-
+  const rpes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   return (
     <>
       <ul className="controls">
         <li id="setMax">
-          <label htmlFor="userSetMaxPull">
+          <label className="userSetVals" htmlFor="userSetMaxPull">
             Set Max:
             <input
               htmlFor="userSetMaxPull"
               defaultValue={maxPull}
               onChange={(e) => setMaxPull(Number(e.target.value))}
             ></input>
+          </label>
+          <label className="userSetVals" htmlFor="userSetMaxPull">
+            Set RPE:
+            <select
+              htmlFor="userSetMaxPull"
+              defaultValue={maxPull}
+              onChange={(e) => setRPE(Number(e.target.value))}
+            >
+              {rpes.map((val) => {
+                return <option key = {val} value={val}>{val}</option>;
+              })}
+            </select>
           </label>
         </li>
         <li id="timer-li">

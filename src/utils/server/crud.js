@@ -131,6 +131,27 @@ const api = {
     } catch (err) {
       return res.status(500).json({ msg: "some error", err: err });
     }
+  },
+  getUsersHandMaxPull: async (hand) => {
+    try {
+      const res = await fetch(`${URL_PREFIX}/max_pull/highest/${hand}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": localStorage.getItem("access_token")
+        },
+      });
+      if (res.ok) {
+        const data = await res.json();
+        return data;
+      } else {
+        throw new Error(
+          `Error fetching max_pull: ${res.status} ${res.statusText}`
+        );
+      }
+    } catch (err) {
+      return res.status(500).json({ msg: "some error", err: err });
+    }
   }
 };
 
