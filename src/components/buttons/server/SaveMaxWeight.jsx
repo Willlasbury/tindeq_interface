@@ -1,11 +1,8 @@
 import fastApi from '../../../utils/server/crud'
 import { useOutletContext } from "react-router-dom";
 
-export default function SaveMaxWeight (maxWeight) {
-    const styleData = useOutletContext()
-  
+export default function SaveMaxWeight ({maxWeight, styleData}) {
     function handleMaxWeight () {
-        
         const style = {
           "hand": styleData.hand,
           "edge_size_mm": styleData.edge,
