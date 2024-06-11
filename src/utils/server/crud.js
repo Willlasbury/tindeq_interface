@@ -68,12 +68,13 @@ const api = {
     }
   },
  // TODO: create error handling to match with server
-  sendMaxWeight: async ({maxWeight}, style) => {
+  sendMaxWeight: async (maxWeight, style) => {
     try {
       const packet = {
         'weight': maxWeight,
         'style': style
       };
+
       const res = await fetch(`${URL_PREFIX}/max_pull`, {
         method: "POST",
         body: JSON.stringify(packet),
@@ -82,6 +83,7 @@ const api = {
           "Authorization": localStorage.getItem("access_token")
         },
       });
+      
       const data = await res.json();
       return data;
     } catch (err) {
@@ -129,7 +131,7 @@ const api = {
         );
       }
     } catch (err) {
-      return res.status(500).json({ msg: "some error", err: err });
+    return err
     }
   }
 };

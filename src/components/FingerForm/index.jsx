@@ -14,7 +14,6 @@ export default function FingerForm({ styleData, setStyleData }) {
       }
     });
   };
-  
   // only for loggin form data in console.
   // const func = () => {
   //   Object.entries(styleData).map(([key, val]) => console.log(key, ": ", val));

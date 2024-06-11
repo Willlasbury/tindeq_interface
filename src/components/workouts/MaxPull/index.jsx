@@ -12,10 +12,9 @@ export default function MaxPull({
   measuring,
   setConnected,
   setMeasuring,
+  styleData
 }) {
-
   
-
   const [maxWeight, setMaxWeight] = useState(0);
   if (weight > maxWeight) {
     setMaxWeight(weight);
@@ -24,7 +23,6 @@ export default function MaxPull({
     setMaxWeight(weight);
     localStorage.setItem("maxWeight", weight);
   }
-
   return (
     <>
       <ul className="controls">
@@ -36,7 +34,7 @@ export default function MaxPull({
           maxWeight={maxWeight}
         />
         <li className="control-li">
-          <SaveMaxWeight maxWeight={maxWeight}/>
+          <SaveMaxWeight maxWeight={maxWeight} styleData={styleData}/>
         </li>
         <li className="control-li">
           <button className="control-board-btn" onClick={() => setMaxWeight(0)}>
