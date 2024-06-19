@@ -4,11 +4,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 
 import MaxPull from "./components/workouts/MaxPull";
-import Landing from "./components/Landing";
-import LoginForm from "./components/Login";
+import Landing from "./components/Landing/connector";
+// import LoginForm from "./components/login/form";
 import RPEWorkout from "./components/workouts/RPE";
 import Layout from "./components/Layout";
-import ChooseWorkout from "./components/workouts/ChooseWorkout";
+// import ChooseWorkout from "./components/workouts/ChooseWorkout";
 
 export default function () {
   const [sendChar, setSendChar] = useState(undefined);
@@ -25,65 +25,76 @@ export default function () {
     ring: true,
     pinky: true,
   });
-  
+
   return (
-    <Router>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Layout
-              connected={connected}
-              setConnected={setConnected}
-              setLoggedIn={setLoggedIn}
-              loggedIn={loggedIn}
-            />
-          }
-        >
-          <Route path="/" element={<ChooseWorkout styleData={styleData} setStyleData={setStyleData}/>}>
+    <>
+    
+        <Router>
+          <Routes>
             <Route
-              path="rpe"
+              path="/"
               element={
-                <RPEWorkout
-                  weight={weight}
-                  sendChar={sendChar}
-                  measuring={measuring}
+                <Layout
+                  connected={connected}
                   setConnected={setConnected}
-                  setMeasuring={setMeasuring}
-                  setStyleData={setStyleData}
+                  setLoggedIn={setLoggedIn}
+                  loggedIn={loggedIn}
+                  setSendChar={setSendChar}
+                  setWeight={setWeight}
                 />
               }
-            />
-            <Route
-              path="max_pull"
-              element={
-                <MaxPull
-                  weight={weight}
-                  sendChar={sendChar}
-                  measuring={measuring}
-                  setConnected={setConnected}
-                  setMeasuring={setMeasuring}
-                  styleData={styleData}
+            >
+              {/* <Route
+                path="/"
+                element={
+                  <ChooseWorkout
+                    styleData={styleData}
+                    setStyleData={setStyleData}
+                    loggedIn={loggedIn}
+                    setLoggedIn={setLoggedIn}
+                  />
+                }
+              > */}
+                <Route
+                  path="rpe"
+                  element={
+                    <RPEWorkout
+                      weight={weight}
+                      sendChar={sendChar}
+                      measuring={measuring}
+                      setConnected={setConnected}
+                      setMeasuring={setMeasuring}
+                      setStyleData={setStyleData}
+                    />
+                  }
                 />
-              }
-            />
-          </Route>
-          <Route
-            path="connect"
-            element={
-              <Landing
-                setConnected={setConnected}
-                setSendChar={setSendChar}
-                setWeight={setWeight}
+                <Route
+                  path="max_pull"
+                  element={
+                    <MaxPull
+                      weight={weight}
+                      sendChar={sendChar}
+                      measuring={measuring}
+                      setConnected={setConnected}
+                      setMeasuring={setMeasuring}
+                      styleData={styleData}
+                    />
+                  }
+                />
+              </Route>
+              <Route
+                path="connect"
+                element={
+                  <Landing
+                    setConnected={setConnected}
+                    setSendChar={setSendChar}
+                    setWeight={setWeight}
+                  />
+                }
               />
-            }
-          />
-          <Route
-            path="login"
-            element={<LoginForm setLoggedIn={setLoggedIn} />}
-          />
-        </Route>
-      </Routes>
-    </Router>
+            {/* </Route> */}
+          </Routes>
+        </Router>
+    </>
   );
 }

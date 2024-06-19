@@ -1,0 +1,19 @@
+#connector {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px, solid, black;
+    border-radius: 5px 5px 5px;
+    padding: 1rem;
+    background-color: var(--secondary-col);
+}
+
+#title {
+    font-size: xx-large;
+    font-weight: 600;
+    color: black;
+    text-shadow: 1px 1px 1px var(--tertiary-col);
+}

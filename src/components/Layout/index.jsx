@@ -1,7 +1,7 @@
 import "./styles.css";
-import { useEffect } from "react";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
-
+import { NavLink, Outlet } from "react-router-dom";
+import LoginModal from "../../components/Login/modal";
+import ConnectTindeq from "../Landing/modal";
 import LogOut from "../buttons/server/logout";
 
 export default function Layout({
@@ -9,21 +9,31 @@ export default function Layout({
   setConnected,
   setLoggedIn,
   loggedIn,
+  setSendChar,
+  setWeight,
 }) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!connected) {
-      navigate("/connect");
-    }
-    if (!loggedIn) {
-      navigate("/login");
-    }
-  }, [connected, loggedIn]);
+  // useEffect(() => {
+  //   if (!connected) {
+  //     navigate("/connect");
+  //   }
+  //   if (!loggedIn) {
+  //     navigate("/login");
+  //   }
+  // }, [connected, loggedIn]);
 
   return (
     <>
-    {loggedIn &&
+      {!loggedIn && <LoginModal setLoggedIn={setLoggedIn} />}
+      {loggedIn && !connected && (
+        <ConnectTindeq
+          setConnected={setConnected}
+          setSendChar={setSendChar}
+          setWeight={setWeight}
+        />
+      )}
+
       <header id="header">
         {connected && (
           <nav id="navbar">
@@ -40,9 +50,8 @@ export default function Layout({
           loggedIn={loggedIn}
           setConnected={setConnected}
           connected={connected}
-          />
+        />
       </header>
-        }
       <main id="bulk">
         <Outlet />
       </main>
