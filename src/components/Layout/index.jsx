@@ -23,7 +23,7 @@ export default function Layout({
 
   return (
     <>
-    {loggedIn&&
+    {loggedIn &&
       <header id="header">
         {connected && (
           <nav id="navbar">
