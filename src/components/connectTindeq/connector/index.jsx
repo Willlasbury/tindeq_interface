@@ -1,14 +1,11 @@
 import "./styles.css";
 import CreateConnection from "../CreateConnectionBtn";
-import { useEffect } from "react";
 
-import { useNavigate } from "react-router-dom";
-
-export default function Landing({ setConnected, setSendChar, setWeight }) {
+export default function Tindeq({ setConnected, setSendChar, setWeight }) {
 
   return (
-    <section id="landing">
-      <h1 id="title">Tindeq Progressor</h1>
+    <section id="connector">
+      <h1 id="title">Connect to your Tindeq</h1>
       <CreateConnection
         setSendChar={setSendChar}
         setConnected={setConnected}

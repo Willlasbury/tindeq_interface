@@ -1,11 +1,14 @@
 import "./styles.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import usersApi from "../../utils/server/users";
+import usersApi from "../../../utils/server/users";
 
 export default function LoginForm({ setLoggedIn }) {
   const [inputs, setInputs] = useState({});
   const [signUp, setSignUp] = useState(false);
+
+  const nav = useNavigate()
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -31,8 +34,11 @@ export default function LoginForm({ setLoggedIn }) {
         localStorage.setItem("refresh_token", res.session.refresh_token);
         setLoggedIn(true);
       }
+      
+      nav('/rpe')
     }
   }
+  
   return (
     <section id="login-signup-wrapper">
       <form id="login-form" onSubmit={login}>

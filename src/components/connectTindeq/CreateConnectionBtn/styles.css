@@ -1,11 +1,12 @@
 #tin-connect {
     margin: 2rem 0;
-    width: 50%;
-    height: 3rem;
+    /* width: 50%;
+    height: 3rem; */
     background-color: var(--secondary-col);
     border-radius: 5px;
     border: 2px solid var(--border-col);
-    box-shadow: 2px 2px 5px var(--shadow); 
+    box-shadow: 1px 1px 2px var(--shadow); 
+    font-size: larger;
 }
 
 #tin-connect:active {

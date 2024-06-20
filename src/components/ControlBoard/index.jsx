@@ -6,6 +6,7 @@ import TareBtn from "../../components/buttons/tindeqBtns/TareBtn";
 import DisconnectBtn from "../buttons/tindeqBtns/DisconnnectBtn";
 import SaveMaxWeight from "../buttons/server/SaveMaxWeight";
 import RPELoggingBtn from "../buttons/tindeqBtns/RPELoggingBtn";
+import FingerFormBtn from "../workouts/FingerForm/FingerButton";
 
 
 export default function ControlBoard({
@@ -13,6 +14,8 @@ export default function ControlBoard({
   measuring,
   setConnected,
   setMeasuring,
+  showFingerForm,
+  setShowFingerForm
 }) {
   return (
     <>
@@ -32,6 +35,9 @@ export default function ControlBoard({
           setConnected={setConnected}
           setMeasuring={setMeasuring}
           />
+      </li>
+      <li>
+        <FingerFormBtn showFingerForm={showFingerForm} setShowFingerForm={setShowFingerForm} />
       </li>
       </>
   );

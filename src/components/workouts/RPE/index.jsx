@@ -2,16 +2,14 @@ import "./styles.css";
 import { useEffect, useState } from "react";
 import BarGraph from "../../graphs/GraphCurrent";
 import useTimer from "../../../utils/workout/useTimer";
-import ControlBoard from "../../ControlBoard";
+// import ControlBoard from "../../ControlBoard";
 import weightApi from "../../../utils/server/crud";
 
 export default function RPEWorkout({
   weight,
-  sendChar,
   measuring,
-  setConnected,
-  setMeasuring,
   setStyleData,
+  controlComp
 }) {
   const [RPE, setRPE] = useState(8);
   const [maxPull, setMaxPull] = useState(3);
@@ -121,14 +119,8 @@ export default function RPEWorkout({
             reset
           </button>
         </li>
-        <ControlBoard
-          sendChar={sendChar}
-          setConnected={setConnected}
-          setMeasuring={setMeasuring}
-          measuring={measuring}
-        />
+        {controlComp}
       </ul>
-
       <BarGraph
         weight={weight}
         reference={{ maxPull, range }}

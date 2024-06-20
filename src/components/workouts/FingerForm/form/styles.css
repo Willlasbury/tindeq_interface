@@ -3,7 +3,7 @@
     border-radius: 10px;
     padding: 1rem;
     background-color: var(--tertiary-col);
-    width: 20%;
+    width: fit-content;
 }
 
 #ff-drop-downs {

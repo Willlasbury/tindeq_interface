@@ -1,6 +1,9 @@
 import "./styles.css";
-import { useEffect } from "react";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
+
+import FingerFormModal from "../workouts/FingerForm/modal";
+import LoginModal from "../../components/Login/modal";
+import ConnectTindeqModal from "../connectTindeq/modal";
 
 import LogOut from "../buttons/server/logout";
 
@@ -9,21 +12,30 @@ export default function Layout({
   setConnected,
   setLoggedIn,
   loggedIn,
+  setSendChar,
+  setWeight,
+  styleData,
+  setStyleData,
+  showFingerForm,
+  setShowFingerForm
 }) {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!connected) {
-      navigate("/connect");
-    }
-    if (!loggedIn) {
-      navigate("/login");
-    }
-  }, [connected, loggedIn]);
-
   return (
     <>
-    {loggedIn&&
+      {!loggedIn && <LoginModal setLoggedIn={setLoggedIn} />}
+      {loggedIn && !connected && (
+        <ConnectTindeqModal
+          setConnected={setConnected}
+          setSendChar={setSendChar}
+          setWeight={setWeight}
+        />
+      )}
+      {showFingerForm && (
+        <FingerFormModal
+          styleData={styleData}
+          setStyleData={setStyleData}
+          setShowFingerForm={setShowFingerForm}
+        />
+      )}
       <header id="header">
         {connected && (
           <nav id="navbar">
@@ -40,9 +52,8 @@ export default function Layout({
           loggedIn={loggedIn}
           setConnected={setConnected}
           connected={connected}
-          />
+        />
       </header>
-        }
       <main id="bulk">
         <Outlet />
       </main>
