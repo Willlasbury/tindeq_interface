@@ -28,11 +28,15 @@ export default function RPEWorkout({
   useEffect(() => {
     if (maxPull == undefined) {
       const getMaxPull = async () => {
-        const data = await weightApi.getUsersMaxPull();
-        setMaxPull(data.weight_kg);
-        setStyleData(data.style);
-      };
-      getMaxPull();
+        const data = await weightApi.getUsersMaxPull()
+        if (data instanceof Error) {
+          setMaxPull(100)
+        } else {
+          setMaxPull(data.weight_kg)
+          setStyleData(data.style)
+        }
+      }
+      getMaxPull()
     }
 
     if (maxPull != undefined && !isRunning && weight > range.minRange) {

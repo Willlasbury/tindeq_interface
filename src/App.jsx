@@ -63,6 +63,7 @@ export default function () {
                   measuring={measuring}
                   setConnected={setConnected}
                   setMeasuring={setMeasuring}
+                  styleData={styleData}
                 />
               }
             />
