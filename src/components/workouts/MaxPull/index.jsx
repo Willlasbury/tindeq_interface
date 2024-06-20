@@ -8,11 +8,8 @@ import SaveMaxWeight from "../../buttons/server/SaveMaxWeight";
 
 export default function MaxPull({
   weight,
-  sendChar,
-  measuring,
-  setConnected,
-  setMeasuring,
-  styleData
+  styleData,
+  controlComp
 }) {
   
   const [maxWeight, setMaxWeight] = useState(0);
@@ -26,13 +23,6 @@ export default function MaxPull({
   return (
     <>
       <ul className="controls">
-        <ControlBoard
-          sendChar={sendChar}
-          setConnected={setConnected}
-          setMeasuring={setMeasuring}
-          measuring={measuring}
-          maxWeight={maxWeight}
-        />
         <li className="control-li">
           <SaveMaxWeight maxWeight={maxWeight} styleData={styleData}/>
         </li>
@@ -41,6 +31,7 @@ export default function MaxPull({
             Reset Max Weight
           </button>
         </li>
+        {controlComp}
       </ul>
       <BarGraph weight={weight} reference={maxWeight} referenceType={"line"} />
 

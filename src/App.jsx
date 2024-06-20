@@ -12,8 +12,8 @@ export default function () {
   const [sendChar, setSendChar] = useState(undefined);
   const [weight, setWeight] = useState(0);
   const [measuring, setMeasuring] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(true);
-  const [connected, setConnected] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [connected, setConnected] = useState(false);
   const [showFingerForm, setShowFingerForm] = useState(false);
   const [styleData, setStyleData] = useState({
     hand: "left",
@@ -51,10 +51,7 @@ export default function () {
               element={
                 <RPEWorkout
                   weight={weight}
-                  sendChar={sendChar}
                   measuring={measuring}
-                  setConnected={setConnected}
-                  setMeasuring={setMeasuring}
                   setStyleData={setStyleData}
                   controlComp={
                     <ControlBoard
@@ -75,11 +72,17 @@ export default function () {
               element={
                 <MaxPull
                   weight={weight}
-                  sendChar={sendChar}
-                  measuring={measuring}
-                  setConnected={setConnected}
-                  setMeasuring={setMeasuring}
                   styleData={styleData}
+                  controlComp={
+                    <ControlBoard
+                      sendChar={sendChar}
+                      measuring={measuring}
+                      setConnected={setConnected}
+                      setMeasuring={setMeasuring}
+                      showFingerForm={showFingerForm}
+                      setShowFingerForm={setShowFingerForm}
+                    />
+                  }
                 />
               }
             />
