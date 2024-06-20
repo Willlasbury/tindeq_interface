@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Tindeq from "../connector";
 import "./styles.css";
 

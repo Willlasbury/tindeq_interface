@@ -1,6 +1,6 @@
 import "./styles.css";
 
-import FingerCheckBox from "./FingerCheckBox";
+import FingerCheckBox from "../FingerCheckBox";
 
 export default function FingerForm({ styleData, setStyleData }) {
 

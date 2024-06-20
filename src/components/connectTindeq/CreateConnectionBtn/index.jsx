@@ -1,9 +1,9 @@
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
 
-import blc from "../../../src/utils/tindeqApi/connection";
-import getChar from "../../../src/utils/tindeqApi/characteristics";
-import notify from "../../../src/utils/tindeqApi/notify";
+import blc from "../../../utils/tindeqApi/connection";
+import getChar from "../../../utils/tindeqApi/characteristics";
+import notify from "../../../utils/tindeqApi/notify";
 
 export default function CreateConnection({
   setSendChar,

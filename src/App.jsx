@@ -4,18 +4,17 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 
 import MaxPull from "./components/workouts/MaxPull";
-import Landing from "./components/Landing/connector";
-// import LoginForm from "./components/login/form";
+import ControlBoard from "./components/ControlBoard";
 import RPEWorkout from "./components/workouts/RPE";
 import Layout from "./components/Layout";
-// import ChooseWorkout from "./components/workouts/ChooseWorkout";
 
 export default function () {
   const [sendChar, setSendChar] = useState(undefined);
   const [weight, setWeight] = useState(0);
-  const [connected, setConnected] = useState(false);
   const [measuring, setMeasuring] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
+  const [connected, setConnected] = useState(true);
+  const [showFingerForm, setShowFingerForm] = useState(false);
   const [styleData, setStyleData] = useState({
     hand: "left",
     edge: 20,
@@ -28,73 +27,65 @@ export default function () {
 
   return (
     <>
-    
-        <Router>
-          <Routes>
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Layout
+                connected={connected}
+                setConnected={setConnected}
+                setLoggedIn={setLoggedIn}
+                loggedIn={loggedIn}
+                setSendChar={setSendChar}
+                setWeight={setWeight}
+                styleData={styleData}
+                setStyleData={setStyleData}
+                showFingerForm={showFingerForm}
+                setShowFingerForm={setShowFingerForm}
+              />
+            }
+          >
             <Route
-              path="/"
+              path="rpe"
               element={
-                <Layout
-                  connected={connected}
+                <RPEWorkout
+                  weight={weight}
+                  sendChar={sendChar}
+                  measuring={measuring}
                   setConnected={setConnected}
-                  setLoggedIn={setLoggedIn}
-                  loggedIn={loggedIn}
-                  setSendChar={setSendChar}
-                  setWeight={setWeight}
+                  setMeasuring={setMeasuring}
+                  setStyleData={setStyleData}
+                  controlComp={
+                    <ControlBoard
+                      sendChar={sendChar}
+                      measuring={measuring}
+                      setConnected={setConnected}
+                      setMeasuring={setMeasuring}
+                      showFingerForm={showFingerForm}
+                      setShowFingerForm={setShowFingerForm}
+                    />
+                  }
                 />
               }
-            >
-              {/* <Route
-                path="/"
-                element={
-                  <ChooseWorkout
-                    styleData={styleData}
-                    setStyleData={setStyleData}
-                    loggedIn={loggedIn}
-                    setLoggedIn={setLoggedIn}
-                  />
-                }
-              > */}
-                <Route
-                  path="rpe"
-                  element={
-                    <RPEWorkout
-                      weight={weight}
-                      sendChar={sendChar}
-                      measuring={measuring}
-                      setConnected={setConnected}
-                      setMeasuring={setMeasuring}
-                      setStyleData={setStyleData}
-                    />
-                  }
+            />
+
+            <Route
+              path="max_pull"
+              element={
+                <MaxPull
+                  weight={weight}
+                  sendChar={sendChar}
+                  measuring={measuring}
+                  setConnected={setConnected}
+                  setMeasuring={setMeasuring}
+                  styleData={styleData}
                 />
-                <Route
-                  path="max_pull"
-                  element={
-                    <MaxPull
-                      weight={weight}
-                      sendChar={sendChar}
-                      measuring={measuring}
-                      setConnected={setConnected}
-                      setMeasuring={setMeasuring}
-                      styleData={styleData}
-                    />
-                  }
-                />
-              </Route>
-              <Route
-                path="connect"
-                element={
-                  <Landing
-                    setConnected={setConnected}
-                    setSendChar={setSendChar}
-                    setWeight={setWeight}
-                  />
-                }
-              />
-            {/* </Route> */}
-          </Routes>
-        </Router>
+              }
+            />
+          </Route>
+        </Routes>
+      </Router>
     </>
   );
 }

@@ -1,5 +1,5 @@
 import "./styles.css";
-import BarGraph from "../graphs/GraphCurrent";
+import BarGraph from "../../GraphCurrent";
 
 export default function DisplayWeight({
   weight,

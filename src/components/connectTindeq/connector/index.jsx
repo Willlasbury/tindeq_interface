@@ -1,5 +1,5 @@
 import "./styles.css";
-import CreateConnection from "../../CreateConnectionBtn";
+import CreateConnection from "../CreateConnectionBtn";
 
 export default function Tindeq({ setConnected, setSendChar, setWeight }) {
 
