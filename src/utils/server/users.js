@@ -71,6 +71,7 @@ const usersApi = {
         email: email,
         password: password,
       };  
+      console.log("URL_PREFIX:", URL_PREFIX)
       const res = await fetch(`${URL_PREFIX}/users/login`, {
         method: "POST",
         body: JSON.stringify(body),
