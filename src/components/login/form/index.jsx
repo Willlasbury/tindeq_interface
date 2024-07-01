@@ -33,6 +33,8 @@ export default function LoginForm({ setLoggedIn }) {
         localStorage.setItem("access_token", res.session.access_token);
         localStorage.setItem("refresh_token", res.session.refresh_token);
         setLoggedIn(true);
+      } else {
+        console.log('could not login in')
       }
       
       nav('/rpe')
