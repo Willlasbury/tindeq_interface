@@ -2,7 +2,7 @@ import "./styles.css";
 import { NavLink, Outlet } from "react-router-dom";
 
 import FingerFormModal from "../workouts/FingerForm/modal";
-import LoginModal from "../Login/modal";
+import LoginModal from "../login/modal";
 import ConnectTindeqModal from "../connectTindeq/modal";
 
 import LogOut from "../buttons/server/logout";
