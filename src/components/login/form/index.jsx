@@ -29,8 +29,7 @@ export default function LoginForm({ setLoggedIn }) {
       }
     } else {
       const res = await usersApi.login(inputs.email, inputs.password);
-      console.log("res:", res)
-      console.log("res.session.access_token:", res.session.access_token)
+      
       if (res.session.access_token) {
         localStorage.setItem("access_token", res.session.access_token);
         localStorage.setItem("refresh_token", res.session.refresh_token);
