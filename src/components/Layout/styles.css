@@ -1,7 +1,7 @@
 #header {
     display: flex;
-    border-bottom: 3px solid var(--shadow);
-    border-radius: 10px;
+    /* border-bottom: 3px solid var(--shadow);
+    border-radius: 10px; */
     justify-content: flex-end;
     align-items: center;
     height: 4rem;

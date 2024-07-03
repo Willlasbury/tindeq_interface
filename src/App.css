@@ -1,11 +1,16 @@
 #root {
   height: 100vh;
   width: 100vw;
-  --primary-col: #023047;
+  /* --primary-col: #023047;
   --secondary-col: #219ebc;
   --tertiary-col: #8ecae6;
   --fourth-col: #ffb703;
-  --fifth-col: #fb8500;
+  --fifth-col: #fb8500; */
+  --primary-col: #373854;
+  --secondary-col: #493267;
+  --tertiary-col: #9e379f;
+  --fourth-col: #e86af0;
+  --fifth-col: #7bb3ff;
   --shadow: #334953;
   --border-col: rgba(35, 33, 33, 0.739);
   display: flex;
@@ -13,3 +18,28 @@
   background-color: var(--primary-col);
   font-family: sans-serif;
 }
+
+/* 
+COLOR SCHEMES
+
+OG
+  --primary-col: #023047;
+  --secondary-col: #219ebc;
+  --tertiary-col: #8ecae6;
+  --fourth-col: #ffb703;
+  --fifth-col: #fb8500;
+
+Cappucino
+  --primary-col: #4b3832;
+  --secondary-col: #854442;
+  --tertiary-col: #fff4e6;
+  --fourth-col: #3c2f2f;
+  --fifth-col: #be9b7b;
+
+Down Town 
+  --primary-col: #373854;
+  --secondary-col: #493267;
+  --tertiary-col: #9e379f;
+  --fourth-col: #e86af0;
+  --fifth-col: #7bb3ff;
+*/

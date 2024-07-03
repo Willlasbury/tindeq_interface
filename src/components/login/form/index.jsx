@@ -8,7 +8,7 @@ export default function LoginForm({ setLoggedIn }) {
   const [inputs, setInputs] = useState({});
   const [signUp, setSignUp] = useState(false);
 
-  const nav = useNavigate()
+  const nav = useNavigate();
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -29,26 +29,27 @@ export default function LoginForm({ setLoggedIn }) {
       }
     } else {
       const res = await usersApi.login(inputs.email, inputs.password);
-      
+
       if (res.session.access_token) {
         localStorage.setItem("access_token", res.session.access_token);
         localStorage.setItem("refresh_token", res.session.refresh_token);
         setLoggedIn(true);
       } else {
-        console.log('could not login in')
+        console.log("could not login in");
       }
-      
-      nav('/rpe')
+
+      nav("/rpe");
     }
   }
-  
+
   return (
     <section id="login-signup-wrapper">
+      <h2>Welcome</h2>
       <form id="login-form" onSubmit={login}>
         <div id="login-fields">
           {signUp && (
             <label className="login-label" name="login-label">
-              Username:{" "}
+              <span>Username</span>
               <input
                 className="login-input"
                 type="text"
@@ -59,7 +60,7 @@ export default function LoginForm({ setLoggedIn }) {
             </label>
           )}
           <label className="login-label" name="login-label">
-            Email:{" "}
+            <span>Email</span>
             <input
               className="login-input"
               type="text"
@@ -68,8 +69,8 @@ export default function LoginForm({ setLoggedIn }) {
               onChange={handleChange}
             ></input>
           </label>
-          <label name="login-label">
-            Password:{" "}
+          <label className="login-label" name="login-label">
+            <span>Password</span>
             <input
               className="login-input"
               type="password"
@@ -79,14 +80,13 @@ export default function LoginForm({ setLoggedIn }) {
             ></input>
           </label>
         </div>
-        <button className="login-signup-btn" type="submit">
-          Submit
+        <button id="login-signup-btn" type="submit">
+          {signUp ? 'SIGN UP' : 'LOG IN'}
         </button>
       </form>
-      <button className="login-signup-btn" onClick={() => setSignUp(!signUp)}>
-        {" "}
-        {signUp ? "Login" : "Sign Up"}
-      </button>
+      <span id="toggle-login-signup" onClick={() => setSignUp(!signUp)}>
+        Dont have and account? {signUp ? "Login" : "Sign Up"}
+      </span>
     </section>
   );
 }

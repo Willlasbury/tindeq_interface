@@ -1,5 +1,5 @@
 .modal-background {
-    background-color: rgba(200, 200, 200, 0.2);
+    /* background-color: rgba(200, 200, 200, 0.2); */
     z-index: 2;
     position: fixed;
     width: 100vw;
@@ -12,5 +12,9 @@
 
 .modal-container {
     z-index: 3;
-
+    width: 90%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -13,7 +13,7 @@ export default function () {
   const [weight, setWeight] = useState(0);
   const [measuring, setMeasuring] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [connected, setConnected] = useState(false);
+  const [connected, setConnected] = useState(true);
   const [showFingerForm, setShowFingerForm] = useState(false);
   const [styleData, setStyleData] = useState({
     hand: "left",

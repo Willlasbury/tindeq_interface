@@ -37,7 +37,7 @@ export default function Layout({
         />
       )}
       <header id="header">
-        {connected && (
+        {/* {connected && (
           <nav id="navbar">
             <NavLink to="rpe" className="nav-tab">
               RPE
@@ -46,7 +46,7 @@ export default function Layout({
               Max Pull
             </NavLink>
           </nav>
-        )}
+        )} */}
         <LogOut
           setLoggedIn={setLoggedIn}
           loggedIn={loggedIn}
