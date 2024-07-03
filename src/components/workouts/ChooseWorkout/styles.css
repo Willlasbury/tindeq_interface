@@ -7,7 +7,7 @@
 }
 
 #workout-container {
-
+    display: flex;
 }
 
 .workout-btn {

@@ -5,7 +5,7 @@ export default function Tindeq({ setConnected, setSendChar, setWeight }) {
 
   return (
     <section id="connector">
-      <h1 id="title">Connect to your Tindeq</h1>
+      <h2>Connect to your Tindeq</h2>
       <CreateConnection
         setSendChar={setSendChar}
         setConnected={setConnected}
