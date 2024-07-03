@@ -86,6 +86,12 @@ export default function () {
                 />
               }
             />
+            <Route
+            path="*"
+            element={
+              <div>Sorry, We can not find this endpoint at the moment</div>
+            }
+            />
           </Route>
         </Routes>
       </Router>
