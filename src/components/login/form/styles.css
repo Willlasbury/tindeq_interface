@@ -32,7 +32,7 @@
     padding: 0.5em;
     border: 1px solid black;
     border-radius: 5px;
-
+    background-color: blue;
 }
 
 #login-form {
@@ -61,10 +61,17 @@
     height: 2em;
     padding: 0.5em;
     background: linear-gradient(45deg, var(--fourth-col), var(--tertiary-col));
+    transition: all 500ms;
+}
+
+
+#login-signup-btn:hover {
+    background: linear-gradient(135deg, var(--fourth-col), var(--tertiary-col));
+    filter: brightness(90%);
 }
 
 #login-signup-btn:active {
-    background-color: lightgray;
+    filter: brightness(75%)
 }
 
 #toggle-login-signup {
