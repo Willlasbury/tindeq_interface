@@ -12,9 +12,10 @@
 
 .modal-container {
     z-index: 3;
-    width: 90%;
     height: auto;
+    border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--primary-col);
 }
