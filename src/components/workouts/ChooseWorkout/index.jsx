@@ -1,18 +1,29 @@
-import './styles.css'
+import "./styles.css";
 
-import { useState } from 'react';
-import { Outlet } from 'react-router-dom'
-import FingerForm from '../../FingerForm'
-import LoginModal from "../../../components/Login/modal";
+import { useState } from "react";
 
+export default function ChooseWorkout({ workout, setWorkout, children }) {
+  const map = {};
+  children.map((k) => (map[k.key] = k));
 
-export default function ChooseWorkout ({styleData, setStyleData, loggedIn, setLoggedIn}) {
+  const handleClick = (event) => {
+    setWorkout(event.target.value);
+  };
 
+  const createButtons = (child) => {
     return (
-        <>
-             {/* {!loggedIn && <LoginModal setLoggedIn={setLoggedIn} />} */}
-            <Outlet />
-            {/* {loggedIn && <FingerForm styleData={styleData} setStyleData={setStyleData}/>} */}
-        </>
-    )
+      <button
+        key={child.key}
+        value={child.key}
+        onClick={handleClick}
+      >{`${child.props.name}`}</button>
+    );
+  };
+  return (
+    <>
+      <section>
+        {workout ? map[workout] : children.map((v) => createButtons(v))}
+      </section>
+    </>
+  );
 }

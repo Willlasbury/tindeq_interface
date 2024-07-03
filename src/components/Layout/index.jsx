@@ -6,6 +6,7 @@ import LoginModal from "../login/modal";
 import ConnectTindeqModal from "../connectTindeq/modal";
 
 import LogOut from "../buttons/server/logout";
+import { useState } from "react";
 
 export default function Layout({
   connected,
@@ -19,6 +20,8 @@ export default function Layout({
   showFingerForm,
   setShowFingerForm
 }) {
+
+
   return (
     <>
       {!loggedIn && <LoginModal setLoggedIn={setLoggedIn} />}
@@ -37,7 +40,7 @@ export default function Layout({
         />
       )}
       <header id="header">
-        {/* {connected && (
+        {connected && (
           <nav id="navbar">
             <NavLink to="rpe" className="nav-tab">
               RPE
@@ -46,7 +49,7 @@ export default function Layout({
               Max Pull
             </NavLink>
           </nav>
-        )} */}
+        )}
         <LogOut
           setLoggedIn={setLoggedIn}
           loggedIn={loggedIn}

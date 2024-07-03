@@ -7,6 +7,7 @@ import MaxPull from "./components/workouts/MaxPull";
 import ControlBoard from "./components/ControlBoard";
 import RPEWorkout from "./components/workouts/RPE";
 import Layout from "./components/Layout";
+import ChooseWorkout from "./components/workouts/ChooseWorkout";
 
 export default function () {
   const [sendChar, setSendChar] = useState(undefined);
@@ -15,6 +16,7 @@ export default function () {
   const [loggedIn, setLoggedIn] = useState(true);
   const [connected, setConnected] = useState(true);
   const [showFingerForm, setShowFingerForm] = useState(false);
+  const [workout, setWorkout] = useState(undefined);
   const [styleData, setStyleData] = useState({
     hand: "left",
     edge: 20,
@@ -27,7 +29,7 @@ export default function () {
 
   return (
     <>
-      <Router>
+      {/* <Router>
         <Routes>
           <Route
             path="/"
@@ -94,7 +96,52 @@ export default function () {
             />
           </Route>
         </Routes>
-      </Router>
+      </Router> */}
+
+      {!loggedIn && <LoginModal setLoggedIn={setLoggedIn} />}
+      {loggedIn && !connected && (
+        <ConnectTindeqModal
+          setConnected={setConnected}
+          setSendChar={setSendChar}
+          setWeight={setWeight}
+        />
+      )}
+      {showFingerForm && (
+        <FingerFormModal
+          styleData={styleData}
+          setStyleData={setStyleData}
+          setShowFingerForm={setShowFingerForm}
+        />
+      )}
+      <header>
+        <button
+          onClick={() => {
+            setWorkout(undefined);
+          }}
+        >
+          back
+        </button>
+      </header>
+      <main>
+        <ChooseWorkout
+          workout={workout}
+          setWorkout={setWorkout}
+        >
+          <RPEWorkout
+            key="rpe"
+            name="RPE"
+            weight={weight}
+            measuring={measuring}
+            setStyleData={setStyleData}
+          />
+          <MaxPull
+            key="max"
+            name="Max Pull"
+            weight={weight}
+            styleData={styleData}
+          />
+        </ChooseWorkout>
+      </main>
     </>
   );
 }
