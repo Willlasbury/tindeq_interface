@@ -8,13 +8,15 @@ import ControlBoard from "./components/ControlBoard";
 import RPEWorkout from "./components/workouts/RPE";
 import Layout from "./components/Layout";
 import ChooseWorkout from "./components/workouts/ChooseWorkout";
+import LoginModal from "./components/login/modal";
+import ConnectTindeqModal from "./components/connectTindeq/modal";
 
 export default function () {
   const [sendChar, setSendChar] = useState(undefined);
   const [weight, setWeight] = useState(0);
   const [measuring, setMeasuring] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(true);
-  const [connected, setConnected] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [connected, setConnected] = useState(false);
   const [showFingerForm, setShowFingerForm] = useState(false);
   const [workout, setWorkout] = useState(undefined);
   const [styleData, setStyleData] = useState({
@@ -26,6 +28,11 @@ export default function () {
     ring: true,
     pinky: true,
   });
+
+  window.onpopstate = (event) => {
+    console.log("event:", event);
+    setWorkout(undefined);
+  };
 
   return (
     <>
@@ -114,19 +121,19 @@ export default function () {
         />
       )}
       <header>
-        <button
-          onClick={() => {
-            setWorkout(undefined);
-          }}
-        >
-          back
-        </button>
+        {workout && (
+          <button
+            onClick={() => {
+              setWorkout(undefined);
+            }}
+          >
+            back
+          </button>
+        )}
       </header>
+
       <main>
-        <ChooseWorkout
-          workout={workout}
-          setWorkout={setWorkout}
-        >
+        <ChooseWorkout workout={workout} setWorkout={setWorkout}>
           <RPEWorkout
             key="rpe"
             name="RPE"

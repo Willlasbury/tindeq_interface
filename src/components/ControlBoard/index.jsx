@@ -36,7 +36,7 @@ export default function ControlBoard({
           setMeasuring={setMeasuring}
           />
       </li>
-      <li>
+      <li className="control-li">
         <FingerFormBtn showFingerForm={showFingerForm} setShowFingerForm={setShowFingerForm} />
       </li>
       </>

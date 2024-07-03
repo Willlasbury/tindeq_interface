@@ -107,6 +107,8 @@ section {
 body {
   line-height: 1;
   position: fixed;
+  width: 100vw;
+  height: 100vh;
 }
 
 ol,

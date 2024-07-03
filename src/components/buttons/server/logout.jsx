@@ -1,8 +1,8 @@
-import { useNavigate } from "react-router-dom"
+// import { useNavigate } from "react-router-dom"
 
 
 export default function LogOut ({setLoggedIn, loggedIn, setConnected, connected}) {
-    const nav = useNavigate()
+    // const nav = useNavigate()
 
     function disconnect () {
        if (loggedIn) {
@@ -11,7 +11,7 @@ export default function LogOut ({setLoggedIn, loggedIn, setConnected, connected}
        if (connected) {
         setConnected(false)
        }
-       nav("/")
+      //  nav("/")
       }
       return (
         <>

@@ -8,8 +8,6 @@ export default function LoginForm({ setLoggedIn }) {
   const [inputs, setInputs] = useState({});
   const [signUp, setSignUp] = useState(false);
 
-  const nav = useNavigate();
-
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
@@ -38,7 +36,6 @@ export default function LoginForm({ setLoggedIn }) {
         console.log("could not login in");
       }
 
-      nav("/rpe");
     }
   }
 
