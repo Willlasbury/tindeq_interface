@@ -1,6 +1,7 @@
 #root {
   height: 100vh;
-  /* width: 100vw; */
+  width: 100vw;
+  max-width: 100%;
   /* --primary-col: #023047;
   --secondary-col: #219ebc;
   --tertiary-col: #8ecae6;
@@ -11,7 +12,7 @@
   --tertiary-col: #9e379f;
   --fourth-col: #e86af0;
   --fifth-col: #7bb3ff;
-  --shadow: #334953;
+  --shadow: rgba(45, 45, 45);
   --border-col: rgba(35, 33, 33, 0.739);
   display: flex;
   flex-direction: column;
@@ -20,14 +21,114 @@
   justify-content: center;
   align-items: center;
 }
+
 main {
   display: flex;
   width: 100%;
   height: 100%;
   justify-content: center;
   align-items: center;
-  padding: 0.5em;
 }
+
+/* STYLING FOR THE START/STOP BUTTON IN WORKOUTS */
+.start-btn, .stop-btn {
+  padding-inline: 1rem;
+  /* border: solid grey 1px; */
+  border-radius: 3px;
+  box-shadow: 1px 1px 2px var(--shadow);
+  height: 5rem;
+  width: 10rem;
+  font-weight: 700;
+  height: 2em;
+  padding: 0.5em;
+  background: linear-gradient(45deg, var(--fourth-col), var(--tertiary-col));
+  transition: all 500ms;
+}
+
+.start-btn {
+  --glow-col: var(--fifth-col)
+}
+
+.stop-btn {
+  --glow-col: var(--fourth-col)
+}
+
+.start-btn:hover, .stop-btn:hover {
+  background: linear-gradient(135deg, var(--fourth-col), var(--tertiary-col));
+  filter: brightness(90%);
+}
+
+.start-btn:active, .stop-btn:active {
+  filter: brightness(75%)
+}
+
+.glow-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;  
+  align-items: center;
+}
+
+.animated-border-box, .animated-border-box-glow{
+  /* max-height: 200px;
+  max-width: 250px; */
+  height: min-content;
+  width: min-content;
+  position: absolute;
+  overflow: hidden; 
+  z-index: 0;
+  /* Border Radius */
+	border-radius: 10px;
+  padding:5px;
+}
+
+.animated-border-box-glow{
+  overflow: hidden;
+  /* Glow Blur */
+  filter: blur(20px);
+}
+
+.animated-border-box:before, .animated-border-box-glow:before {
+  content: '';
+  z-index: -2;
+  text-align: center;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) rotate(0deg);
+  position: absolute;
+	width: 99999px;
+	height: 99999px;
+	background-repeat: no-repeat;
+	background-position: 0 0;
+  /*border color, change middle color*/
+	background-image: conic-gradient(rgba(0,0,0,0), red, rgba(0,0,0,0) 25%);
+  /* change speed here */
+	animation: rotate 2s linear infinite;
+}
+
+.animated-border-box:after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+  /* border width */
+	left: 5px;
+	top: 5px;
+  /* double the px from the border width left */
+	width: calc(100% - 10px);
+	height: calc(100% - 10px);
+  /*bg color*/
+	background: #292a2e;
+  /*box border radius*/
+	border-radius: 7px;
+}
+
+@keyframes rotate {
+  100% {
+    transform: translate(-50%, -50%) rotate(1turn);
+  }
+}
+
 
 /* 
 COLOR SCHEMES
@@ -36,7 +137,7 @@ OG
   --primary-col: #023047;
   --secondary-col: #219ebc;
   --tertiary-col: #8ecae6;
-  --fourth-col: #ffb703;
+  --fourth-col: #ffb703;a
   --fifth-col: #fb8500;
 
 Cappucino

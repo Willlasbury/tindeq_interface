@@ -5,6 +5,7 @@ import "./App.css";
 
 import MaxPull from "./components/workouts/MaxPull";
 import ControlBoard from "./components/ControlBoard";
+import StartStopBtn from "./components/buttons/tindeqBtns/StartStopBtn";
 import RPEWorkout from "./components/workouts/RPE";
 import Layout from "./components/Layout";
 import ChooseWorkout from "./components/workouts/ChooseWorkout";
@@ -15,8 +16,10 @@ export default function () {
   const [sendChar, setSendChar] = useState(undefined);
   const [weight, setWeight] = useState(0);
   const [measuring, setMeasuring] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [connected, setConnected] = useState(false);
+
+  const [loggedIn, setLoggedIn] = useState(true);
+  const [connected, setConnected] = useState(true);
+
   const [showFingerForm, setShowFingerForm] = useState(false);
   const [workout, setWorkout] = useState(undefined);
   const [styleData, setStyleData] = useState({
@@ -140,13 +143,25 @@ export default function () {
             weight={weight}
             measuring={measuring}
             setStyleData={setStyleData}
-          />
+          >
+            <StartStopBtn
+              sendChar={sendChar}
+              measuring={measuring}
+              setMeasuring={setMeasuring}
+            />
+          </RPEWorkout>
           <MaxPull
             key="max"
             name="Max Pull"
             weight={weight}
             styleData={styleData}
-          />
+          >
+            <StartStopBtn
+              sendChar={sendChar}
+              measuring={measuring}
+              setMeasuring={setMeasuring}
+            />
+          </MaxPull>
         </ChooseWorkout>
       </main>
     </>

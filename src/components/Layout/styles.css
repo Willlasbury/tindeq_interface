@@ -83,8 +83,3 @@
 .control-board-btn:active {
     background-color: var(--secondary-col);
 } 
-
-#graph {
-    width: 45%;
-    height: 100%;
-}
