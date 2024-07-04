@@ -14,6 +14,7 @@
   --fifth-col: #7bb3ff;
   --shadow: rgba(45, 45, 45);
   --border-col: rgba(35, 33, 33, 0.739);
+  --gradient: linear-gradient(45deg, var(--fourth-col), var(--tertiary-col));
   display: flex;
   flex-direction: column;
   background-color: var(--primary-col);
@@ -28,6 +29,25 @@ main {
   height: 100%;
   justify-content: center;
   align-items: center;
+}
+
+header {
+  display: flex;
+  width:100%;
+  align-items: flex-start;
+}
+
+.back-btn {
+  margin: 1rem;
+  width:4rem;
+  height:2rem;
+  border: solid 1px var(--shadow);
+  border-radius: 5px;
+  background-image: var(--gradient);
+}
+
+.back-btn:active {
+  box-shadow: inset 1px 1px 5px var(--shadow);
 }
 
 /* STYLING FOR THE START/STOP BUTTON IN WORKOUTS */

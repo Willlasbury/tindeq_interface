@@ -21,7 +21,7 @@ export default function () {
   const [connected, setConnected] = useState(true);
 
   const [showFingerForm, setShowFingerForm] = useState(false);
-  const [workout, setWorkout] = useState(undefined);
+  const [workout, setWorkout] = useState('rpe');
   const [styleData, setStyleData] = useState({
     hand: "left",
     edge: 20,
@@ -126,6 +126,7 @@ export default function () {
       <header>
         {workout && (
           <button
+            className="back-btn"
             onClick={() => {
               setWorkout(undefined);
             }}
