@@ -1,7 +1,5 @@
 import "./styles.css";
 
-import { useState } from "react";
-
 export default function ChooseWorkout({ workout, setWorkout, children }) {
   const map = {};
   children.map((k) => (map[k.key] = k));
@@ -17,14 +15,14 @@ export default function ChooseWorkout({ workout, setWorkout, children }) {
         key={child.key}
         value={child.key}
         onClick={handleClick}
-      >{`${child.props.name}`}</button>
+      >{`${child.key}`}</button>
     );
   };
   return (
     <>
-    <section id={workout?'workout-container':'workout-list'}>
+      <section id={workout ? "workout-container" : "workout-list"}>
         {workout ? map[workout] : children.map((v) => createButtons(v))}
-    </section>
+      </section>
     </>
   );
 }

@@ -31,10 +31,12 @@ main {
   align-items: center;
 }
 
-header {
+.nav-head {
   display: flex;
-  width:100%;
-  align-items: flex-start;
+  width:100vw;
+  flex-flow: row;
+  justify-content: space-between;
+
 }
 
 .back-btn {
@@ -44,6 +46,7 @@ header {
   border: solid 1px var(--shadow);
   border-radius: 5px;
   background-image: var(--gradient);
+  transition: all .1s
 }
 
 .back-btn:active {
@@ -57,9 +60,8 @@ header {
   border-radius: 3px;
   box-shadow: 1px 1px 2px var(--shadow);
   height: 5rem;
-  width: 10rem;
+  width: 20rem;
   font-weight: 700;
-  height: 2em;
   padding: 0.5em;
   background: linear-gradient(45deg, var(--fourth-col), var(--tertiary-col));
   transition: all 500ms;
@@ -149,7 +151,12 @@ header {
   }
 }
 
+/* END OF START/STOP STYLING */
 
+.settings-img {
+  width: 2rem;
+  margin-right: 1rem;
+}
 /* 
 COLOR SCHEMES
 

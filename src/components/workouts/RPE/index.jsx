@@ -8,17 +8,17 @@ export default function RPEWorkout({
   weight,
   measuring,
   setStyleData,
-  children
+  pullTime,
+  restTime,
+  children,
+  RPE,
+  maxPull,
+  setMaxPull,
+  bothHands,
+  resting
+
 }) {
-  const [RPE, setRPE] = useState(8);
-  const [maxPull, setMaxPull] = useState(3);
-  // const [handsMax, setHandsMax] = useState({left:{},right:{}});
-  const [bothHands, setBothHands] = useState(false);
-  const [pullTime, setPullTime] = useState(7);
-  const [restTime, setRestTime] = useState(10);
-
-  const [resting, setResting] = useState(false);
-
+  
   // place holder weight while I build out db
   const { time, setTime, isRunning, setIsRunning, start, stop } = useTimer(pullTime);
 

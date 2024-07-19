@@ -6,7 +6,6 @@ import LoginModal from "../login/modal";
 import ConnectTindeqModal from "../connectTindeq/modal";
 
 import LogOut from "../buttons/server/logout";
-import { useState } from "react";
 
 export default function Layout({
   connected,

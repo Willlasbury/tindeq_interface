@@ -1,18 +1,18 @@
 "use client";
 import { useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 
 import MaxPull from "./components/workouts/MaxPull";
-import ControlBoard from "./components/ControlBoard";
 import StartStopBtn from "./components/buttons/tindeqBtns/StartStopBtn";
 import RPEWorkout from "./components/workouts/RPE";
-import Layout from "./components/Layout";
 import ChooseWorkout from "./components/workouts/ChooseWorkout";
 import LoginModal from "./components/login/modal";
 import ConnectTindeqModal from "./components/connectTindeq/modal";
+import Settings from "./components/Settings";
+import FingerForm from "./components/workouts/FingerForm/form";
+import TimerSettings from "./components/Settings/Timer";
 
-export default function () {
+export default function App() {
   const [sendChar, setSendChar] = useState(undefined);
   const [weight, setWeight] = useState(0);
   const [measuring, setMeasuring] = useState(false);
@@ -20,8 +20,17 @@ export default function () {
   const [loggedIn, setLoggedIn] = useState(true);
   const [connected, setConnected] = useState(true);
 
-  const [showFingerForm, setShowFingerForm] = useState(false);
-  const [workout, setWorkout] = useState('rpe');
+  const [workout, setWorkout] = useState("rpe");
+  const [pullTime, setPullTime] = useState(7);
+  const [restTime, setRestTime] = useState(10);
+  const [RPE, setRPE] = useState(8);
+  const [maxPull, setMaxPull] = useState(3);
+  const [bothHands, setBothHands] = useState(false);
+
+  const [resting, setResting] = useState(false);
+
+  const [displaySettings, setDisplaySettings] = useState(true);
+
   const [styleData, setStyleData] = useState({
     hand: "left",
     edge: 20,
@@ -33,81 +42,12 @@ export default function () {
   });
 
   window.onpopstate = (event) => {
-    console.log("event:", event);
+    event.preventDefault();
     setWorkout(undefined);
   };
 
   return (
     <>
-      {/* <Router>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Layout
-                connected={connected}
-                setConnected={setConnected}
-                setLoggedIn={setLoggedIn}
-                loggedIn={loggedIn}
-                setSendChar={setSendChar}
-                setWeight={setWeight}
-                styleData={styleData}
-                setStyleData={setStyleData}
-                showFingerForm={showFingerForm}
-                setShowFingerForm={setShowFingerForm}
-              />
-            }
-          >
-            <Route
-              path="rpe"
-              element={
-                <RPEWorkout
-                  weight={weight}
-                  measuring={measuring}
-                  setStyleData={setStyleData}
-                  controlComp={
-                    <ControlBoard
-                      sendChar={sendChar}
-                      measuring={measuring}
-                      setConnected={setConnected}
-                      setMeasuring={setMeasuring}
-                      showFingerForm={showFingerForm}
-                      setShowFingerForm={setShowFingerForm}
-                    />
-                  }
-                />
-              }
-            />
-
-            <Route
-              path="max_pull"
-              element={
-                <MaxPull
-                  weight={weight}
-                  styleData={styleData}
-                  controlComp={
-                    <ControlBoard
-                      sendChar={sendChar}
-                      measuring={measuring}
-                      setConnected={setConnected}
-                      setMeasuring={setMeasuring}
-                      showFingerForm={showFingerForm}
-                      setShowFingerForm={setShowFingerForm}
-                    />
-                  }
-                />
-              }
-            />
-            <Route
-            path="*"
-            element={
-              <div>Sorry, We can not find this endpoint at the moment</div>
-            }
-            />
-          </Route>
-        </Routes>
-      </Router> */}
-
       {!loggedIn && <LoginModal setLoggedIn={setLoggedIn} />}
       {loggedIn && !connected && (
         <ConnectTindeqModal
@@ -116,15 +56,9 @@ export default function () {
           setWeight={setWeight}
         />
       )}
-      {showFingerForm && (
-        <FingerFormModal
-          styleData={styleData}
-          setStyleData={setStyleData}
-          setShowFingerForm={setShowFingerForm}
-        />
-      )}
-      <header>
-        {workout && (
+
+      {workout && (
+        <header className="nav-head">
           <button
             className="back-btn"
             onClick={() => {
@@ -133,17 +67,41 @@ export default function () {
           >
             back
           </button>
-        )}
-      </header>
-
+          <img
+            onClick={() => {
+              setDisplaySettings(!displaySettings);
+            }}
+            className="settings-img"
+            src="src/icons/gear.svg"
+          />
+        </header>
+      )}
+      {displaySettings && (
+        <Settings
+          workout={workout}
+          setDisplaySettings={setDisplaySettings}
+          setPullTime={setPullTime}
+          setRestTime={setRestTime}
+        >
+          <FingerForm
+            key={"FF"}
+            styleData={styleData}
+            setStyleData={setStyleData}
+          />
+          <TimerSettings pullTime={pullTime} restTime={restTime} />
+        </Settings>
+      )}
       <main>
         <ChooseWorkout workout={workout} setWorkout={setWorkout}>
           <RPEWorkout
-            key="rpe"
-            name="RPE"
+            key="RPE"
             weight={weight}
             measuring={measuring}
             setStyleData={setStyleData}
+            pullTime={pullTime}
+            restTime={restTime}
+            maxPull={maxPull}
+            setMaxPull={setMaxPull}
           >
             <StartStopBtn
               sendChar={sendChar}
@@ -151,12 +109,7 @@ export default function () {
               setMeasuring={setMeasuring}
             />
           </RPEWorkout>
-          <MaxPull
-            key="max"
-            name="Max Pull"
-            weight={weight}
-            styleData={styleData}
-          >
+          <MaxPull key="Max Pull" weight={weight} styleData={styleData}>
             <StartStopBtn
               sendChar={sendChar}
               measuring={measuring}

@@ -3,7 +3,6 @@ import "./styles.css";
 import FingerCheckBox from "../FingerCheckBox";
 
 export default function FingerForm({ styleData, setStyleData }) {
-
   const handleChange = (event) => {
     setStyleData((prev) => {
       const { name, value, checked } = event.target;
@@ -75,30 +74,31 @@ export default function FingerForm({ styleData, setStyleData }) {
           </select>
         </label>
       </section>
-
-      <ul id="finger-options">
+      <section>
         <h3 id="finger-options-header">Fingers: </h3>
-        <FingerCheckBox
-          finger="index"
-          handleChange={handleChange}
-          styleData={styleData}
-        />
-        <FingerCheckBox
-          finger="middle"
-          handleChange={handleChange}
-          styleData={styleData}
-        />
-        <FingerCheckBox
-          finger="ring"
-          handleChange={handleChange}
-          styleData={styleData}
-        />
-        <FingerCheckBox
-          finger="pinky"
-          handleChange={handleChange}
-          styleData={styleData}
-        />
-      </ul>
+        <ul id="finger-options">
+          <FingerCheckBox
+            finger="index"
+            handleChange={handleChange}
+            styleData={styleData}
+          />
+          <FingerCheckBox
+            finger="middle"
+            handleChange={handleChange}
+            styleData={styleData}
+          />
+          <FingerCheckBox
+            finger="ring"
+            handleChange={handleChange}
+            styleData={styleData}
+          />
+          <FingerCheckBox
+            finger="pinky"
+            handleChange={handleChange}
+            styleData={styleData}
+          />
+        </ul>
+      </section>
     </form>
     //  <button onClick={func}>check form data</button>
     //  </section>
