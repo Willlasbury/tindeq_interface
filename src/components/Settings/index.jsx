@@ -1,7 +1,7 @@
 import "./styles.css";
 import { useState } from "react";
 
-export default function Settings({ children, workout, setDisplaySettings }) {
+export default function Settings({ children, workout, setDisplaySettings, RPE, setRPE }) {
 
   const [toDisplay, setToDisplay] = useState("Grip");
 

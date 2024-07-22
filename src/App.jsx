@@ -82,6 +82,8 @@ export default function App() {
           setDisplaySettings={setDisplaySettings}
           setPullTime={setPullTime}
           setRestTime={setRestTime}
+          RPE={RPE}
+          setRPE={setRPE}
         >
           <FingerForm
             key={"FF"}
@@ -102,6 +104,10 @@ export default function App() {
             restTime={restTime}
             maxPull={maxPull}
             setMaxPull={setMaxPull}
+            bothHands={bothHands}
+            setBothHands={setBothHands}
+            resting={resting}
+            setResting={setResting}
           >
             <StartStopBtn
               sendChar={sendChar}

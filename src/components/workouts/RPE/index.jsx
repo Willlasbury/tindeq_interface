@@ -15,25 +15,26 @@ export default function RPEWorkout({
   maxPull,
   setMaxPull,
   bothHands,
-  resting
-
+  setBothHands,
+  resting,
+  setResting
 }) {
-  
   // place holder weight while I build out db
-  const { time, setTime, isRunning, setIsRunning, start, stop } = useTimer(pullTime);
+  const { time, setTime, isRunning, setIsRunning, start, stop } =
+    useTimer(pullTime);
 
   useEffect(() => {
     if (maxPull == undefined) {
       const getMaxPull = async () => {
-        const data = await weightApi.getUsersMaxPull()
+        const data = await weightApi.getUsersMaxPull();
         if (data instanceof Error) {
-          setMaxPull(100)
+          setMaxPull(100);
         } else {
-          setMaxPull(data.weight_kg)
-          setStyleData(data.style)
+          setMaxPull(data.weight_kg);
+          setStyleData(data.style);
         }
-      }
-      getMaxPull()
+      };
+      getMaxPull();
     }
 
     if (maxPull != undefined && !isRunning && weight > range.minRange) {
@@ -42,20 +43,20 @@ export default function RPEWorkout({
     }
 
     if (time < 0) {
-      stop()
+      stop();
       if (!resting) {
         if (bothHands) {
-          setResting(true)
-          setTime(restTime)
-          start()
+          setResting(true);
+          setTime(restTime);
+          start();
         } else {
-          setTime(pullTime)
-          setBothHands(true)
+          setTime(pullTime);
+          setBothHands(true);
         }
       } else {
-        setBothHands(false)
-        setResting(false)
-        setTime(pullTime)
+        setBothHands(false);
+        setResting(false);
+        setTime(pullTime);
       }
     }
   }, [time, measuring, weight]);
@@ -72,7 +73,7 @@ export default function RPEWorkout({
   function reset() {
     setResting(false);
     setTime(pullTime);
-    setBothHands(false)
+    setBothHands(false);
     stop();
   }
 
@@ -102,7 +103,11 @@ export default function RPEWorkout({
               onChange={(e) => setRPE(Number(e.target.value))}
             >
               {rpes.map((val) => {
-                return <option key = {val} value={val}>{val}</option>;
+                return (
+                  <option key={val} value={val}>
+                    {val}
+                  </option>
+                );
               })}
             </select>
           </label>
@@ -124,7 +129,7 @@ export default function RPEWorkout({
         reference={{ maxPull, range }}
         referenceType={"area"}
       />
-       {children}
+      {children}
     </>
   );
 }
