@@ -10,7 +10,7 @@ import LoginModal from "./components/login/modal";
 import ConnectTindeqModal from "./components/connectTindeq/modal";
 import Settings from "./components/Settings";
 import FingerForm from "./components/workouts/FingerForm/form";
-import TimerSettings from "./components/Settings/Timer";
+import TimerSettings from "./components/Settings/PullSettings";
 
 export default function App() {
   const [sendChar, setSendChar] = useState(undefined);
@@ -20,11 +20,11 @@ export default function App() {
   const [loggedIn, setLoggedIn] = useState(true);
   const [connected, setConnected] = useState(true);
 
-  const [workout, setWorkout] = useState("rpe");
+  const [workout, setWorkout] = useState("RPE");
   const [pullTime, setPullTime] = useState(7);
-  const [restTime, setRestTime] = useState(10);
+  const [restTime, setRestTime] = useState(180);
   const [RPE, setRPE] = useState(8);
-  const [maxPull, setMaxPull] = useState(3);
+  const [maxPull, setMaxPull] = useState(100);
   const [bothHands, setBothHands] = useState(false);
 
   const [resting, setResting] = useState(false);
@@ -90,7 +90,17 @@ export default function App() {
             styleData={styleData}
             setStyleData={setStyleData}
           />
-          <TimerSettings pullTime={pullTime} restTime={restTime} />
+          <TimerSettings
+            key={"TS"}
+            maxPull={maxPull}
+            RPE={RPE}
+            setRPE={setRPE}
+
+            pullTime={pullTime}
+            setPullTime={setPullTime}
+            restTime={restTime}
+            setRestTime={setRestTime}
+          />
         </Settings>
       )}
       <main>

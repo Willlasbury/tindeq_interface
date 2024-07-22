@@ -3,12 +3,11 @@ import { useState } from "react";
 
 export default function Settings({ children, workout, setDisplaySettings, RPE, setRPE }) {
 
-  const [toDisplay, setToDisplay] = useState("Grip");
+  const [toDisplay, setToDisplay] = useState("RPE");
 
   const handleClick = (e) => {
     setToDisplay(e.target.innerText);
   };
-
   return (
     <div className="settings-background">
       <div className="settings-wrapper">
@@ -23,16 +22,12 @@ export default function Settings({ children, workout, setDisplaySettings, RPE, s
         <nav>
           <ul>
             <li onClick={handleClick}>Grip</li>
-            {workout === "RPE" && (
-              <>
-                <li onClick={handleClick}>RPE</li>
-                <li onClick={handleClick}>Rest</li>
-              </>
-            )}
+            <li onClick={handleClick}>RPE</li>
           </ul>
         </nav>
+
         {toDisplay === "Grip" && children.filter((el) => el.key === "FF")}
-        {toDisplay === "RPE" && children.filter((el) => el.key === "RPE")}
+        {toDisplay === "RPE" && children.filter((el) => el.key === "TS")}
       </div>
     </div>
   );
