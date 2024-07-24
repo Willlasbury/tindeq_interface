@@ -1,10 +1,11 @@
 import './styles.css'
 
 export default function TimerSettings ({maxPull, RPE, setRPE, pullTime, setPullTime, restTime, setRestTime}) {
-
+  console.log("pullTime:", pullTime)
+  
     return (
         <>
-        <label className="userSetVals" htmlFor="userSetMaxPull">
+        {/* <label className="userSetVals" htmlFor="userSetMaxPull">
             Set Max:
             <input
               htmlFor="userSetMaxPull"
@@ -19,7 +20,7 @@ export default function TimerSettings ({maxPull, RPE, setRPE, pullTime, setPullT
               defaultValue={RPE}
               onChange={(e) => setRPE(Number(e.target.value))}
             ></input>
-          </label>
+          </label> */}
         <label className="userSetVals" htmlFor="userSetMaxPull">
             Pull Time:
             <input

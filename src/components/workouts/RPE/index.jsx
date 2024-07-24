@@ -3,25 +3,29 @@ import { useEffect, useState } from "react";
 import BarGraph from "../../graphs/GraphCurrent";
 import useTimer from "../../../utils/workout/useTimer";
 import weightApi from "../../../utils/server/crud";
+import TimeDisplay from "../../TimeDisplay";
 
 export default function RPEWorkout({
   weight,
+  RPE,
+  setRPE,
   measuring,
+  stop,
   setStyleData,
   pullTime,
   restTime,
+  setTime,
   children,
-  RPE,
   maxPull,
   setMaxPull,
   bothHands,
   setBothHands,
   resting,
-  setResting
+  setResting,
 }) {
   // place holder weight while I build out db
-  const { time, setTime, isRunning, setIsRunning, start, stop } =
-    useTimer(pullTime);
+  // const { time, setTime, isRunning, setIsRunning, start, stop } =
+  //   useTimer(pullTime);
 
   useEffect(() => {
     if (maxPull == undefined) {
@@ -36,39 +40,35 @@ export default function RPEWorkout({
       };
       getMaxPull();
     }
+  }, [weight]);
 
-    if (maxPull != undefined && !isRunning && weight > range.minRange) {
-      setResting(false);
-      start();
-    }
+  //   if (time < 0) {
+  //     stop();
+  //     if (!resting) {
+  //       if (bothHands) {
+  //         setResting(true);
+  //         setTime(restTime);
+  //         start();
+  //       } else {
+  //         setTime(pullTime);
+  //         setBothHands(true);
+  //       }
+  //     } else {
+  //       setBothHands(false);
+  //       setResting(false);
+  //       setTime(pullTime);
+  //     }
+  //   }
+  // }, [time, measuring, weight]);
 
-    if (time < 0) {
-      stop();
-      if (!resting) {
-        if (bothHands) {
-          setResting(true);
-          setTime(restTime);
-          start();
-        } else {
-          setTime(pullTime);
-          setBothHands(true);
-        }
-      } else {
-        setBothHands(false);
-        setResting(false);
-        setTime(pullTime);
-      }
-    }
-  }, [time, measuring, weight]);
-
-  const formatTime = (seconds) => {
-    let minutes = Math.floor(seconds / 60);
-    seconds -= minutes * 60;
-    if (seconds < 10) {
-      seconds = `0${seconds}`;
-    }
-    return `${minutes} : ${seconds}`;
-  };
+  // const formatTime = (seconds) => {
+  //   let minutes = Math.floor(seconds / 60);
+  //   seconds -= minutes * 60;
+  //   if (seconds < 10) {
+  //     seconds = `0${seconds}`;
+  //   }
+  //   return `${minutes} : ${seconds}`;
+  // };
 
   function reset() {
     setResting(false);
@@ -79,8 +79,8 @@ export default function RPEWorkout({
 
   const workingWeight = ((RPE / 10) * maxPull) >> 0;
   const range = {
-    maxRange: workingWeight * 0.05 + workingWeight,
-    minRange: workingWeight - workingWeight * 0.05,
+    maxRange: workingWeight * 0.1 + workingWeight,
+    minRange: workingWeight,
   };
   const rpes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   return (
@@ -112,11 +112,12 @@ export default function RPEWorkout({
             </select>
           </label>
         </li>
-        <li id="timer-li">
+        {/* <TimeDisplay resting={resting}/> */}
+        {/* <li id="timer-li">
           <h4 id="timer">
             {resting ? formatTime(time) : `Time left: ${time}`}
           </h4>
-        </li>
+        </li> */}
         <li className="control-li">
           <button className="control-board-btn" onClick={() => reset()}>
             {" "}

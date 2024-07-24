@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 import MaxPull from "./components/workouts/MaxPull";
@@ -11,6 +11,8 @@ import ConnectTindeqModal from "./components/connectTindeq/modal";
 import Settings from "./components/Settings";
 import FingerForm from "./components/workouts/FingerForm/form";
 import TimerSettings from "./components/Settings/PullSettings";
+import TimeDisplay from "./components/TimeDisplay";
+import useTimer from "./utils/workout/useTimer";
 
 export default function App() {
   const [sendChar, setSendChar] = useState(undefined);
@@ -24,12 +26,12 @@ export default function App() {
   const [pullTime, setPullTime] = useState(7);
   const [restTime, setRestTime] = useState(180);
   const [RPE, setRPE] = useState(8);
-  const [maxPull, setMaxPull] = useState(100);
+  const [maxPull, setMaxPull] = useState(3);
   const [bothHands, setBothHands] = useState(false);
 
   const [resting, setResting] = useState(false);
 
-  const [displaySettings, setDisplaySettings] = useState(true);
+  const [displaySettings, setDisplaySettings] = useState(false);
 
   const [styleData, setStyleData] = useState({
     hand: "left",
@@ -40,6 +42,8 @@ export default function App() {
     ring: true,
     pinky: true,
   });
+  
+  const { time, setTime, isRunning, start, stop } = useTimer(pullTime);
 
   window.onpopstate = (event) => {
     event.preventDefault();
@@ -78,12 +82,7 @@ export default function App() {
       )}
       {displaySettings && (
         <Settings
-          workout={workout}
           setDisplaySettings={setDisplaySettings}
-          setPullTime={setPullTime}
-          setRestTime={setRestTime}
-          RPE={RPE}
-          setRPE={setRPE}
         >
           <FingerForm
             key={"FF"}
@@ -92,18 +91,39 @@ export default function App() {
           />
           <TimerSettings
             key={"TS"}
-            maxPull={maxPull}
-            RPE={RPE}
-            setRPE={setRPE}
-
+            // maxPull={maxPull}
+            // RPE={RPE}
+            // setRPE={setRPE}
             pullTime={pullTime}
             setPullTime={setPullTime}
             restTime={restTime}
             setRestTime={setRestTime}
+            // time={time}
+            // setTime={setTime}
           />
         </Settings>
       )}
       <main>
+        {workout != "Max Pull" && workout != undefined && (
+          <TimeDisplay
+            time={time}
+            setTime={setTime}
+            restTime={restTime}
+            RPE={RPE}
+            isRunning={isRunning}
+            resting={resting}
+            setResting={setResting}
+            pullTime={pullTime}
+            measuring={measuring}
+            weight={weight}
+            maxPull={maxPull}
+            setMaxPull={setMaxPull}
+            bothHands={bothHands}
+            setBothHands={setBothHands}
+            start={start}
+            stop={stop}
+          />
+        )}
         <ChooseWorkout workout={workout} setWorkout={setWorkout}>
           <RPEWorkout
             key="RPE"
@@ -112,12 +132,16 @@ export default function App() {
             setStyleData={setStyleData}
             pullTime={pullTime}
             restTime={restTime}
+            stop={stop}
             maxPull={maxPull}
             setMaxPull={setMaxPull}
             bothHands={bothHands}
             setBothHands={setBothHands}
             resting={resting}
             setResting={setResting}
+            setTime={setTime}
+            RPE={RPE}
+            setRPE={setRPE}
           >
             <StartStopBtn
               sendChar={sendChar}

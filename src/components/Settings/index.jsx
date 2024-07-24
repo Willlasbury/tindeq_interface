@@ -1,9 +1,9 @@
 import "./styles.css";
 import { useState } from "react";
 
-export default function Settings({ children, workout, setDisplaySettings, RPE, setRPE }) {
+export default function Settings({ children, setDisplaySettings, RPE, setRPE }) {
 
-  const [toDisplay, setToDisplay] = useState("RPE");
+  const [toDisplay, setToDisplay] = useState("Grip");
 
   const handleClick = (e) => {
     setToDisplay(e.target.innerText);
@@ -22,12 +22,12 @@ export default function Settings({ children, workout, setDisplaySettings, RPE, s
         <nav>
           <ul>
             <li onClick={handleClick}>Grip</li>
-            <li onClick={handleClick}>RPE</li>
+            <li onClick={handleClick}>Time</li>
           </ul>
         </nav>
 
         {toDisplay === "Grip" && children.filter((el) => el.key === "FF")}
-        {toDisplay === "RPE" && children.filter((el) => el.key === "TS")}
+        {toDisplay === "Time" && children.filter((el) => el.key === "TS")}
       </div>
     </div>
   );
