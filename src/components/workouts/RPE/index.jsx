@@ -81,7 +81,7 @@ export default function RPEWorkout({
             Set RPE:
             <select
               htmlFor="userSetMaxPull"
-              defaultValue={maxPull}
+              defaultValue={RPE}
               onChange={(e) => setRPE(Number(e.target.value))}
             >
               {rpes.map((val) => {
