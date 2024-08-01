@@ -1,9 +1,8 @@
 import "./styles.css";
 import { useEffect, useState } from "react";
 import BarGraph from "../../graphs/GraphCurrent";
-import useTimer from "../../../utils/workout/useTimer";
 import weightApi from "../../../utils/server/crud";
-import TimeDisplay from "../../TimeDisplay";
+import ChangeHand from "../ChangeHand";
 
 export default function RPEWorkout({
   weight,
@@ -18,7 +17,10 @@ export default function RPEWorkout({
   setMaxPull,
   setBothHands,
   setResting,
+  hand,
+  setHand,
 }) {
+
   useEffect(() => {
     if (maxPull == undefined) {
       const getMaxPull = async () => {
@@ -47,8 +49,10 @@ export default function RPEWorkout({
     minRange: workingWeight,
   };
   const rpes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
   return (
     <>
+      <ChangeHand hand={hand} setHand={setHand} setStyleData={setStyleData}/>
       <BarGraph
         weight={weight}
         reference={{ maxPull, range }}

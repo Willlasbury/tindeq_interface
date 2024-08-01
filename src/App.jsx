@@ -21,11 +21,11 @@ export default function App() {
   const [measuring, setMeasuring] = useState(false);
 
   const [loggedIn, setLoggedIn] = useState(true);
-  const [connected, setConnected] = useState(false);
+  const [connected, setConnected] = useState(true);
 
   const [workout, setWorkout] = useState("RPE");
   const [pullTime, setPullTime] = useState(7);
-  const [restTime, setRestTime] = useState(180);
+  const [restTime, setRestTime] = useState(7);
   const [RPE, setRPE] = useState(8);
   const [maxPull, setMaxPull] = useState(3);
   const [bothHands, setBothHands] = useState(false);
@@ -44,13 +44,14 @@ export default function App() {
     ring: true,
     pinky: true,
   });
-  
+  console.log("styleData:", styleData)
   const { time, setTime, isRunning, setIsRunning, start, stop } = useTimer(pullTime);
 
   window.onpopstate = (event) => {
     event.preventDefault();
     setWorkout(undefined);
   };
+
   return (
     <>
       {!loggedIn && <LoginModal setLoggedIn={setLoggedIn} />}
@@ -89,6 +90,8 @@ export default function App() {
             key="FF"
             styleData={styleData}
             setStyleData={setStyleData}
+            hand={hand}
+            setHand={setHand}
           />
           <TimerSettings
             key="TS"
@@ -140,6 +143,8 @@ export default function App() {
             setTime={setTime}
             RPE={RPE}
             setRPE={setRPE}
+            hand={hand}
+            setHand={setHand}
           >
             <StartStopBtn
               sendChar={sendChar}

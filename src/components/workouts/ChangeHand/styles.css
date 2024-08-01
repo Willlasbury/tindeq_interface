@@ -1,0 +1,21 @@
+#hand-change {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+#hand-change button {
+    font-size: xx-large;
+    border: solid 2px black;
+    background-color: var(--fourth-col);
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+}
+
+#hand-change button:focus {
+    background-color: var(--tertiary-col);
+    border: solid 2px white;
+    font-weight: 900;
+}
