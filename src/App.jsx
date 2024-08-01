@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./App.css";
 
 import MaxPull from "./components/workouts/MaxPull";
@@ -13,6 +13,7 @@ import FingerForm from "./components/workouts/FingerForm/form";
 import TimerSettings from "./components/Settings/PullSettings";
 import TimeDisplay from "./components/TimeDisplay";
 import useTimer from "./utils/workout/useTimer";
+import whichHand from "./utils/workout/whichHand";
 
 export default function App() {
   const [sendChar, setSendChar] = useState(undefined);
@@ -20,7 +21,7 @@ export default function App() {
   const [measuring, setMeasuring] = useState(false);
 
   const [loggedIn, setLoggedIn] = useState(true);
-  const [connected, setConnected] = useState(true);
+  const [connected, setConnected] = useState(false);
 
   const [workout, setWorkout] = useState("RPE");
   const [pullTime, setPullTime] = useState(7);
@@ -28,7 +29,8 @@ export default function App() {
   const [RPE, setRPE] = useState(8);
   const [maxPull, setMaxPull] = useState(3);
   const [bothHands, setBothHands] = useState(false);
-
+  const [hand, setHand, swapHand] = whichHand();
+  
   const [resting, setResting] = useState(false);
 
   const [displaySettings, setDisplaySettings] = useState(false);
@@ -43,13 +45,12 @@ export default function App() {
     pinky: true,
   });
   
-  const { time, setTime, isRunning, start, stop } = useTimer(pullTime);
+  const { time, setTime, isRunning, setIsRunning, start, stop } = useTimer(pullTime);
 
   window.onpopstate = (event) => {
     event.preventDefault();
     setWorkout(undefined);
   };
-
   return (
     <>
       {!loggedIn && <LoginModal setLoggedIn={setLoggedIn} />}
@@ -85,21 +86,16 @@ export default function App() {
           setDisplaySettings={setDisplaySettings}
         >
           <FingerForm
-            key={"FF"}
+            key="FF"
             styleData={styleData}
             setStyleData={setStyleData}
           />
           <TimerSettings
-            key={"TS"}
-            // maxPull={maxPull}
-            // RPE={RPE}
-            // setRPE={setRPE}
+            key="TS"
             pullTime={pullTime}
             setPullTime={setPullTime}
             restTime={restTime}
             setRestTime={setRestTime}
-            // time={time}
-            // setTime={setTime}
           />
         </Settings>
       )}
@@ -111,6 +107,7 @@ export default function App() {
             restTime={restTime}
             RPE={RPE}
             isRunning={isRunning}
+            setIsRunning={setIsRunning}
             resting={resting}
             setResting={setResting}
             pullTime={pullTime}
@@ -120,6 +117,7 @@ export default function App() {
             setMaxPull={setMaxPull}
             bothHands={bothHands}
             setBothHands={setBothHands}
+            swapHand={swapHand}
             start={start}
             stop={stop}
           />

@@ -17,6 +17,8 @@ export default function TimeDisplay({
   stop,
   bothHands,
   setBothHands,
+  hand,
+  setHand,
 }) {
   const workingWeight = ((RPE / 10) * maxPull) >> 0;
   const range = {
@@ -30,20 +32,24 @@ export default function TimeDisplay({
     }
 
     if (time < 0) {
-      stop();
-      if (!resting) {
+      stop()
+      if (resting) {
+        // reset after rest
+        setBothHands(false);
+        setResting(false);
+        setTime(pullTime);
+      } else {
+        //  if you are still pulling
         if (bothHands) {
+          // begin rest after both pulls
           setResting(true);
           setTime(restTime);
           start();
         } else {
+          // start second hand pull
           setTime(pullTime);
           setBothHands(true);
         }
-      } else {
-        setBothHands(false);
-        setResting(false);
-        setTime(pullTime);
       }
     }
   }, [time, measuring, weight]);
@@ -58,6 +64,6 @@ export default function TimeDisplay({
   };
 
   return (
-      <h4 id="timer">{resting ? formatTime(time) : `Time left: ${time}`}</h4>
+    <h4 id="timer">{resting ? formatTime(time) : `Time left: ${time}`}</h4>
   );
 }
