@@ -9,24 +9,16 @@ export default function RPEWorkout({
   weight,
   RPE,
   setRPE,
-  measuring,
   stop,
   setStyleData,
   pullTime,
-  restTime,
   setTime,
   children,
   maxPull,
   setMaxPull,
-  bothHands,
   setBothHands,
-  resting,
   setResting,
 }) {
-  // place holder weight while I build out db
-  // const { time, setTime, isRunning, setIsRunning, start, stop } =
-  //   useTimer(pullTime);
-
   useEffect(() => {
     if (maxPull == undefined) {
       const getMaxPull = async () => {
@@ -41,34 +33,6 @@ export default function RPEWorkout({
       getMaxPull();
     }
   }, [weight]);
-
-  //   if (time < 0) {
-  //     stop();
-  //     if (!resting) {
-  //       if (bothHands) {
-  //         setResting(true);
-  //         setTime(restTime);
-  //         start();
-  //       } else {
-  //         setTime(pullTime);
-  //         setBothHands(true);
-  //       }
-  //     } else {
-  //       setBothHands(false);
-  //       setResting(false);
-  //       setTime(pullTime);
-  //     }
-  //   }
-  // }, [time, measuring, weight]);
-
-  // const formatTime = (seconds) => {
-  //   let minutes = Math.floor(seconds / 60);
-  //   seconds -= minutes * 60;
-  //   if (seconds < 10) {
-  //     seconds = `0${seconds}`;
-  //   }
-  //   return `${minutes} : ${seconds}`;
-  // };
 
   function reset() {
     setResting(false);
@@ -85,9 +49,20 @@ export default function RPEWorkout({
   const rpes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   return (
     <>
+      <BarGraph
+        weight={weight}
+        reference={{ maxPull, range }}
+        referenceType={"area"}
+      />
+      {children}
+
+      <button className="control-board-btn" onClick={() => reset()}>
+        reset
+      </button>
+
       <ul className="controls">
-        <li id="setMax">
-          <label className="userSetVals" htmlFor="userSetMaxPull">
+        <li id="set-max">
+          <label className="user-set-vals" htmlFor="userSetMaxPull">
             Set Max:
             <input
               htmlFor="userSetMaxPull"
@@ -95,7 +70,9 @@ export default function RPEWorkout({
               onChange={(e) => setMaxPull(Number(e.target.value))}
             ></input>
           </label>
-          <label className="userSetVals" htmlFor="userSetMaxPull">
+        </li>
+        <li id="set-rpe">
+          <label className="user-set-vals" htmlFor="userSetMaxPull">
             Set RPE:
             <select
               htmlFor="userSetMaxPull"
@@ -112,25 +89,7 @@ export default function RPEWorkout({
             </select>
           </label>
         </li>
-        {/* <TimeDisplay resting={resting}/> */}
-        {/* <li id="timer-li">
-          <h4 id="timer">
-            {resting ? formatTime(time) : `Time left: ${time}`}
-          </h4>
-        </li> */}
-        <li className="control-li">
-          <button className="control-board-btn" onClick={() => reset()}>
-            {" "}
-            reset
-          </button>
-        </li>
       </ul>
-      <BarGraph
-        weight={weight}
-        reference={{ maxPull, range }}
-        referenceType={"area"}
-      />
-      {children}
     </>
   );
 }

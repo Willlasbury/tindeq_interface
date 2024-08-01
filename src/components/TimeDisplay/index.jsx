@@ -16,14 +16,13 @@ export default function TimeDisplay({
   start,
   stop,
   bothHands,
-  setBothHands
+  setBothHands,
 }) {
-
-    const workingWeight = ((RPE / 10) * maxPull) >> 0;
-    const range = {
-      maxRange: workingWeight * 0.1 + workingWeight,
-      minRange: workingWeight,
-    };
+  const workingWeight = ((RPE / 10) * maxPull) >> 0;
+  const range = {
+    maxRange: workingWeight * 0.1 + workingWeight,
+    minRange: workingWeight,
+  };
   useEffect(() => {
     if (maxPull != undefined && !isRunning && weight > range.minRange) {
       setResting(false);
@@ -58,10 +57,7 @@ export default function TimeDisplay({
     return `${minutes} : ${seconds}`;
   };
 
-
   return (
-    <li id="timer-li">
       <h4 id="timer">{resting ? formatTime(time) : `Time left: ${time}`}</h4>
-    </li>
   );
 }
