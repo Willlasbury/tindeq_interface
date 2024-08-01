@@ -1,6 +1,6 @@
 import "./styles.css";
 
-export default function ChangeHand({ hand, setHand, setStyleData }) {
+export default function ChangeHand({ hand, setHand, setStyleData, measuring }) {
   const handleClick = (e) => {
     setHand(e.target.value);
     setStyleData((prev) => {
@@ -8,33 +8,28 @@ export default function ChangeHand({ hand, setHand, setStyleData }) {
     });
   };
 
-  switch (hand) {
-    case "left":
-      return (
-        <>
-          <section id="hand-change">
-            <button autoFocus value={"left"} onClick={handleClick}>
-              L
-            </button>
-            <button value={"right"} onClick={handleClick}>
-              R
-            </button>
-          </section>
-        </>
-      );
-
-    case "right":
-      return (
-        <>
-          <section id="hand-change">
-            <button autoFocus value={"left"} onClick={handleClick}>
-              L
-            </button>
-            <button value={"right"} onClick={handleClick}>
-              R
-            </button>
-          </section>
-        </>
-      );
-  }
+  return (
+    <>
+      <section id="hand-change">
+        <button
+          className={hand == "left" ? "active" : "not-active"}
+          disabled={measuring}
+          autoFocus={hand == "left"}
+          value={"left"}
+          onClick={handleClick}
+        >
+          L
+        </button>
+        <button
+          className={hand == "right" ? "active" : "not-active"}
+          disabled={measuring}
+          autoFocus={hand == "right"}
+          value={"right"}
+          onClick={handleClick}
+        >
+          R
+        </button>
+      </section>
+    </>
+  );
 }

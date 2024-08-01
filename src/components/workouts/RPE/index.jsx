@@ -6,6 +6,7 @@ import ChangeHand from "../ChangeHand";
 
 export default function RPEWorkout({
   weight,
+  measuring,
   RPE,
   setRPE,
   stop,
@@ -52,7 +53,7 @@ export default function RPEWorkout({
 
   return (
     <>
-      <ChangeHand hand={hand} setHand={setHand} setStyleData={setStyleData}/>
+      <ChangeHand hand={hand} setHand={setHand} setStyleData={setStyleData} measuring={measuring}/>
       <BarGraph
         weight={weight}
         reference={{ maxPull, range }}

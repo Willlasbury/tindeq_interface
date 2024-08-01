@@ -5,7 +5,10 @@
     width: 100%;
 }
 
-#hand-change button {
+
+
+
+.not-active, .active {
     font-size: xx-large;
     border: solid 2px black;
     background-color: var(--fourth-col);
@@ -14,8 +17,13 @@
     border-radius: 50%;
 }
 
-#hand-change button:focus {
+.active {
     background-color: var(--tertiary-col);
     border: solid 2px white;
     font-weight: 900;
+
+}
+
+.active:disabled, .not-active:disabled {
+    color:grey
 }
