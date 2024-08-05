@@ -1,14 +1,29 @@
 import "./styles.css";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 import usersApi from "../../../utils/server/users";
+import validateToken from "../../../utils/server/validateToken";
 
 export default function LoginForm({ setLoggedIn }) {
   const [inputs, setInputs] = useState({});
   const [signUp, setSignUp] = useState(false);
 
-  const nav = useNavigate()
+  // check if user has token local memory for login
+  useEffect(() => {
+    const checkToken = async () => {
+      const localAccessToken = localStorage.getItem("access_token");
+      const localRefreshToken = localStorage.getItem("refresh_token");
+      if (localAccessToken != null && localRefreshToken != null) {
+        const res = await validateToken(localAccessToken, localRefreshToken);
+        
+        if (res) {
+          setLoggedIn(true)
+        }
+
+      }
+    };
+    checkToken()
+  }, []);
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -29,26 +44,29 @@ export default function LoginForm({ setLoggedIn }) {
       }
     } else {
       const res = await usersApi.login(inputs.email, inputs.password);
-      
+
       if (res.session.access_token) {
         localStorage.setItem("access_token", res.session.access_token);
         localStorage.setItem("refresh_token", res.session.refresh_token);
         setLoggedIn(true);
       } else {
-        console.log('could not login in')
+        console.log("could not login in");
       }
-      
-      nav('/rpe')
     }
   }
-  
+
+  const continueGuest = () => {
+    setLoggedIn("guest");
+  };
+
   return (
     <section id="login-signup-wrapper">
+      <h2>Welcome</h2>
       <form id="login-form" onSubmit={login}>
         <div id="login-fields">
           {signUp && (
             <label className="login-label" name="login-label">
-              Username:{" "}
+              <span>Username</span>
               <input
                 className="login-input"
                 type="text"
@@ -59,7 +77,7 @@ export default function LoginForm({ setLoggedIn }) {
             </label>
           )}
           <label className="login-label" name="login-label">
-            Email:{" "}
+            <span>Email</span>
             <input
               className="login-input"
               type="text"
@@ -68,8 +86,8 @@ export default function LoginForm({ setLoggedIn }) {
               onChange={handleChange}
             ></input>
           </label>
-          <label name="login-label">
-            Password:{" "}
+          <label className="login-label" name="login-label">
+            <span>Password</span>
             <input
               className="login-input"
               type="password"
@@ -79,14 +97,18 @@ export default function LoginForm({ setLoggedIn }) {
             ></input>
           </label>
         </div>
-        <button className="login-signup-btn" type="submit">
-          Submit
+        <button id="login-signup-btn" type="submit">
+          {signUp ? "SIGN UP" : "LOG IN"}
         </button>
       </form>
-      <button className="login-signup-btn" onClick={() => setSignUp(!signUp)}>
-        {" "}
-        {signUp ? "Login" : "Sign Up"}
-      </button>
+      <p id="toggle-login-signup" onClick={() => setSignUp(!signUp)}>
+        {signUp
+          ? "Already have an account: Login"
+          : "SDont have and account: Sign Up"}
+      </p>
+      <div onClick={continueGuest}>
+        Continue as <u>Guest</u>
+      </div>
     </section>
   );
 }

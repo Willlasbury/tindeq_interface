@@ -1,0 +1,14 @@
+#timer {
+    position: relative;
+    display:flex;
+    color: black;
+    font-weight: 500;
+    background-color: var(--fourth-col);
+    /* background-image: linear-gradient(to right, var(--fourth-col), var(--tertiary-col)); */
+    width: 90%;
+    border-radius: 5px;
+    box-shadow: 1px 1px 5px var(--shadow);
+    justify-content: center;
+    margin-bottom: 1rem;
+    padding-block: 0.5rem;
+}

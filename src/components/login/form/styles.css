@@ -1,15 +1,34 @@
-
 #login-signup-wrapper {
-    border: 1px solid green;
-    border-radius: 5px;
-    background-color: aqua;
     padding: 2rem;
-    height: 10rem;
-    width: 15rem;
+    height: auto;
+    width: 90%;
     display: flex;
     flex-flow: column;
     justify-content: space-between;
     align-items: center;
+    color: var(--fourth-col);
+}
+
+#login-signup-wrapper h2 {
+    font-size: xx-large;
+    margin-bottom: 2em;
+}
+
+.login-label {
+    display: flex;
+    flex-flow: column;
+    margin-bottom: 1em;
+}
+
+.login-label span {
+    margin-bottom: 0.5em;
+}
+
+.login-input {
+    width: fill;
+    padding: 0.5em;
+    border: 1px solid black;
+    border-radius: 5px;
 }
 
 #login-form {
@@ -17,6 +36,7 @@
     flex-flow: column;
     align-items: center;
     height: 70%;
+    margin-bottom: 2em;
 }
 
 #login-fields {
@@ -24,15 +44,35 @@
     flex-flow: column;
     justify-content: space-evenly;
     height: 100%;
+    margin-bottom: 1em;
 }
 
-.login-signup-btn {
+#login-signup-btn {
     padding-inline: 1rem;
     border: solid grey 1px;
     border-radius: 3px;
     box-shadow: 1px 1px 2px var(--shadow);
+    width: 100%;
+    font-weight: 700;
+    height: 2em;
+    padding: 0.5em;
+    background: linear-gradient(45deg, var(--fourth-col), var(--tertiary-col));
+    transition: all 500ms;
 }
 
-.login-signup-btn:active {
-    background-color: lightgray;
+
+#login-signup-btn:hover {
+    background: linear-gradient(135deg, var(--fourth-col), var(--tertiary-col));
+    filter: brightness(90%);
+}
+
+#login-signup-btn:active {
+    filter: brightness(75%)
+}
+
+#toggle-login-signup {
+    border: none;
+    background-color: none;
+    font-size: small;
+    opacity: 50%;
 }

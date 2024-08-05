@@ -1,11 +1,11 @@
-#header {
+/* #header {
     display: flex;
     border-bottom: 3px solid var(--shadow);
     border-radius: 10px;
     justify-content: flex-end;
     align-items: center;
     height: 4rem;
-}
+} */
 
 
 #navbar {
@@ -83,8 +83,3 @@
 .control-board-btn:active {
     background-color: var(--secondary-col);
 } 
-
-#graph {
-    width: 45%;
-    height: 100%;
-}

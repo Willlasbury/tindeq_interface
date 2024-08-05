@@ -1,5 +1,6 @@
 const URL_PREFIX = import.meta.env.VITE_SERVER_URL;
 
+
 const usersApi = {
   getUserTest: async () => {
     try {

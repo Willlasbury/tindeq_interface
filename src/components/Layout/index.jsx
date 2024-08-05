@@ -19,6 +19,8 @@ export default function Layout({
   showFingerForm,
   setShowFingerForm
 }) {
+
+
   return (
     <>
       {!loggedIn && <LoginModal setLoggedIn={setLoggedIn} />}

@@ -1,17 +1,18 @@
-
-#timer-li {
+.controls {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 15rem;
-    height: 4rem;
-    border: solid black 2px;
-    border-radius: 10px;
-    background-color: var(--tertiary-col);
+    width: 100%;
+    justify-content: space-evenly;
+    background-color: gray;
+
 }
 
-#timer {
-    color: black;
-    font-weight: 500;
+#set-max {
+    display: flex;
+    flex-flow: column;
+
 }
 
+.user-set-vals {
+    display: flex;
+    flex-flow: column;
+}
