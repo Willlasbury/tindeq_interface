@@ -5,7 +5,7 @@ import StartLoggingBtn from "../../components/buttons/tindeqBtns/StartLoggingBtn
 import TareBtn from "../../components/buttons/tindeqBtns/TareBtn";
 import DisconnectBtn from "../buttons/tindeqBtns/DisconnnectBtn";
 import SaveMaxWeight from "../buttons/server/SaveMaxWeight";
-import RPELoggingBtn from "../buttons/tindeqBtns/RPELoggingBtn";
+import RPELoggingBtn from "../buttons/tindeqBtns/StartStopBtn";
 import FingerFormBtn from "../workouts/FingerForm/FingerButton";
 
 
@@ -36,7 +36,7 @@ export default function ControlBoard({
           setMeasuring={setMeasuring}
           />
       </li>
-      <li>
+      <li className="control-li">
         <FingerFormBtn showFingerForm={showFingerForm} setShowFingerForm={setShowFingerForm} />
       </li>
       </>

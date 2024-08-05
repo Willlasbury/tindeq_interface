@@ -1,0 +1,40 @@
+#workout-list {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+#workout-container {
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    height: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.workout-btn {
+    border: solid 1px black;
+    border-radius: 5px;
+    margin: 1rem;
+    box-shadow: 5px 5px 5px var(--shadow);
+    width: 100%;
+    height:4rem;
+    font-size: x-large;
+    font-weight: 700;
+    padding: 0.5em;
+    background: linear-gradient(45deg, var(--fourth-col), var(--tertiary-col));
+    transition: all 500ms;
+}
+
+
+#workout-btn:hover {
+    background: linear-gradient(135deg, var(--fourth-col), var(--tertiary-col));
+    filter: brightness(90%);
+}
+
+#workout-btn:active {
+    filter: brightness(75%)
+}

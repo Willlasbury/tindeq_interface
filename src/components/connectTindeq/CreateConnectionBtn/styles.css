@@ -1,7 +1,7 @@
-#tin-connect {
+/* #tin-connect {
     margin: 2rem 0;
-    /* width: 50%;
-    height: 3rem; */
+    width: 50%;
+    height: 3rem;
     background-color: var(--secondary-col);
     border-radius: 5px;
     border: 2px solid var(--border-col);
@@ -13,4 +13,27 @@
     background-color: var(--tertiary-col);
     transform: scale(0.98);
     box-shadow: 1px 1px 7px var(--shadow);
+} */
+
+#tin-connect {
+    padding-inline: 1rem;
+    border: solid grey 1px;
+    border-radius: 3px;
+    box-shadow: 1px 1px 2px var(--shadow);
+    width: 100%;
+    font-weight: 700;
+    height: 2em;
+    padding: 0.5em;
+    background: linear-gradient(45deg, var(--fourth-col), var(--tertiary-col));
+    transition: all 500ms;
+}
+
+
+#in-connect:hover {
+    background: linear-gradient(135deg, var(--fourth-col), var(--tertiary-col));
+    filter: brightness(90%);
+}
+
+#tin-connect:active {
+    filter: brightness(75%)
 }

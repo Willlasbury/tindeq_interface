@@ -1,93 +1,73 @@
 import "./styles.css";
 import { useEffect, useState } from "react";
 import BarGraph from "../../graphs/GraphCurrent";
-import useTimer from "../../../utils/workout/useTimer";
-// import ControlBoard from "../../ControlBoard";
 import weightApi from "../../../utils/server/crud";
+import ChangeHand from "../ChangeHand";
 
 export default function RPEWorkout({
   weight,
   measuring,
+  RPE,
+  setRPE,
+  stop,
   setStyleData,
-  controlComp
+  pullTime,
+  setTime,
+  children,
+  maxPull,
+  setMaxPull,
+  setBothHands,
+  setResting,
+  hand,
+  setHand,
 }) {
-  const [RPE, setRPE] = useState(8);
-  const [maxPull, setMaxPull] = useState(3);
-  // const [handsMax, setHandsMax] = useState({left:{},right:{}});
-  const [bothHands, setBothHands] = useState(false);
-  const [pullTime, setPullTime] = useState(7);
-  const [restTime, setRestTime] = useState(10);
-
-  const [resting, setResting] = useState(false);
-
-  // place holder weight while I build out db
-  const { time, setTime, isRunning, setIsRunning, start, stop } = useTimer(pullTime);
 
   useEffect(() => {
     if (maxPull == undefined) {
       const getMaxPull = async () => {
-        const data = await weightApi.getUsersMaxPull()
+        const data = await weightApi.getUsersMaxPull();
         if (data instanceof Error) {
-          setMaxPull(100)
+          setMaxPull(100);
         } else {
-          setMaxPull(data.weight_kg)
-          setStyleData(data.style)
+          setMaxPull(data.weight_kg);
+          setStyleData(data.style);
         }
-      }
-      getMaxPull()
+      };
+      getMaxPull();
     }
-
-    if (maxPull != undefined && !isRunning && weight > range.minRange) {
-      setResting(false);
-      start();
-    }
-
-    if (time < 0) {
-      stop()
-      if (!resting) {
-        if (bothHands) {
-          setResting(true)
-          setTime(restTime)
-          start()
-        } else {
-          setTime(pullTime)
-          setBothHands(true)
-        }
-      } else {
-        setBothHands(false)
-        setResting(false)
-        setTime(pullTime)
-      }
-    }
-  }, [time, measuring, weight]);
-
-  const formatTime = (seconds) => {
-    let minutes = Math.floor(seconds / 60);
-    seconds -= minutes * 60;
-    if (seconds < 10) {
-      seconds = `0${seconds}`;
-    }
-    return `${minutes} : ${seconds}`;
-  };
+  }, [weight]);
 
   function reset() {
     setResting(false);
     setTime(pullTime);
-    setBothHands(false)
+    setBothHands(false);
     stop();
   }
 
   const workingWeight = ((RPE / 10) * maxPull) >> 0;
   const range = {
-    maxRange: workingWeight * 0.05 + workingWeight,
-    minRange: workingWeight - workingWeight * 0.05,
+    maxRange: workingWeight * 0.1 + workingWeight,
+    minRange: workingWeight,
   };
   const rpes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
   return (
     <>
+      <ChangeHand hand={hand} setHand={setHand} setStyleData={setStyleData} measuring={measuring}/>
+      <BarGraph
+        weight={weight}
+        reference={{ maxPull, range }}
+        referenceType={"area"}
+      />
+      {children}
+
+      <button className="control-board-btn" onClick={() => reset()}>
+        reset
+      </button>
+
       <ul className="controls">
-        <li id="setMax">
-          <label className="userSetVals" htmlFor="userSetMaxPull">
+        <li id="set-max">
+          <label className="user-set-vals" htmlFor="userSetMaxPull">
             Set Max:
             <input
               htmlFor="userSetMaxPull"
@@ -95,37 +75,26 @@ export default function RPEWorkout({
               onChange={(e) => setMaxPull(Number(e.target.value))}
             ></input>
           </label>
-          <label className="userSetVals" htmlFor="userSetMaxPull">
+        </li>
+        <li id="set-rpe">
+          <label className="user-set-vals" htmlFor="userSetMaxPull">
             Set RPE:
             <select
               htmlFor="userSetMaxPull"
-              defaultValue={maxPull}
+              defaultValue={RPE}
               onChange={(e) => setRPE(Number(e.target.value))}
             >
               {rpes.map((val) => {
-                return <option key = {val} value={val}>{val}</option>;
+                return (
+                  <option key={val} value={val}>
+                    {val}
+                  </option>
+                );
               })}
             </select>
           </label>
         </li>
-        <li id="timer-li">
-          <h4 id="timer">
-            {resting ? formatTime(time) : `Time left: ${time}`}
-          </h4>
-        </li>
-        <li className="control-li">
-          <button className="control-board-btn" onClick={() => reset()}>
-            {" "}
-            reset
-          </button>
-        </li>
-        {controlComp}
       </ul>
-      <BarGraph
-        weight={weight}
-        reference={{ maxPull, range }}
-        referenceType={"area"}
-      />
     </>
   );
 }

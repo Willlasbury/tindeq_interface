@@ -1,0 +1,62 @@
+.settings-background {
+    background-color: rgba(200, 200, 200, 0.2);
+    z-index: 2;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.close-btn {
+    position: absolute;
+    top: 3px;
+    right: 3px;
+    background-color: var(--tertiary-col);
+    box-shadow: 1px 1px 1px var(--shadow);
+    border-radius: 5px;
+}
+
+.settings-wrapper {
+    display: flex;
+    position: relative;
+    flex-flow: column;
+    z-index: 3;
+    margin: 2rem;
+    width: 90%;
+    height: 95%;
+    align-items: center;
+    justify-content: flex-start;
+    border: solid var(--shadow) 1px;
+    border-radius: 7px;
+    background-image: linear-gradient(135deg, var(--fourth-col) 1%, var(--tertiary-col) 90%);
+}
+
+.settings-wrapper nav {
+    width: 100%;
+    /* padding-right: 3rem; */
+
+    padding-block: 2rem 1rem;
+    margin-bottom: 1rem;
+    border-bottom: solid 1px var(--shadow);
+    border-radius : 5px;
+}
+
+.settings-wrapper ul {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    padding-inline: 1rem;
+}
+
+.settings-wrapper li {
+    /* border: solid 1px var(--shadow); */
+    /* padding: 1em; */
+    border-radius: 5px;
+    font-size: x-large;
+    font-weight: 800;
+    color: var(--secondary-col);
+    text-shadow: 1px 1px 3px var(--shadow);
+}
