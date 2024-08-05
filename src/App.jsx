@@ -30,7 +30,7 @@ export default function App() {
   const [maxPull, setMaxPull] = useState(undefined);
   const [bothHands, setBothHands] = useState(false);
   const [hand, setHand, swapHand] = whichHand();
-  
+
   const [resting, setResting] = useState(false);
 
   const [displaySettings, setDisplaySettings] = useState(false);
@@ -44,7 +44,8 @@ export default function App() {
     ring: true,
     pinky: true,
   });
-  const { time, setTime, isRunning, setIsRunning, start, stop } = useTimer(pullTime);
+  const { time, setTime, isRunning, setIsRunning, start, stop } =
+    useTimer(pullTime);
 
   window.onpopstate = (event) => {
     event.preventDefault();
@@ -82,9 +83,7 @@ export default function App() {
         </header>
       )}
       {displaySettings && (
-        <Settings
-          setDisplaySettings={setDisplaySettings}
-        >
+        <Settings setDisplaySettings={setDisplaySettings}>
           <FingerForm
             key="FF"
             styleData={styleData}
@@ -114,6 +113,7 @@ export default function App() {
             setResting={setResting}
             pullTime={pullTime}
             measuring={measuring}
+            setMeasuring={setMeasuring}
             weight={weight}
             maxPull={maxPull}
             setMaxPull={setMaxPull}
@@ -151,7 +151,12 @@ export default function App() {
               setMeasuring={setMeasuring}
             />
           </RPEWorkout>
-          <MaxPull key="Max Pull" weight={weight} styleData={styleData} loggedIn={loggedIn}>
+          <MaxPull
+            key="Max Pull"
+            weight={weight}
+            styleData={styleData}
+            loggedIn={loggedIn}
+          >
             <StartStopBtn
               sendChar={sendChar}
               measuring={measuring}
