@@ -1,12 +1,29 @@
 import "./styles.css";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 import usersApi from "../../../utils/server/users";
+import validateToken from "../../../utils/server/validateToken";
 
 export default function LoginForm({ setLoggedIn }) {
   const [inputs, setInputs] = useState({});
   const [signUp, setSignUp] = useState(false);
+
+  // check if user has token local memory for login
+  useEffect(() => {
+    const checkToken = async () => {
+      const localAccessToken = localStorage.getItem("access_token");
+      const localRefreshToken = localStorage.getItem("refresh_token");
+      if (localAccessToken != null && localRefreshToken != null) {
+        const res = await validateToken(localAccessToken, localRefreshToken);
+        
+        if (res) {
+          setLoggedIn(true)
+        }
+
+      }
+    };
+    checkToken()
+  }, []);
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -35,13 +52,12 @@ export default function LoginForm({ setLoggedIn }) {
       } else {
         console.log("could not login in");
       }
-
     }
   }
 
   const continueGuest = () => {
-    setLoggedIn('guest')
-  }
+    setLoggedIn("guest");
+  };
 
   return (
     <section id="login-signup-wrapper">
@@ -82,11 +98,13 @@ export default function LoginForm({ setLoggedIn }) {
           </label>
         </div>
         <button id="login-signup-btn" type="submit">
-          {signUp ? 'SIGN UP' : 'LOG IN'}
+          {signUp ? "SIGN UP" : "LOG IN"}
         </button>
       </form>
       <p id="toggle-login-signup" onClick={() => setSignUp(!signUp)}>
-        {signUp ? "Already have an account: Login" : "SDont have and account: Sign Up"}
+        {signUp
+          ? "Already have an account: Login"
+          : "SDont have and account: Sign Up"}
       </p>
       <div onClick={continueGuest}>
         Continue as <u>Guest</u>
