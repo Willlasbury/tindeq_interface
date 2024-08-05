@@ -6,7 +6,7 @@ export default function useTimer(startTime) {
   const [time, setTime] = useState(startTime);
   const [isRunning, setIsRunning] = useState(false);
 
-  const clockSpeed = 1000
+  const clockSpeed = 100
   const start = () => {
     setIsRunning(true);
     timeInterval.current = setInterval(() => {
