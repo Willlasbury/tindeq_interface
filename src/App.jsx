@@ -151,7 +151,7 @@ export default function App() {
               setMeasuring={setMeasuring}
             />
           </RPEWorkout>
-          <MaxPull key="Max Pull" weight={weight} styleData={styleData}>
+          <MaxPull key="Max Pull" weight={weight} styleData={styleData} loggedIn={loggedIn}>
             <StartStopBtn
               sendChar={sendChar}
               measuring={measuring}

@@ -39,6 +39,10 @@ export default function LoginForm({ setLoggedIn }) {
     }
   }
 
+  const continueGuest = () => {
+    setLoggedIn('guest')
+  }
+
   return (
     <section id="login-signup-wrapper">
       <h2>Welcome</h2>
@@ -81,9 +85,12 @@ export default function LoginForm({ setLoggedIn }) {
           {signUp ? 'SIGN UP' : 'LOG IN'}
         </button>
       </form>
-      <span id="toggle-login-signup" onClick={() => setSignUp(!signUp)}>
-        Dont have and account? {signUp ? "Login" : "Sign Up"}
-      </span>
+      <p id="toggle-login-signup" onClick={() => setSignUp(!signUp)}>
+        {signUp ? "Already have an account: Login" : "SDont have and account: Sign Up"}
+      </p>
+      <div onClick={continueGuest}>
+        Continue as <u>Guest</u>
+      </div>
     </section>
   );
 }

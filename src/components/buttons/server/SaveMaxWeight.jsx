@@ -1,7 +1,7 @@
 import fastApi from '../../../utils/server/crud'
 import { useOutletContext } from "react-router-dom";
 
-export default function SaveMaxWeight ({maxWeight, styleData}) {
+export default function SaveMaxWeight ({maxWeight, styleData, loggedIn}) {
     function handleMaxWeight () {
         const style = {
           "hand": styleData.hand,
@@ -16,7 +16,7 @@ export default function SaveMaxWeight ({maxWeight, styleData}) {
         // TODO: add some response for successful or unsuccessful call
       }
       return (
-        <button className='control-board-btn' onClick={() => handleMaxWeight()}>
+        <button disabled={loggedIn == 'guest'? true:false} className='control-board-btn' onClick={() => handleMaxWeight()}>
           Send Max Weight
         </button>
       )

@@ -2,7 +2,6 @@ import "./styles.css";
 import { useState } from "react";
 
 
-import ControlBoard from "../../ControlBoard";
 import BarGraph from "../../graphs/GraphCurrent";
 import SaveMaxWeight from "../../buttons/server/SaveMaxWeight";
 
@@ -10,6 +9,7 @@ export default function MaxPull({
   weight,
   styleData,
   controlComp,
+  loggedIn,
   children
 }) {
   
@@ -25,7 +25,7 @@ export default function MaxPull({
     <>
       <ul className="controls">
         <li className="control-li">
-          <SaveMaxWeight maxWeight={maxWeight} styleData={styleData}/>
+          <SaveMaxWeight maxWeight={maxWeight} styleData={styleData} loggedIn={loggedIn}/>
         </li>
         <li className="control-li">
           <button className="control-board-btn" onClick={() => setMaxWeight(0)}>
