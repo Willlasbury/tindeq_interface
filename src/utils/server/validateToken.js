@@ -1,9 +1,8 @@
 const URL_PREFIX = import.meta.env.VITE_SERVER_URL;
 
-export default async function validateToken() {
+export default async function validateToken(accessToken, refreshToken) {
   try {
-    const accessToken = localStorage.getItem("access_token");
-    const refreshToken = localStorage.getItem("refresh_token");
+    
     const res = await fetch(`${URL_PREFIX}/users/token`, {
       method: "GET",
       headers: {
@@ -17,6 +16,7 @@ export default async function validateToken() {
         if (data.session.access_token) {
             localStorage.setItem("access_token", data.session.access_token);
             localStorage.setItem("refresh_token", data.session.refresh_token);
+            return true
       } else {
         throw new Error(
           `Error fetching items: ${res.status} ${res.statusText}`
