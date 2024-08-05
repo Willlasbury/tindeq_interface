@@ -23,7 +23,7 @@ export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [connected, setConnected] = useState(false);
 
-  const [workout, setWorkout] = useState("RPE");
+  const [workout, setWorkout] = useState(undefined);
   const [pullTime, setPullTime] = useState(7);
   const [restTime, setRestTime] = useState(160);
   const [RPE, setRPE] = useState(8);
