@@ -20,14 +20,14 @@ export default function App() {
   const [weight, setWeight] = useState(0);
   const [measuring, setMeasuring] = useState(false);
 
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [connected, setConnected] = useState(false);
 
   const [workout, setWorkout] = useState("RPE");
   const [pullTime, setPullTime] = useState(7);
   const [restTime, setRestTime] = useState(160);
   const [RPE, setRPE] = useState(8);
-  const [maxPull, setMaxPull] = useState(3);
+  const [maxPull, setMaxPull] = useState(undefined);
   const [bothHands, setBothHands] = useState(false);
   const [hand, setHand, swapHand] = whichHand();
   
