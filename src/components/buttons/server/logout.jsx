@@ -11,7 +11,7 @@ export default function LogOut ({setLoggedIn, loggedIn, setConnected, connected}
        if (connected) {
         setConnected(false)
        }
-      //  nav("/")
+      localStorage.clear()
       }
       return (
         <>

@@ -13,6 +13,7 @@ export default function LoginForm({ setLoggedIn }) {
     const checkToken = async () => {
       const localAccessToken = localStorage.getItem("access_token");
       const localRefreshToken = localStorage.getItem("refresh_token");
+      
       if (localAccessToken != null && localRefreshToken != null) {
         const res = await validateToken(localAccessToken, localRefreshToken);
         

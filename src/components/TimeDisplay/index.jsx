@@ -7,7 +7,6 @@ export default function TimeDisplay({
   restTime,
   pullTime,
   measuring,
-  setMeasuring,
   weight,
   maxPull,
   RPE,
@@ -44,7 +43,6 @@ export default function TimeDisplay({
         if (bothHands) {
           // begin rest after both pulls
           setResting(true);
-          setMeasuring(false);
           setTime(restTime);
           start();
         } else {
@@ -52,8 +50,8 @@ export default function TimeDisplay({
           setTime(pullTime);
           setBothHands(true);
         }
-      }
       swapHand();
+      }
     }
   }, [time, measuring, weight]);
 

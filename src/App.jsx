@@ -14,6 +14,7 @@ import TimerSettings from "./components/Settings/PullSettings";
 import TimeDisplay from "./components/TimeDisplay";
 import useTimer from "./utils/workout/useTimer";
 import whichHand from "./utils/workout/whichHand";
+import Monos from "./components/workouts/Monos";
 
 export default function App() {
   const [sendChar, setSendChar] = useState(undefined);
@@ -163,6 +164,18 @@ export default function App() {
               setMeasuring={setMeasuring}
             />
           </MaxPull>
+          <Monos
+          key="Mono"
+          weight={weight}
+          styleData={styleData}
+          loggedIn={loggedIn}
+          >
+            <StartStopBtn
+              sendChar={sendChar}
+              measuring={measuring}
+              setMeasuring={setMeasuring}
+            />
+          </Monos>
         </ChooseWorkout>
       </main>
     </>
