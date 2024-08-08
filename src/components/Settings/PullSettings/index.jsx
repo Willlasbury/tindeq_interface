@@ -1,7 +1,6 @@
 import './styles.css'
 
 export default function TimerSettings ({maxPull, RPE, setRPE, pullTime, setPullTime, restTime, setRestTime}) {
-  console.log("pullTime:", pullTime)
   
     return (
         <>

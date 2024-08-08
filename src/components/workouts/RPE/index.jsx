@@ -2,7 +2,8 @@ import "./styles.css";
 import { useEffect, useState } from "react";
 import BarGraph from "../../graphs/GraphCurrent";
 import weightApi from "../../../utils/server/crud";
-import ChangeHand from "../ChangeHand";
+import ChangeHand from "./ChangeHand";
+import RPERange from "../../../utils/workout/rpeRange";
 
 export default function RPEWorkout({
   weight,
@@ -21,18 +22,17 @@ export default function RPEWorkout({
   hand,
   setHand,
 }) {
-
   useEffect(() => {
+    const getMaxPull = async () => {
+      const data = await weightApi.getUsersMaxPull();
+      if (data instanceof Error) {
+        setMaxPull(100);
+      } else {
+        setMaxPull(data.weight_kg);
+        setStyleData(data.style);
+      }
+    };
     if (maxPull == undefined) {
-      const getMaxPull = async () => {
-        const data = await weightApi.getUsersMaxPull();
-        if (data instanceof Error) {
-          setMaxPull(100);
-        } else {
-          setMaxPull(data.weight_kg);
-          setStyleData(data.style);
-        }
-      };
       getMaxPull();
     }
   }, [weight]);
@@ -44,16 +44,16 @@ export default function RPEWorkout({
     stop();
   }
 
-  const workingWeight = ((RPE / 10) * maxPull) >> 0;
-  const range = {
-    maxRange: workingWeight * 0.1 + workingWeight,
-    minRange: workingWeight,
-  };
-  const rpes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  const { range, rpes } = RPERange(RPE, maxPull);
 
   return (
     <>
-      <ChangeHand hand={hand} setHand={setHand} setStyleData={setStyleData} measuring={measuring}/>
+      <ChangeHand
+        hand={hand}
+        setHand={setHand}
+        setStyleData={setStyleData}
+        measuring={measuring}
+      />
       <BarGraph
         weight={weight}
         reference={{ maxPull, range }}

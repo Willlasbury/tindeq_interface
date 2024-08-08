@@ -1,6 +1,7 @@
 import "./styles.css";
 
-export default function ChangeHand({ hand, setHand, setStyleData, measuring }) {
+export default function ChangeFinger({ setStyleData, measuring }) {
+  
   const handleClick = (e) => {
     setHand(e.target.value);
     setStyleData((prev) => {
@@ -10,7 +11,7 @@ export default function ChangeHand({ hand, setHand, setStyleData, measuring }) {
 
   return (
     <>
-      <section id="hand-change">
+      <section id="finger-change">
         <button
           className={hand == "left" ? "active" : "not-active"}
           disabled={measuring}
@@ -19,6 +20,24 @@ export default function ChangeHand({ hand, setHand, setStyleData, measuring }) {
           onClick={handleClick}
         >
           L
+        </button>
+        <button
+          className={hand == "right" ? "active" : "not-active"}
+          disabled={measuring}
+          autoFocus={hand == "right"}
+          value={"right"}
+          onClick={handleClick}
+        >
+          R
+        </button>
+        <button
+          className={hand == "right" ? "active" : "not-active"}
+          disabled={measuring}
+          autoFocus={hand == "right"}
+          value={"right"}
+          onClick={handleClick}
+        >
+          R
         </button>
         <button
           className={hand == "right" ? "active" : "not-active"}
