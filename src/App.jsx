@@ -13,15 +13,17 @@ import FingerForm from "./components/workouts/FingerForm/form";
 import TimerSettings from "./components/Settings/PullSettings";
 import TimeDisplay from "./components/TimeDisplay";
 import useTimer from "./utils/workout/useTimer";
-import whichHand from "./utils/workout/whichHand";
+import Monos from "./components/workouts/Monos";
+
+import useStyleData from "./utils/workout/styleData";
 
 export default function App() {
   const [sendChar, setSendChar] = useState(undefined);
   const [weight, setWeight] = useState(0);
   const [measuring, setMeasuring] = useState(false);
 
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [connected, setConnected] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
+  const [connected, setConnected] = useState(true);
 
   const [workout, setWorkout] = useState(undefined);
   const [pullTime, setPullTime] = useState(7);
@@ -29,22 +31,25 @@ export default function App() {
   const [RPE, setRPE] = useState(8);
   const [maxPull, setMaxPull] = useState(undefined);
   const [bothHands, setBothHands] = useState(false);
-  const [hand, setHand, swapHand] = whichHand();
 
   const [resting, setResting] = useState(false);
 
   const [displaySettings, setDisplaySettings] = useState(false);
 
-  const [styleData, setStyleData] = useState({
-    hand: "left",
-    edge: 20,
-    grip: "open",
-    index: false,
-    middle: true,
-    ring: true,
-    pinky: true,
-  });
-  const { time, setTime, isRunning, setIsRunning, start, stop } =
+  const [
+    styleData,
+    setStyleData,
+    styleOptions,
+    updateHand,
+    toggleHand,
+    updateEdge,
+    updateGrip,
+    updateFinger,
+    toggleFinger,
+    resetAllFingers,
+  ] = useStyleData();
+
+  const [time, setTime, isRunning, setIsRunning, start, stop] =
     useTimer(pullTime);
 
   window.onpopstate = (event) => {
@@ -88,8 +93,7 @@ export default function App() {
             key="FF"
             styleData={styleData}
             setStyleData={setStyleData}
-            hand={hand}
-            setHand={setHand}
+            styleOptions={styleOptions}
           />
           <TimerSettings
             key="TS"
@@ -119,7 +123,7 @@ export default function App() {
             setMaxPull={setMaxPull}
             bothHands={bothHands}
             setBothHands={setBothHands}
-            swapHand={swapHand}
+            toggleHand={toggleHand}
             start={start}
             stop={stop}
           />
@@ -129,7 +133,6 @@ export default function App() {
             key="RPE"
             weight={weight}
             measuring={measuring}
-            setStyleData={setStyleData}
             pullTime={pullTime}
             restTime={restTime}
             stop={stop}
@@ -142,8 +145,9 @@ export default function App() {
             setTime={setTime}
             RPE={RPE}
             setRPE={setRPE}
-            hand={hand}
-            setHand={setHand}
+            styleData={styleData}
+            setStyleData={setStyleData}
+            updateHand={updateHand}
           >
             <StartStopBtn
               sendChar={sendChar}
@@ -163,6 +167,30 @@ export default function App() {
               setMeasuring={setMeasuring}
             />
           </MaxPull>
+          <Monos
+            key="Mono"
+            weight={weight}
+            measuring={measuring}
+            setStyleData={setStyleData}
+            pullTime={pullTime}
+            restTime={restTime}
+            stop={stop}
+            maxPull={maxPull}
+            setMaxPull={setMaxPull}
+            bothHands={bothHands}
+            setBothHands={setBothHands}
+            resting={resting}
+            setResting={setResting}
+            setTime={setTime}
+            RPE={RPE}
+            setRPE={setRPE}
+          >
+            <StartStopBtn
+              sendChar={sendChar}
+              measuring={measuring}
+              setMeasuring={setMeasuring}
+            />
+          </Monos>
         </ChooseWorkout>
       </main>
     </>

@@ -7,7 +7,6 @@ export default function TimeDisplay({
   restTime,
   pullTime,
   measuring,
-  setMeasuring,
   weight,
   maxPull,
   RPE,
@@ -18,8 +17,7 @@ export default function TimeDisplay({
   stop,
   bothHands,
   setBothHands,
-  hand,
-  swapHand,
+  toggleHand,
 }) {
   const workingWeight = ((RPE / 10) * maxPull) >> 0;
   const range = {
@@ -44,7 +42,6 @@ export default function TimeDisplay({
         if (bothHands) {
           // begin rest after both pulls
           setResting(true);
-          setMeasuring(false);
           setTime(restTime);
           start();
         } else {
@@ -52,8 +49,8 @@ export default function TimeDisplay({
           setTime(pullTime);
           setBothHands(true);
         }
+      toggleHand();
       }
-      swapHand();
     }
   }, [time, measuring, weight]);
 
