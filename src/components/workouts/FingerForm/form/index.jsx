@@ -2,21 +2,17 @@ import "./styles.css";
 
 import FingerCheckBox from "../FingerCheckBox";
 
-export default function FingerForm({ styleData, setStyleData }) {
+export default function FingerForm({ styleData, setStyleData, styleOptions }) {
   const handleChange = (event) => {
     setStyleData((prev) => {
       const { name, value, checked } = event.target;
-      if (["index", "middle", "ring", "pinky"].includes(name)) {
+      if (styleOptions.fingers.includes(name)) {
         return { ...prev, [name]: checked };
       } else {
         return { ...prev, [name]: value };
       }
     });
   };
-  // only for loggin form data in console.
-  // const func = () => {
-  //   Object.entries(styleData).map(([key, val]) => console.log(key, ": ", val));
-  // };
 
   // defime values for options
   const edgeSizes = [20, 15, 12, 10, 8, 7, 6, 4];
@@ -46,7 +42,7 @@ export default function FingerForm({ styleData, setStyleData }) {
             onChange={handleChange}
             value={styleData.edge_size_mm}
           >
-            {edgeSizes.map((val) => {
+            {styleOptions.edges.map((val) => {
               return (
                 <option key={val} value={val}>
                   {val}
@@ -64,7 +60,7 @@ export default function FingerForm({ styleData, setStyleData }) {
             onChange={handleChange}
             value={styleData.grip}
           >
-            {gripType.map((val) => {
+            {styleOptions.grips.map((val) => {
               return (
                 <option key={val} value={val}>
                   {val[0].toUpperCase() + val.substring(1)}

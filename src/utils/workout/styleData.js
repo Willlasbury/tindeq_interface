@@ -92,6 +92,7 @@ export default function useStyleData() {
   return [
     styleData,
     setStyleData,
+    styleOptions,
     updateHand,
     toggleHand,
     updateEdge,

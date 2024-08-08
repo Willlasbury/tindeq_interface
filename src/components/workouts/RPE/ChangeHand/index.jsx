@@ -2,33 +2,26 @@ import "./styles.css";
 
 
 
-export default function ChangeHand({ hand, setHand, setStyleData, measuring }) {
-
-  const handleClick = (e) => {
-    setHand(e.target.value);
-    setStyleData((prev) => {
-      return { ...prev, hand: e.target.value };
-    });
-  };
+export default function ChangeHand({ styleData, updateHand, measuring }) {
 
   return (
     <>
       <section id="hand-change">
         <button
-          className={hand == "left" ? "active" : "not-active"}
+          className={styleData.hand == "left" ? "active" : "not-active"}
           disabled={measuring}
-          autoFocus={hand == "left"}
+          autoFocus={styleData.hand == "left"}
           value={"left"}
-          onClick={handleClick}
+          onClick={()=>updateHand('left')}
         >
           L
         </button>
         <button
-          className={hand == "right" ? "active" : "not-active"}
+          className={styleData.hand == "right" ? "active" : "not-active"}
           disabled={measuring}
-          autoFocus={hand == "right"}
+          autoFocus={styleData.hand == "right"}
           value={"right"}
-          onClick={handleClick}
+          onClick={()=>updateHand('right')}
         >
           R
         </button>

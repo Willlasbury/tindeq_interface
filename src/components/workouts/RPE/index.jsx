@@ -11,7 +11,6 @@ export default function RPEWorkout({
   RPE,
   setRPE,
   stop,
-  setStyleData,
   pullTime,
   setTime,
   children,
@@ -19,8 +18,9 @@ export default function RPEWorkout({
   setMaxPull,
   setBothHands,
   setResting,
-  hand,
-  setHand,
+  styleData,
+  setStyleData,
+  updateHand
 }) {
   useEffect(() => {
     const getMaxPull = async () => {
@@ -49,9 +49,8 @@ export default function RPEWorkout({
   return (
     <>
       <ChangeHand
-        hand={hand}
-        setHand={setHand}
-        setStyleData={setStyleData}
+        styleData={styleData}
+        updateHand={updateHand}
         measuring={measuring}
       />
       <BarGraph
