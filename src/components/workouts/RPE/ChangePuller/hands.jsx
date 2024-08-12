@@ -2,24 +2,24 @@ import "./styles.css";
 
 
 
-export default function ChangeHand({ style, setStyle, measuring }) {
+export default function ChangeHand({ styleData, setStyle, measuring }) {
 
   return (
     <>
       <section id="hand-change">
         <button
-          className={style.hand == "left" ? "active" : "not-active"}
+          className={styleData.hand == "left" ? "active" : "not-active"}
           disabled={measuring}
-          autoFocus={style.hand == "left"}
+          autoFocus={styleData.hand == "left"}
           value={"left"}
           onClick={()=>setStyle('left')}
         >
           L
         </button>
         <button
-          className={style.hand == "right" ? "active" : "not-active"}
+          className={styleData.hand == "right" ? "active" : "not-active"}
           disabled={measuring}
-          autoFocus={style.hand == "right"}
+          autoFocus={styleData.hand == "right"}
           value={"right"}
           onClick={()=>setStyle('right')}
         >

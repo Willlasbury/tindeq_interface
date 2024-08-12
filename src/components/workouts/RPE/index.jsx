@@ -18,7 +18,7 @@ export default function RPEWorkout({
   setMaxPull,
   setBothHands,
   setResting,
-  style,
+  styleData,
   setStyle,
 }) {
   useEffect(() => {
@@ -48,7 +48,7 @@ export default function RPEWorkout({
   return (
     <>
       <ChangeHand
-        style={style}
+        styleData={styleData}
         setStyle={setStyle}
         measuring={measuring}
       />

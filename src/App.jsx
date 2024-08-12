@@ -12,10 +12,9 @@ import Settings from "./components/Settings";
 import FingerForm from "./components/workouts/FingerForm/form";
 import TimerSettings from "./components/Settings/PullSettings";
 import TimeDisplay from "./components/TimeDisplay";
-
 import useTimer from "./utils/workout/useTimer";
-import useStyleData from "./utils/workout/styleData";
 
+import useStyleData from "./utils/workout/styleData";
 
 export default function App() {
   const [sendChar, setSendChar] = useState(undefined);
@@ -36,7 +35,7 @@ export default function App() {
 
   const [displaySettings, setDisplaySettings] = useState(false);
 
-  const [style, setStyle] = useStyleData();
+  const [styleData, styleOptions, setStyle] = useStyleData();
 
   const [time, setTime, isRunning, setIsRunning, start, stop] =
     useTimer(pullTime);
@@ -75,8 +74,9 @@ export default function App() {
         <Settings setDisplaySettings={setDisplaySettings}>
           <FingerForm
             key="FF"
-            style={style}
+            styleData={styleData}
             setStyle={setStyle}
+            styleOptions={styleOptions}
           />
           <TimerSettings
             key="TS"
@@ -128,7 +128,7 @@ export default function App() {
             setTime={setTime}
             RPE={RPE}
             setRPE={setRPE}
-            style={style}
+            styleData={styleData}
             setStyle={setStyle}
           >
             <StartStopBtn
@@ -140,7 +140,7 @@ export default function App() {
           <MaxPull
             key="Max Pull"
             weight={weight}
-            style={style}
+            styleData={styleData}
             loggedIn={loggedIn}
           >
             <StartStopBtn
