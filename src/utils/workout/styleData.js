@@ -47,10 +47,19 @@ export default function useStyleData() {
     }
   };
 
+  // set all fingers to true
+  const resetAllFingers = () => {
+    console.log('===\n\n\ntest\n\n\n===')
+    styleOptions.fingers.map((finger) => updateFinger(finger, true));
+    return styleData
+  };
+
   //   manually update grip
   const updateGrip = (grip) => {
     if (styleOptions.grips.includes(grip)) {
       if (grip == "jug") {
+        console.log('===\n\n\n1test\n\n\n===')
+        resetAllFingers()
         setStyleData((prev) => {
           return { ...prev, grip: grip, edge: null };
         });
@@ -85,12 +94,6 @@ export default function useStyleData() {
     });
   };
 
-  // set all fingers to true
-  const resetAllFingers = () => {
-    styleOptions.fingers.map((finger) => updateFinger(finger, true));
-    return styleData
-  };
-
   // create a master function to cut down on the amount of exports
   const setStyle = ( val, bool = null  ) => {
 
@@ -114,7 +117,13 @@ export default function useStyleData() {
 
     // this is used mirror setState's ability to update based on preveious states
     if (typeof val == "function") {
-      return setStyleData(val(styleData))
+      const res = val(styleData)
+      // prevent an infinite loop
+      if (typeof res == "function") {
+        console.error('Your function must not return a function')
+      } else {
+        setStyle(res)
+      }
     }
 
     // update based on receiving a style data object

@@ -48,8 +48,9 @@ export default function App() {
 
   const test = () => {
    
+  // const res = setStyle('reset fingers')
+  // console.log("res:", res)  
   console.log("styleData:", styleData)
-    
   };
   return (
     <>

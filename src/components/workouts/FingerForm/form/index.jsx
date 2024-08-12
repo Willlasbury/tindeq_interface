@@ -1,4 +1,5 @@
 import "./styles.css";
+import { useEffect } from "react";
 
 import FingerCheckBox from "../FingerCheckBox";
 
@@ -14,9 +15,8 @@ export default function FingerForm({ styleData, setStyle, styleOptions }) {
     });
   };
 
+  
   // defime values for options
-  const edgeSizes = [20, 15, 12, 10, 8, 7, 6, 4];
-  const gripType = ["open", "half", "full"];
   return (
     // <section id="finger-sec">
     <form id="finger-form">
