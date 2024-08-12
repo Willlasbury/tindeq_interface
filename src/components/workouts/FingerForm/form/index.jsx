@@ -4,19 +4,19 @@ import FingerCheckBox from "../FingerCheckBox";
 
 export default function FingerForm({ styleData, setStyle, styleOptions }) {
   const handleChange = (event) => {
-    setStyle((prev) => {
-      const { name, value, checked } = event.target;
-      if (styleOptions.fingers.includes(name)) {
-        return { ...prev, [name]: checked };
-      } else {
-        return { ...prev, [name]: value };
-      }
-    });
+    const { name, checked, value } = event.target;
+    if (checked != undefined) {
+      return setStyle(name, checked);
+    } else {
+      return setStyle(value);
+    }
   };
 
-  // defime values for options
-  const edgeSizes = [20, 15, 12, 10, 8, 7, 6, 4];
-  const gripType = ["open", "half", "full"];
+  const handleClick = (event) => {
+    event.preventDefault();
+    setStyle("reset fingers");
+  };
+
   return (
     // <section id="finger-sec">
     <form id="finger-form">
@@ -29,23 +29,10 @@ export default function FingerForm({ styleData, setStyle, styleOptions }) {
             onChange={handleChange}
             value={styleData.hand}
           >
-            <option value="left">Left</option>
-            <option value="right">Right</option>
-          </select>
-        </label>
-
-        <label className="finger-form-lbl" htmlFor="edge">
-          Edge size:
-          <select
-            className="finger-form-sel"
-            name="edge"
-            onChange={handleChange}
-            value={styleData.edge_size_mm}
-          >
-            {styleOptions.edges.map((val) => {
+            {styleOptions.hands.map((val) => {
               return (
                 <option key={val} value={val}>
-                  {val}
+                  {val[0].toUpperCase() + val.substring(1)}
                 </option>
               );
             })}
@@ -66,6 +53,28 @@ export default function FingerForm({ styleData, setStyle, styleOptions }) {
                   {val[0].toUpperCase() + val.substring(1)}
                 </option>
               );
+            })}
+          </select>
+        </label>
+        {/* You are working when edge is null stuff  */}
+        <label className="finger-form-lbl" htmlFor="edge">
+          Edge size:
+          <select
+            className="finger-form-sel"
+            name="edge"
+            onChange={handleChange}
+            value={styleData.edge_size_mm}
+            disabled={!styleData.edge}
+          >
+            {styleOptions.edges.map((val) => {
+              // if statement removes null value as option
+              if (val) {
+                return (
+                  <option key={val} value={val}>
+                    {val}
+                  </option>
+                );
+              }
             })}
           </select>
         </label>
@@ -93,6 +102,9 @@ export default function FingerForm({ styleData, setStyle, styleOptions }) {
             handleChange={handleChange}
             styleData={styleData}
           />
+          <li>
+            <button onClick={handleClick}>Check All</button>
+          </li>
         </ul>
       </section>
     </form>

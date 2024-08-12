@@ -27,6 +27,7 @@ export default function RPEWorkout({
       if (data instanceof Error) {
         setMaxPull(100);
       } else {
+        console.log("data:", data)
         setMaxPull(data.weight_kg);
         setStyle(data.style);
       }

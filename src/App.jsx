@@ -13,7 +13,6 @@ import FingerForm from "./components/workouts/FingerForm/form";
 import TimerSettings from "./components/Settings/PullSettings";
 import TimeDisplay from "./components/TimeDisplay";
 import useTimer from "./utils/workout/useTimer";
-import Monos from "./components/workouts/Monos";
 
 import useStyleData from "./utils/workout/styleData";
 
@@ -22,8 +21,8 @@ export default function App() {
   const [weight, setWeight] = useState(0);
   const [measuring, setMeasuring] = useState(false);
 
-  const [loggedIn, setLoggedIn] = useState(true);
-  const [connected, setConnected] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [connected, setConnected] = useState(false);
 
   const [workout, setWorkout] = useState(undefined);
   const [pullTime, setPullTime] = useState(7);
@@ -41,19 +40,8 @@ export default function App() {
   const [time, setTime, isRunning, setIsRunning, start, stop] =
     useTimer(pullTime);
 
-  window.onpopstate = (event) => {
-    event.preventDefault();
-    setWorkout(undefined);
-  };
-
-  const test = () => {
-   
-  console.log("styleData:", styleData)
-    
-  };
   return (
     <>
-      <button onClick={test}>test</button>
       {!loggedIn && <LoginModal setLoggedIn={setLoggedIn} />}
       {loggedIn && !connected && (
         <ConnectTindeqModal
