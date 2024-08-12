@@ -3,20 +3,21 @@ import { useEffect } from "react";
 
 import FingerCheckBox from "../FingerCheckBox";
 
-export default function FingerForm({ styleData, setStyle, styleOptions }) {
+export default function FingerForm({ style, setStyle }) {
   const handleChange = (event) => {
-    setStyle((prev) => {
-      const { name, value, checked } = event.target;
-      if (styleOptions.fingers.includes(name)) {
-        return { ...prev, [name]: checked };
-      } else {
-        return { ...prev, [name]: value };
-      }
-    });
+    const { name, checked, value } = event.target;
+    if (checked != undefined) {
+      return setStyle(name, checked);
+    } else {
+      return setStyle(value);
+    }
   };
 
-  
-  // defime values for options
+  const handleClick = (event) => {
+    event.preventDefault();
+    setStyle("reset fingers");
+  };
+
   return (
     // <section id="finger-sec">
     <form id="finger-form">
@@ -27,25 +28,12 @@ export default function FingerForm({ styleData, setStyle, styleOptions }) {
             className="finger-form-sel"
             name="hand"
             onChange={handleChange}
-            value={styleData.hand}
+            value={style.hand}
           >
-            <option value="left">Left</option>
-            <option value="right">Right</option>
-          </select>
-        </label>
-
-        <label className="finger-form-lbl" htmlFor="edge">
-          Edge size:
-          <select
-            className="finger-form-sel"
-            name="edge"
-            onChange={handleChange}
-            value={styleData.edge_size_mm}
-          >
-            {styleOptions.edges.map((val) => {
+            {style.options.hands.map((val) => {
               return (
                 <option key={val} value={val}>
-                  {val}
+                  {val[0].toUpperCase() + val.substring(1)}
                 </option>
               );
             })}
@@ -58,14 +46,36 @@ export default function FingerForm({ styleData, setStyle, styleOptions }) {
             className="finger-form-sel"
             name="grip"
             onChange={handleChange}
-            value={styleData.grip}
+            value={style.grip}
           >
-            {styleOptions.grips.map((val) => {
+            {style.options.grips.map((val) => {
               return (
                 <option key={val} value={val}>
                   {val[0].toUpperCase() + val.substring(1)}
                 </option>
               );
+            })}
+          </select>
+        </label>
+        {/* You are working when edge is null stuff  */}
+        <label className="finger-form-lbl" htmlFor="edge">
+          Edge size:
+          <select
+            className="finger-form-sel"
+            name="edge"
+            onChange={handleChange}
+            value={style.edge_size_mm}
+            disabled={!style.edge}
+          >
+            {style.options.edges.map((val) => {
+              // if statement removes null value as option
+              if (val) {
+                return (
+                  <option key={val} value={val}>
+                    {val}
+                  </option>
+                );
+              }
             })}
           </select>
         </label>
@@ -76,23 +86,26 @@ export default function FingerForm({ styleData, setStyle, styleOptions }) {
           <FingerCheckBox
             finger="index"
             handleChange={handleChange}
-            styleData={styleData}
+            style={style}
           />
           <FingerCheckBox
             finger="middle"
             handleChange={handleChange}
-            styleData={styleData}
+            style={style}
           />
           <FingerCheckBox
             finger="ring"
             handleChange={handleChange}
-            styleData={styleData}
+            style={style}
           />
           <FingerCheckBox
             finger="pinky"
             handleChange={handleChange}
-            styleData={styleData}
+            style={style}
           />
+          <li>
+            <button onClick={handleClick}>Check All</button>
+          </li>
         </ul>
       </section>
     </form>

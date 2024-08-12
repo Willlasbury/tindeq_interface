@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export default function useStyleData() {
-  const [styleData, setStyleData] = useState({
+  const [style, setStyleData] = useState({
     hand: "left",
     edge: 20,
     grip: "open",
@@ -9,18 +9,17 @@ export default function useStyleData() {
     middle: false,
     ring: true,
     pinky: true,
+    options:{
+      hands: ["left", "right"],
+      edges: [20, 15, 12, 10, 8, 7, 6, 4, null],
+      grips: ["open", "half", "full", "jug"],
+      fingers: ["index", "middle", "ring", "pinky"],
+    }
   });
-
-  const styleOptions = {
-    hands: ["left", "right"],
-    edges: [20, 15, 12, 10, 8, 7, 6, 4, null],
-    grips: ["open", "half", "full", "jug"],
-    fingers: ["index", "middle", "ring", "pinky"],
-  };
 
   //   manually upade hand
   const updateHand = (hand) => {
-    if (styleOptions.hands.includes(hand)) {
+    if (style.options.hands.includes(hand)) {
       setStyleData((prev) => {
         return { ...prev, hand: hand };
       });
@@ -31,14 +30,13 @@ export default function useStyleData() {
 
   //   toggle between left and right hand
   const toggleHand = () => {
-    updateHand(styleData.hand == "left" ? "right" : "left");
-    return styleData
+    updateHand(style.hand == "left" ? "right" : "left");
+    return style
   };
 
   //   manually update edge size
-  //   may need to add checks for null interaction with grip: jug at some point
   const updateEdge = (edge) => {
-    if (styleOptions.edges.includes(edge)) {
+    if (style.options.edges.includes(edge)) {
       setStyleData((prev) => {
         return { ...prev, edge: edge };
       });
@@ -49,27 +47,31 @@ export default function useStyleData() {
 
   // set all fingers to true
   const resetAllFingers = () => {
-    console.log('===\n\n\ntest\n\n\n===')
-    styleOptions.fingers.map((finger) => updateFinger(finger, true));
-    return styleData
+    style.options.fingers.map((finger) => updateFinger(finger, true));
+    return style
   };
 
   //   manually update grip
   const updateGrip = (grip) => {
-    if (styleOptions.grips.includes(grip)) {
+    if (style.options.grips.includes(grip)) {
       if (grip == "jug") {
-        console.log('===\n\n\n1test\n\n\n===')
         resetAllFingers()
+        updateEdge(null)
         setStyleData((prev) => {
           return { ...prev, grip: grip, edge: null };
         });
+      } else if (style.edge == null && style.grip == 'jug') {
+        // adjust style from null edge to 20 when swapping style from jug to something else
+        setStyleData((prev) => {
+          return { ...prev, grip: grip, edge: 20 };
+        });
       } else {
         setStyleData((prev) => {
-          return { ...prev, grip: grip };
-        });
+          return {...prev, grip: grip}
+        })
       }
     } else {
-      return console.error("not an grip option");
+      return console.error("not a grip option");
     }
   };
 
@@ -78,19 +80,19 @@ export default function useStyleData() {
     if (typeof bool != "boolean") {
       return console.error("finger options can only be true or false");
     }
-    if (styleOptions.fingers.includes(finger)) {
-      setStyleData((prev) => {
+    if (style.options.fingers.includes(finger)) {
+      return setStyleData((prev) => {
         return { ...prev, [finger]: bool };
       });
     } else {
-      return console.error("not an finger option");
+      return console.error("not a finger option");
     }
   };
 
   //   toggle between finger being true or false
   const toggleFinger = (finger) => {
     setStyleData((prev) => {
-      return { ...prev, [finger]: !styleData[finger] };
+      return { ...prev, [finger]: !style[finger] };
     });
   };
 
@@ -99,10 +101,9 @@ export default function useStyleData() {
 
     // check for boolean to first determine if we are updating fingers
      if (bool != null) {
-       updateFinger(val, bool);
-       return styleData;
+       return updateFinger(val, bool);
      }
-
+     
     //  check for special calls
     if (val == "swap hand") {
       return toggleHand();
@@ -115,59 +116,66 @@ export default function useStyleData() {
       return toggleFinger()
     }
 
-    // this is used mirror setState's ability to update based on preveious states
+    // this is used to mirror setState's ability to update based on preveious states
     if (typeof val == "function") {
-      const res = val(styleData)
+      const res = val(style)
       // prevent an infinite loop
       if (typeof res == "function") {
-        console.error('Your function must not return a function')
+        return console.error("Can not return function from function \nDon't start an infinite loop")
       } else {
-        setStyle(res)
+        return setStyle(res)
       }
     }
 
     // update based on receiving a style data object
     if (typeof val == "object") {
       for (let key in val) {
-        if (styleOptions.fingers.includes(key)) {
+        // validate object before setting the style
+        if (style.options.fingers.includes(key)) {
           if (typeof val[key] == "boolean") {
             continue;
           } else {
             console.error("could not update style from object");
-            return styleData;
+            return style;
           }
-        } else if (styleOptions[`${key}s`].includes(val[key])) {
+        } else if (style.options[`${key}s`].includes(val[key])) {
           continue;
         } else {
           console.error("could not update style from object");
-          return styleData;
+          return style;
         }
       }
       setStyleData(val);
-      return styleData;
+      return style;
     }
 
 
-    // use find to search through styleOptions and grab key if val is in values
-    const [key, value] = Object.entries(styleOptions).find(([k, v]) => {
+    // This will check the value of val and look for its match in style.options
+    // it will then grab the key from style.options and perform an associated update 
+    // function
+    const [key, value] = Object.entries(style.options).find(([k, v]) => {
+      // Numbers are sent in as text, so we will check if we can update val to a number
+      if (Number(val)) {
+        val = Number(val)
+      } 
       if (v.includes(val)) {
         return k;
-      }
+      } 
     });
 
     // apply update function from key
     if (key == "hands") {
-      updateHand(val);
+      return updateHand(val);
     } else if (key == "edges") {
-      updateEdge(val);
+      return updateEdge(val);
     } else if (key == "grips") {
-      updateGrip(val);
+      return updateGrip(val);
     } else {
       console.error("could not update");
     }
 
-    return styleData;
+    return style;
   };
 
-  return [styleData, styleOptions, setStyle];
+  return [style, setStyle];
 }

@@ -12,18 +12,18 @@ import Settings from "./components/Settings";
 import FingerForm from "./components/workouts/FingerForm/form";
 import TimerSettings from "./components/Settings/PullSettings";
 import TimeDisplay from "./components/TimeDisplay";
-import useTimer from "./utils/workout/useTimer";
-import Monos from "./components/workouts/Monos";
 
+import useTimer from "./utils/workout/useTimer";
 import useStyleData from "./utils/workout/styleData";
+
 
 export default function App() {
   const [sendChar, setSendChar] = useState(undefined);
   const [weight, setWeight] = useState(0);
   const [measuring, setMeasuring] = useState(false);
 
-  const [loggedIn, setLoggedIn] = useState(true);
-  const [connected, setConnected] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [connected, setConnected] = useState(false);
 
   const [workout, setWorkout] = useState(undefined);
   const [pullTime, setPullTime] = useState(7);
@@ -36,25 +36,13 @@ export default function App() {
 
   const [displaySettings, setDisplaySettings] = useState(false);
 
-  const [styleData, styleOptions, setStyle] = useStyleData();
+  const [style, setStyle] = useStyleData();
 
   const [time, setTime, isRunning, setIsRunning, start, stop] =
     useTimer(pullTime);
 
-  window.onpopstate = (event) => {
-    event.preventDefault();
-    setWorkout(undefined);
-  };
-
-  const test = () => {
-   
-  // const res = setStyle('reset fingers')
-  // console.log("res:", res)  
-  console.log("styleData:", styleData)
-  };
   return (
     <>
-      <button onClick={test}>test</button>
       {!loggedIn && <LoginModal setLoggedIn={setLoggedIn} />}
       {loggedIn && !connected && (
         <ConnectTindeqModal
@@ -87,9 +75,8 @@ export default function App() {
         <Settings setDisplaySettings={setDisplaySettings}>
           <FingerForm
             key="FF"
-            styleData={styleData}
+            style={style}
             setStyle={setStyle}
-            styleOptions={styleOptions}
           />
           <TimerSettings
             key="TS"
@@ -141,7 +128,7 @@ export default function App() {
             setTime={setTime}
             RPE={RPE}
             setRPE={setRPE}
-            styleData={styleData}
+            style={style}
             setStyle={setStyle}
           >
             <StartStopBtn
@@ -153,7 +140,7 @@ export default function App() {
           <MaxPull
             key="Max Pull"
             weight={weight}
-            styleData={styleData}
+            style={style}
             loggedIn={loggedIn}
           >
             <StartStopBtn

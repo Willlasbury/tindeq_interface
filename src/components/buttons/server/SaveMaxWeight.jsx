@@ -1,18 +1,18 @@
 import fastApi from '../../../utils/server/crud'
 import { useOutletContext } from "react-router-dom";
 
-export default function SaveMaxWeight ({maxWeight, styleData, loggedIn}) {
+export default function SaveMaxWeight ({maxWeight, style, loggedIn}) {
     function handleMaxWeight () {
-        const style = {
-          "hand": styleData.hand,
-          "edge_size_mm": styleData.edge,
-          "grip": styleData.grip,
-          "index": styleData.index,
-          "middle": styleData.middle,
-          "ring": styleData.ring,
-          "pinky": styleData.pinky
+        const styleData = {
+          "hand": style.hand,
+          "edge_size_mm": style.edge,
+          "grip": style.grip,
+          "index": style.index,
+          "middle": style.middle,
+          "ring": style.ring,
+          "pinky": style.pinky
             }
-        const res = fastApi.sendMaxWeight(maxWeight, style)
+        const res = fastApi.sendMaxWeight(maxWeight, styleData)
         // TODO: add some response for successful or unsuccessful call
       }
       return (
