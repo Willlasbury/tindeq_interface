@@ -17,7 +17,7 @@ export default function TimeDisplay({
   stop,
   bothHands,
   setBothHands,
-  toggleHand,
+  setStyle,
 }) {
   const workingWeight = ((RPE / 10) * maxPull) >> 0;
   const range = {
@@ -49,7 +49,7 @@ export default function TimeDisplay({
           setTime(pullTime);
           setBothHands(true);
         }
-      toggleHand();
+      setStyle("swap hand");
       }
     }
   }, [time, measuring, weight]);
