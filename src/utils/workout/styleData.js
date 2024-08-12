@@ -127,7 +127,6 @@ export default function useStyleData() {
         return setStyle(res)
       }
     }
-    console.log("styleOptions[`${hands}`]:", styleOptions[`${hands}`])
     // update based on receiving a style data object
     if (typeof val == "object") {
       for (let key in val) {

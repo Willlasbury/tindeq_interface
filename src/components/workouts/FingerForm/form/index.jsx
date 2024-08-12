@@ -1,9 +1,8 @@
 import "./styles.css";
-import { useEffect } from "react";
 
 import FingerCheckBox from "../FingerCheckBox";
 
-export default function FingerForm({ style, setStyle }) {
+export default function FingerForm({ styleData, setStyle, styleOptions }) {
   const handleChange = (event) => {
     const { name, checked, value } = event.target;
     if (checked != undefined) {
@@ -28,9 +27,9 @@ export default function FingerForm({ style, setStyle }) {
             className="finger-form-sel"
             name="hand"
             onChange={handleChange}
-            value={style.hand}
+            value={styleData.hand}
           >
-            {style.options.hands.map((val) => {
+            {styleOptions.hands.map((val) => {
               return (
                 <option key={val} value={val}>
                   {val[0].toUpperCase() + val.substring(1)}
@@ -46,9 +45,9 @@ export default function FingerForm({ style, setStyle }) {
             className="finger-form-sel"
             name="grip"
             onChange={handleChange}
-            value={style.grip}
+            value={styleData.grip}
           >
-            {style.options.grips.map((val) => {
+            {styleOptions.grips.map((val) => {
               return (
                 <option key={val} value={val}>
                   {val[0].toUpperCase() + val.substring(1)}
@@ -64,10 +63,10 @@ export default function FingerForm({ style, setStyle }) {
             className="finger-form-sel"
             name="edge"
             onChange={handleChange}
-            value={style.edge_size_mm}
-            disabled={!style.edge}
+            value={styleData.edge_size_mm}
+            disabled={!styleData.edge}
           >
-            {style.options.edges.map((val) => {
+            {styleOptions.edges.map((val) => {
               // if statement removes null value as option
               if (val) {
                 return (
@@ -86,22 +85,22 @@ export default function FingerForm({ style, setStyle }) {
           <FingerCheckBox
             finger="index"
             handleChange={handleChange}
-            style={style}
+            styleData={styleData}
           />
           <FingerCheckBox
             finger="middle"
             handleChange={handleChange}
-            style={style}
+            styleData={styleData}
           />
           <FingerCheckBox
             finger="ring"
             handleChange={handleChange}
-            style={style}
+            styleData={styleData}
           />
           <FingerCheckBox
             finger="pinky"
             handleChange={handleChange}
-            style={style}
+            styleData={styleData}
           />
           <li>
             <button onClick={handleClick}>Check All</button>

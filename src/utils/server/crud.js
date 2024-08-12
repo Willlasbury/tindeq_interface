@@ -123,6 +123,7 @@ const api = {
         },
       });
       if (res.ok) {
+        console.log("data:", data)
         const data = await res.json();
         return data;
       } else {

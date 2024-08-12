@@ -1,6 +1,6 @@
-export default function FingerCheckBox({finger, handleChange, style}) {
+export default function FingerCheckBox({finger, handleChange, styleData}) {
 
-  const checked = style[finger]
+  const checked = styleData[finger]
   
   return (
     <li className="finger-box">
