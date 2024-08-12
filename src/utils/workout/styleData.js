@@ -6,7 +6,7 @@ export default function useStyleData() {
     edge: 20,
     grip: "open",
     index: true,
-    middle: true,
+    middle: false,
     ring: true,
     pinky: true,
   });
@@ -32,6 +32,7 @@ export default function useStyleData() {
   //   toggle between left and right hand
   const toggleHand = () => {
     updateHand(styleData.hand == "left" ? "right" : "left");
+    return styleData
   };
 
   //   manually update edge size
@@ -87,18 +88,77 @@ export default function useStyleData() {
   // set all fingers to true
   const resetAllFingers = () => {
     styleOptions.fingers.map((finger) => updateFinger(finger, true));
+    return styleData
   };
 
-  return [
-    styleData,
-    setStyleData,
-    styleOptions,
-    updateHand,
-    toggleHand,
-    updateEdge,
-    updateGrip,
-    updateFinger,
-    toggleFinger,
-    resetAllFingers,
-  ];
+  // create a master function to cut down on the amount of exports
+  const setStyle = ( val, bool = null  ) => {
+
+    // check for boolean to first determine if we are updating fingers
+     if (bool != null) {
+       updateFinger(val, bool);
+       return styleData;
+     }
+
+    //  check for special calls
+    if (val == "swap hand") {
+      return toggleHand();
+      }
+
+    if (val == "reset fingers") {
+      return resetAllFingers();
+    }
+    if (val == "toggle finger") {
+      return toggleFinger()
+    }
+
+    // this is used mirror setState's ability to update based on preveious states
+    if (typeof val == "function") {
+      return setStyleData(val(styleData))
+    }
+
+    // update based on receiving a style data object
+    if (typeof val == "object") {
+      for (let key in val) {
+        if (styleOptions.fingers.includes(key)) {
+          if (typeof val[key] == "boolean") {
+            continue;
+          } else {
+            console.error("could not update style from object");
+            return styleData;
+          }
+        } else if (styleOptions[`${key}s`].includes(val[key])) {
+          continue;
+        } else {
+          console.error("could not update style from object");
+          return styleData;
+        }
+      }
+      setStyleData(val);
+      return styleData;
+    }
+
+
+    // use find to search through styleOptions and grab key if val is in values
+    const [key, value] = Object.entries(styleOptions).find(([k, v]) => {
+      if (v.includes(val)) {
+        return k;
+      }
+    });
+
+    // apply update function from key
+    if (key == "hands") {
+      updateHand(val);
+    } else if (key == "edges") {
+      updateEdge(val);
+    } else if (key == "grips") {
+      updateGrip(val);
+    } else {
+      console.error("could not update");
+    }
+
+    return styleData;
+  };
+
+  return [styleData, styleOptions, setStyle];
 }

@@ -2,7 +2,7 @@ import "./styles.css";
 import { useEffect, useState } from "react";
 import BarGraph from "../../graphs/GraphCurrent";
 import weightApi from "../../../utils/server/crud";
-import ChangeHand from "./ChangeHand";
+import ChangeHand from "./ChangePuller/hands";
 import RPERange from "../../../utils/workout/rpeRange";
 
 export default function RPEWorkout({
@@ -19,8 +19,7 @@ export default function RPEWorkout({
   setBothHands,
   setResting,
   styleData,
-  setStyleData,
-  updateHand
+  setStyle,
 }) {
   useEffect(() => {
     const getMaxPull = async () => {
@@ -29,7 +28,7 @@ export default function RPEWorkout({
         setMaxPull(100);
       } else {
         setMaxPull(data.weight_kg);
-        setStyleData(data.style);
+        setStyle(data.style);
       }
     };
     if (maxPull == undefined) {
@@ -50,7 +49,7 @@ export default function RPEWorkout({
     <>
       <ChangeHand
         styleData={styleData}
-        updateHand={updateHand}
+        setStyle={setStyle}
         measuring={measuring}
       />
       <BarGraph

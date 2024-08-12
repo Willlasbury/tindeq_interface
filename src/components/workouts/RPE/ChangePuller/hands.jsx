@@ -2,7 +2,7 @@ import "./styles.css";
 
 
 
-export default function ChangeHand({ styleData, updateHand, measuring }) {
+export default function ChangeHand({ styleData, setStyle, measuring }) {
 
   return (
     <>
@@ -12,7 +12,7 @@ export default function ChangeHand({ styleData, updateHand, measuring }) {
           disabled={measuring}
           autoFocus={styleData.hand == "left"}
           value={"left"}
-          onClick={()=>updateHand('left')}
+          onClick={()=>setStyle('left')}
         >
           L
         </button>
@@ -21,7 +21,7 @@ export default function ChangeHand({ styleData, updateHand, measuring }) {
           disabled={measuring}
           autoFocus={styleData.hand == "right"}
           value={"right"}
-          onClick={()=>updateHand('right')}
+          onClick={()=>setStyle('right')}
         >
           R
         </button>

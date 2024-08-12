@@ -36,18 +36,7 @@ export default function App() {
 
   const [displaySettings, setDisplaySettings] = useState(false);
 
-  const [
-    styleData,
-    setStyleData,
-    styleOptions,
-    updateHand,
-    toggleHand,
-    updateEdge,
-    updateGrip,
-    updateFinger,
-    toggleFinger,
-    resetAllFingers,
-  ] = useStyleData();
+  const [styleData, styleOptions, setStyle] = useStyleData();
 
   const [time, setTime, isRunning, setIsRunning, start, stop] =
     useTimer(pullTime);
@@ -57,8 +46,14 @@ export default function App() {
     setWorkout(undefined);
   };
 
+  const test = () => {
+   
+  console.log("styleData:", styleData)
+    
+  };
   return (
     <>
+      <button onClick={test}>test</button>
       {!loggedIn && <LoginModal setLoggedIn={setLoggedIn} />}
       {loggedIn && !connected && (
         <ConnectTindeqModal
@@ -92,7 +87,7 @@ export default function App() {
           <FingerForm
             key="FF"
             styleData={styleData}
-            setStyleData={setStyleData}
+            setStyle={setStyle}
             styleOptions={styleOptions}
           />
           <TimerSettings
@@ -123,7 +118,7 @@ export default function App() {
             setMaxPull={setMaxPull}
             bothHands={bothHands}
             setBothHands={setBothHands}
-            toggleHand={toggleHand}
+            setStyle={setStyle}
             start={start}
             stop={stop}
           />
@@ -146,8 +141,7 @@ export default function App() {
             RPE={RPE}
             setRPE={setRPE}
             styleData={styleData}
-            setStyleData={setStyleData}
-            updateHand={updateHand}
+            setStyle={setStyle}
           >
             <StartStopBtn
               sendChar={sendChar}
@@ -167,30 +161,6 @@ export default function App() {
               setMeasuring={setMeasuring}
             />
           </MaxPull>
-          <Monos
-            key="Mono"
-            weight={weight}
-            measuring={measuring}
-            setStyleData={setStyleData}
-            pullTime={pullTime}
-            restTime={restTime}
-            stop={stop}
-            maxPull={maxPull}
-            setMaxPull={setMaxPull}
-            bothHands={bothHands}
-            setBothHands={setBothHands}
-            resting={resting}
-            setResting={setResting}
-            setTime={setTime}
-            RPE={RPE}
-            setRPE={setRPE}
-          >
-            <StartStopBtn
-              sendChar={sendChar}
-              measuring={measuring}
-              setMeasuring={setMeasuring}
-            />
-          </Monos>
         </ChooseWorkout>
       </main>
     </>

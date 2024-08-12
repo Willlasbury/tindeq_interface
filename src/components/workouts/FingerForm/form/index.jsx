@@ -2,9 +2,9 @@ import "./styles.css";
 
 import FingerCheckBox from "../FingerCheckBox";
 
-export default function FingerForm({ styleData, setStyleData, styleOptions }) {
+export default function FingerForm({ styleData, setStyle, styleOptions }) {
   const handleChange = (event) => {
-    setStyleData((prev) => {
+    setStyle((prev) => {
       const { name, value, checked } = event.target;
       if (styleOptions.fingers.includes(name)) {
         return { ...prev, [name]: checked };
