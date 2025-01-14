@@ -63,6 +63,13 @@ export default function TimeDisplay({
     return `${minutes} : ${seconds}`;
   };
 
+  // CONTROL TIME DISPLAY ON TAB
+  if (isRunning == true) {
+    document.title = `Time: ${formatTime(time)}`
+ } else {
+  document.title = 'Finger Tester'
+ }
+
   return (
     <h4 id="timer">{resting ? formatTime(time) : `Time left: ${time}`}</h4>
   );
