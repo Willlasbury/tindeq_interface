@@ -64,7 +64,7 @@ export default function TimeDisplay({
   };
 
   // CONTROL TIME DISPLAY ON TAB
-  if (isRunning == true) {
+  if (isRunning) {
     document.title = `Time: ${formatTime(time)}`
  } else {
   document.title = 'Finger Tester'
