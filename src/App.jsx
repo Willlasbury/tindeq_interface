@@ -21,7 +21,7 @@ export default function App() {
   const [weight, setWeight] = useState(0);
   const [measuring, setMeasuring] = useState(false);
 
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   const [connected, setConnected] = useState(false);
 
   const [workout, setWorkout] = useState(undefined);
@@ -39,6 +39,8 @@ export default function App() {
 
   const [time, setTime, isRunning, setIsRunning, start, stop] =
     useTimer(pullTime);
+
+
 
   return (
     <>

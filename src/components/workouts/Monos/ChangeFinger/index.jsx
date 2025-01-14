@@ -5,7 +5,7 @@ export default function ChangeFinger({ setStyleData, measuring }) {
   const handleClick = (e) => {
     setHand(e.target.value);
     setStyleData((prev) => {
-      return { ...prev, hand: e.target.value };
+      return {  prev, hand: e.target.value };
     });
   };
 
